@@ -6,7 +6,6 @@ import './styles/index.css';
 import router from "./router"
 
 import reportWebVitals from './reportWebVitals';
-import router from './routes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
