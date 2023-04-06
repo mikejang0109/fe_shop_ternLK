@@ -1,11 +1,10 @@
 import React from "react";
+import Title from "../../components/Title";
 
 const Faq = () => {
     return (
         <React.Fragment>
-            <main>
-                <p>FAQ &#62;</p>
-            </main>
+            <Title breadcrumbs="FAQ" title="FAQ" description="Frequently Asked Questions" />
         </React.Fragment>
     )
 }

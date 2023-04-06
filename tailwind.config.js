@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: ["./src/**/*.js"],
   theme: {
     extend: {
-      fontFamily: {
-        'arimo': 'Arimo, sans-serif',
+      backgroundImage: {
+        'defaultRaz': "url('/src/assets/images/raz-bg.webp')"
       }
+
     },
   },
   plugins: [require("daisyui")],
