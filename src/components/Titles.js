@@ -1,3 +1,5 @@
+//* Sudah tidak dipakai, gunakan yang ada di folder Title saja
+
 const Title = (props) => {
     return (
         <section className=" bg-defaultRaz bg-left bg-repeat-x bg-[length:679px_679px]">
