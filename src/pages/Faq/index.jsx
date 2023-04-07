@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../../components/Title";
-// import Header from "../../components/Header/index";
+import Header from "../../components/Header";
 
 import cartIcon from "../../assets/icons/cart-icon.svg";
 import walletIcon from "../../assets/icons/wallet-icon.svg";
@@ -9,8 +9,8 @@ import miscellaneousIcon from "../../assets/icons/miscellaneous-icon.svg"
 const Faq = () => {
     return (
         <React.Fragment>
-            {/* <Header /> */}
-            <Title breadcrumbs="FAQ" title="FAQ" description="Frequently Asked Questions" />
+            <Header />
+            <Title isBreadcrumbs={true} breadcrumbs="FAQ" title="FAQ" description="Frequently Asked Questions" />
             <main className="p-[5%]">
                 <section className="pb-8 md:pb-12 lg:pb-20 xl:pb-24">
                     <div className="flex justify-center items-center rounded-full border-solid border border-tertiary-gray w-[72px] h-[72px] mx-auto mb-5">
