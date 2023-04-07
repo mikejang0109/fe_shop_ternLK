@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../../components/Title";
-import Header from "../../components/Header/index";
+// import Header from "../../components/Header/index";
 
 import cartIcon from "../../assets/icons/cart-icon.svg";
 import walletIcon from "../../assets/icons/wallet-icon.svg";
