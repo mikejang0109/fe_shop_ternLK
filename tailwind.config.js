@@ -9,7 +9,7 @@ module.exports = {
         "primary-black": "#1A1A1A",
         "primary-gray": "#4D4D4D",
         "secondary-gray": "#D8D8D8",
-        "accent-red": "#D94141"
+        "accent-red": "#D94141",
       },
       fontFamily : {
         arimo: ["Arimo", "sans-serif"]
