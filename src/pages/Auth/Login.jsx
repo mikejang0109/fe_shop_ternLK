@@ -81,7 +81,7 @@ function Login() {
 		<section className="right-side flex flex-col items-center">
 			<div className="form-wrapper flex flex-col gap-y-16">
 				<p className="text-primary-black text-[2rem]">Login</p>
-				<form className="flex flex-col gap-y-2">
+				<form className="flex flex-col gap-y-6">
 					<div className="md:w-[560px]">
 						<div className="relative w-full h-[4.375rem]">
 							<input
