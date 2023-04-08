@@ -9,7 +9,7 @@ function Error() {
 	return (
 		<div className="content-wrapper">
 			<Header />
-			<div className="body-wrapper font-arimo py-20 lg:py-40 px-6 md:px-0 grid grid-cols-1 grid-rows-1 items-center justify-center">
+			<div className="body-wrapper font-arimo py-20 lg:py-40 px-6 md:px-0 lg:px-[10%] xl:px-0 grid grid-cols-1 grid-rows-1 items-center justify-center">
 				<div className="flex flex-row justify-around px-0 items-center">
 					<div className="left-side flex flex-col gap-y-10">
 						<p className="font-bold text-[5.375rem] text-primary-black">404</p>
