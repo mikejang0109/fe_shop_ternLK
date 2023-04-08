@@ -27,7 +27,7 @@ function Auth() {
 							return (
 								<div key={idx} className="cursor-pointer flex flex-col gap-y-2">
 									<p
-										className={`text-[2rem] ${
+										className={`md:text-[2rem] text-xl ${
 											idx === activeTabIndex ? "text-primary-black" : "text-[#B4B4B4]"
 										}`}
 										onClick={() => setActiveTabIndex(idx)}

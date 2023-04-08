@@ -120,8 +120,8 @@ function Register() {
 							/>
 							<span className="ml-2">I'm Seller</span>
 						</label>
-						{error.role !== "" ? <div className="text-red-700 font-arimo">{error.role}</div> : null}
 					</div>
+					{error.role !== "" ? <div className="text-red-700 font-arimo">{error.role}</div> : null}
 					<button
 						onClick={registerHandler}
 						className="btn mt-10 normal-case rounded-none w-1/4 bg-primary-black text-white hover:text-primary-black"
