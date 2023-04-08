@@ -18,7 +18,7 @@ const Faq = () => {
                     </div>
                     <div className="flex justify-between md:justify-center md:gap-16 items-center pb-5 md:pb-11 lg:pb-16 xl:pb-[78px]">
                         <div className="h-[2px] w-14 md:w-[73px] bg-secondary-gray"></div>
-                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Shopping Questions</h2>
+                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">Shopping Questions</h2>
                         <div className="h-[2px] w-14 md:w-[73px] bg-secondary-gray"></div>
                     </div>
                     <div className="flex flex-col md:flex-row flex-wrap md:justify-between gap-5">
@@ -46,7 +46,7 @@ const Faq = () => {
                     </div>
                     <div className="flex justify-between md:justify-center md:gap-16 items-center pb-5 md:pb-11 lg:pb-16 xl:pb-[78px]">
                         <div className="h-[2px] w-14 md:w-[73px] bg-secondary-gray"></div>
-                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Payment Questions</h2>
+                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">Payment Questions</h2>
                         <div className="h-[2px] w-14 md:w-[73px] bg-secondary-gray"></div>
                     </div>
                     <div className="flex flex-col md:flex-row flex-wrap md:justify-between gap-5">
@@ -74,7 +74,7 @@ const Faq = () => {
                     </div>
                     <div className="flex justify-between md:justify-center md:gap-16 items-center pb-5 md:pb-11 lg:pb-16 xl:pb-[78px]">
                         <div className="h-[2px] w-14 md:w-[73px] bg-secondary-gray"></div>
-                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl">Miscellaneous Questions</h2>
+                        <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-center">Miscellaneous Questions</h2>
                         <div className="h-[2px] w-14 md:w-[73px] bg-secondary-gray"></div>
                     </div>
                     <div className="flex flex-col md:flex-row flex-wrap md:justify-between gap-5">
@@ -98,7 +98,7 @@ const Faq = () => {
                 </section>
                 <section className="flex justify-center items-center flex-col">
                     <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl pb-5 md:pb-6 lg:pb-7 xl:pb-8">You Still Need Help?</h3>
-                    <button className="btn" type="button">Contact Us</button>
+                    <button className="btn bg-secondary-black text-white hover:bg-white hover:text-secondary-black active:bg-white active:text-secondary-black" type="button">Contact Us</button>
                 </section>
             </main>
         </React.Fragment>

@@ -10,7 +10,7 @@ const Title = (props) => {
 				</div>
 				<div className="flex flex-col justify-center items-center font-arimo">
 					<h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl xl:pb-5">{props.title}</h1>
-					<p className="text-sm md:text-base">{props.description}</p>
+					<p className="text-sm md:text-base text-center">{props.description}</p>
 				</div>
 			</div>
 		</section>
