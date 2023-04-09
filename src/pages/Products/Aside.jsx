@@ -7,27 +7,27 @@ const Aside = () => {
                 <p className="font-bold pb-5 text-2xl">Categories</p>
                 <div className="flex flex-col justify-center items-stretch gap-3">
                     <div className="flex items-center justify-between ">
-                        <p className="text-sm">Accecories</p>
+                        <p className="text-sm cursor-pointer">Accecories</p>
                         <p className="text-sm">5</p>
                     </div>
                     <div className="flex items-center justify-between ">
-                        <p className="text-sm">Brands</p>
+                        <p className="text-sm cursor-pointer">Brands</p>
                         <p className="text-sm">5</p>
                     </div>
                     <div className="flex items-center justify-between ">
-                        <p className="text-sm">Clothing</p>
+                        <p className="text-sm cursor-pointer">Clothing</p>
                         <p className="text-sm">5</p>
                     </div>
                     <div className="flex items-center justify-between ">
-                        <p className="text-sm">Fashion</p>
+                        <p className="text-sm cursor-pointer">Fashion</p>
                         <p className="text-sm">5</p>
                     </div>
                     <div className="flex items-center justify-between ">
-                        <p className="text-sm">Furniture</p>
+                        <p className="text-sm cursor-pointer">Furniture</p>
                         <p className="text-sm">5</p>
                     </div>
                     <div className="flex items-center justify-between ">
-                        <p className="text-sm">Men</p>
+                        <p className="text-sm cursor-pointer">Men</p>
                         <p className="text-sm">5</p>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ const Aside = () => {
                 <div className="flex flex-col justify-center items-start gap-3">
                     <p className="text-sm">Price $39 - $159</p>
                     <input type="range" min={0} max={100} className="w-full " />
-                    <button type="button" className="btn bg-primary-black text-white hover:bg-white hover:text-pri" >Filter</button>
+                    <button type="button" className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black" >Filter</button>
                 </div>
             </section>
             <section className="pb-14">
@@ -93,39 +93,39 @@ const Aside = () => {
             <section className="pb-14">
                 <p className="font-bold pb-5 text-2xl">Colors</p>
                 <div className="flex justify-center items-center gap-4 flex-wrap">
-                            <div className="h-4 w-4 rounded-full bg-red-600"></div>
-                            <div className="h-4 w-4 rounded-full bg-orange-600"></div>
-                            <div className="h-4 w-4 rounded-full bg-yellow-600"></div>
-                            <div className="h-4 w-4 rounded-full bg-green-600"></div>
-                            <div className="h-4 w-4 rounded-full bg-blue-600"></div>
-                            <div className="h-4 w-4 rounded-full bg-violet-600"></div>
-                            <div className="h-4 w-4 rounded-full bg-pink-600"></div>
+                            <div className="h-4 w-4 rounded-full bg-red-600 cursor-pointer"></div>
+                            <div className="h-4 w-4 rounded-full bg-orange-600 cursor-pointer"></div>
+                            <div className="h-4 w-4 rounded-full bg-yellow-600 cursor-pointer"></div>
+                            <div className="h-4 w-4 rounded-full bg-green-600 cursor-pointer"></div>
+                            <div className="h-4 w-4 rounded-full bg-blue-600 cursor-pointer"></div>
+                            <div className="h-4 w-4 rounded-full bg-violet-600 cursor-pointer"></div>
+                            <div className="h-4 w-4 rounded-full bg-pink-600 cursor-pointer"></div>
                         </div>
             </section>
             <section className="pb-14">
                 <p className="font-bold pb-5 text-2xl">Sizes</p>
                 <div className="flex justify-start items-center gap-3 flex-wrap">
-                    <label className="relative w-12 h-12">
+                    <label className="relative w-12 h-12 cursor-pointer">
                         <input className="peer absolute opacity-0" type="checkbox"/>
                         <div className="peer-checked:bg-black peer-checked:text-white border w-12 h-12 border-tertiary-gray border-solid flex justify-center items-center"><p>S</p></div>
                     </label>
-                    <label className="relative w-12 h-12">
+                    <label className="relative w-12 h-12 cursor-pointer">
                         <input className="peer absolute opacity-0" type="checkbox"/>
                         <div className="peer-checked:bg-black peer-checked:text-white w-12 h-12 border border-tertiary-gray border-solid flex justify-center items-center"><p>M</p></div>
                     </label>
-                    <label className="relative w-12 h-12">
+                    <label className="relative w-12 h-12 cursor-pointer">
                         <input className="peer absolute opacity-0" type="checkbox"/>
                         <div className="peer-checked:bg-black peer-checked:text-white w-12 h-12 border border-tertiary-gray border-solid flex justify-center items-center"><p>L</p></div>
                     </label>
-                    <label className="relative w-12 h-12">
+                    <label className="relative w-12 h-12 cursor-pointer">
                         <input className="peer absolute opacity-0" type="checkbox"/>
                         <div className="peer-checked:bg-black peer-checked:text-white w-12 h-12 border border-tertiary-gray border-solid flex justify-center items-center"><p>XL</p></div>
                     </label>
-                    <label className="relative w-12 h-12">
+                    <label className="relative w-12 h-12 cursor-pointer">
                         <input className="peer absolute opacity-0" type="checkbox"/>
                         <div className="peer-checked:bg-black peer-checked:text-white w-12 h-12 border border-tertiary-gray border-solid flex justify-center items-center"><p>XXL</p></div>
                     </label>
-                    <label className="relative w-24 h-12">
+                    <label className="relative w-24 h-12 cursor-pointer">
                         <input className="peer absolute opacity-0" type="checkbox"/>
                         <div className="peer-checked:bg-black peer-checked:text-white w-24 h-12 border border-tertiary-gray border-solid flex justify-center items-center"><p>Full size</p></div>
                     </label>

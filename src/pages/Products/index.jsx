@@ -40,10 +40,10 @@ const Products = () => {
                                 <p>Sort By</p>
                                 <img src={triangle} alt='filter' className={`${showSort === true && 'rotate-180'}`} />
                             </label>
-                            <ul className={`absolute z-10 right-0 flex flex-col items-end justify-center gap-2 p-2 shadow bg-white rounded-box w-32 ${showSort === true ? 'block' : 'hidden'}`}>
-                                <li>Asc</li>
-                                <li>Desc</li>
-                            </ul>
+                            <div className={`absolute z-10 right-0 flex flex-col items-end justify-center gap-2 p-2 shadow bg-white rounded-box w-32 ${showSort === true ? 'block' : 'hidden'}`}>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Asc</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Desc</p>
+                            </div>
                         </div>
                     </nav>
                     <section className="grid grid-cols-2 md:grid-cols-3 w-full">
@@ -94,9 +94,9 @@ const Products = () => {
                         </div>
                     </section>
                     <div className="btn-group pt-5">
-                        <button className="btn">«</button>
-                        <button className="btn">Page 22</button>
-                        <button className="btn">»</button>
+                        <button className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">«</button>
+                        <button className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">Page 22</button>
+                        <button className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">»</button>
                     </div>
                 </section>
 
