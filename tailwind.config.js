@@ -14,10 +14,13 @@ module.exports = {
         "accent-red": "#D94141",
       },
       fontFamily : {
-        arimo: ["Arimo", "sans-serif"]
+        arimo: ["Arimo", "sans-serif"],
+        playFair: ["Playfair Display", "serif"],
+        openSans: ["Open Sans", "sans-serif"],
       },
       backgroundImage: {
-        'defaultRaz': "url('/src/assets/images/raz-bg.webp')"
+        'defaultRaz': "url('/src/assets/images/raz-bg.webp')",
+        'home-bg': "url('/src/assets/images/homepage-bg.webp')",
       }
     },
   },
