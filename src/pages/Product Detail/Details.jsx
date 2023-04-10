@@ -10,17 +10,20 @@ const Details = () => {
     }
 
     return (
-        <section className="py-10 hidden md:block">
-           <nav className={`flex justify-around gap-4 items-center p-3`}>
-            <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 1 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(1)}>Description</p>
-            <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 2 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(2)}>Review</p>
-            <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 3 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(3)}>Additional Information</p>
-            <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 4 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(4)}>About Brand</p>
-            <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 5 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(5)}>Shipping & Delivery</p>
-           </nav>
+        <section className="py-10 block">
+            <nav className={` p-3 overflow-scroll md:overflow-auto`}>
+                <div className="w-max flex justify-around gap-4 items-center">
+                    <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 1 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(1)}>Description</p>
+                    <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 2 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(2)}>Review</p>
+                    <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 3 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(3)}>Additional Information</p>
+                    <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 4 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(4)}>About Brand</p>
+                    <p className={`cursor-pointer text-lg lg:text-xl xl:text-2xl text-center ${show === 5 && 'font-bold border-b boder-solid border-b-primary-black '} p-3`} onClick={() => showContent(5)}>Shipping & Delivery</p>
+                </div>
+
+            </nav>
             <section>
-               <Description isShow={show} />
-               <Review isShow={show} />
+                <Description isShow={show} />
+                <Review isShow={show} />
             </section>
         </section>
     )
