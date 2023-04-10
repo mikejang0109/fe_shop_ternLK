@@ -12,6 +12,7 @@ import fb from "../../assets/icons/facebook-f.svg";
 import twitter from "../../assets/icons/twitter.svg";
 import youtube from "../../assets/icons/youtube.svg";
 import Details from "./Details";
+import RelatedProducts from "./RelatedProducts";
 
 const ProductDetail = () => {
     const [count, setCount] = useState(0)
@@ -95,6 +96,7 @@ const ProductDetail = () => {
                     </div>
                 </div>
                 <Details />
+                <RelatedProducts />
 
             </main>
         </React.Fragment>
