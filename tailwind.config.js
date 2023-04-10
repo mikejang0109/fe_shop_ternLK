@@ -21,6 +21,8 @@ module.exports = {
       backgroundImage: {
         'defaultRaz': "url('/src/assets/images/raz-bg.webp')",
         'home-bg': "url('/src/assets/images/homepage-bg.webp')",
+        'advert-bg': "url('/src/assets/images/ad-bg.webp')",
+        'timeline-bg': "url('/src/assets/icons/truck-icon.svg')"
       }
     },
   },

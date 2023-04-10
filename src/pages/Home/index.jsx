@@ -49,21 +49,22 @@ function Home() {
 			<div className="body-wrapper grid-cols-1 grid-rows-1 font-arimo">
 				<div className="flex flex-col">
 					<section className="hero bg-home-bg">
-						<div className="hero-overlay"></div>
-						<div className="hero-content p-0 md:p-1 flex-col gap-32">
-							<div className="flex flex-col gap-y-10 md:p-52 py-10">
-								<p className="text-center text-primary-black font-bold text-7xl">
-									Minimal Furniture Shop
-								</p>
-								<p className="text-center text-primary-gray">
-									Furniture for your style and budget. Quality, comfort and style. Great service and
-									delivery. Find your dream furniture with us today.
-								</p>
-							</div>
-							<div className="py-10 cursor-pointer">
-								<p className="text-lg text-center">Explore now</p>
-								<div className="text-center">
-									<i className="bi bi-arrow-down"></i>
+						<div className="hero-overlay w-auto">
+							<div className="hero-content p-0 md:p-1 flex-col gap-32">
+								<div className="flex flex-col gap-y-10 md:p-52 py-10">
+									<p className="text-center text-primary-black font-bold text-7xl">
+										Minimal Furniture Shop
+									</p>
+									<p className="text-center text-primary-gray">
+										Furniture for your style and budget. Quality, comfort and style. Great service and
+										delivery. Find your dream furniture with us today.
+									</p>
+								</div>
+								<div className="py-10 cursor-pointer">
+									<p className="text-lg text-center">Explore now</p>
+									<div className="text-center">
+										<i className="bi bi-arrow-down"></i>
+									</div>
 								</div>
 							</div>
 						</div>

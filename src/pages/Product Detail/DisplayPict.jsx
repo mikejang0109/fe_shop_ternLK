@@ -7,7 +7,7 @@ import chair5 from "../../assets/img/chair-5.webp"
 const DisplayPict = () => {
     const data= [chair1, chair2, chair3, chair4, chair5]
     return (
-        <section className="flex justify-center items-center w-full gap-5 bg-slate-100 ">
+        <section className="justify-center items-center w-full gap-5 bg-slate-100 hidden md:flex md:mt-10 lg:mt-11">
             <div className="w-1/5">
                 {data.map((data, i) => {
                     return (
