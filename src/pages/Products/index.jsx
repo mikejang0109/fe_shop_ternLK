@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import triangle from "../../assets/icons/triangle-icon.svg"
 import filter from "../../assets/icons/filter-icon.jpg"
@@ -13,15 +13,17 @@ const Products = () => {
     const [showSort, setShowSort] = useState(false);
     const [filterModal, setFilterModal] = useState(false);
     const [productList, setProductList] = useState([]);
-    const navigate = useNavigate()
+    const [errMsg, setErrMsg] = useState(null);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const controller = new AbortController()
-        const url = `${process.env.REACT_APP_SERVER_HOST}/products`
+        const url = `${process.env.REACT_APP_SERVER_HOST}/products${location.search}`
         axios.get(url, {
             signal: controller.signal
-        }).then(res => setProductList(res.data)).catch(err => console.log(err))
-    }, [])
+        }).then(res => setProductList(res.data)).then(() => setErrMsg(null)).catch(err => setErrMsg(err.response.data.msg))
+    }, [location])
 
     const openSort = () => {
         showSort === false ? setShowSort(true) : setShowSort(false)
@@ -42,13 +44,13 @@ const Products = () => {
                 description="Find and buy the one you like" />
             <main className="p-[5%] flex justify-center items-start relative">
                 <Aside />
-                <section className="w-full md:w-[75%] flex flex-col items-center relative">
+                <section className="w-full md:w-[75%] flex flex-col items-center relative h-screen md:h-[1300px]">
                     <nav className="flex justify-between items-center pb-3 w-full">
                         <div className="flex justify-center items-center md:hidden gap-2">
                             <button className="" onClick={() => setFilterModal(true)}>Filter</button>
                             <img className="w-5 h-auto" src={filter} alt="filter" />
                         </div>
-                        <p className="hidden md:block">`Showing 1-{productList.meta?.totalPage} of {productList.meta?.totalData} Results`</p>
+                        <p className="hidden md:block">Showing 1-{errMsg ? '1' : productList.meta?.totalPage} of { errMsg ? '0' : productList.meta?.totalData} Results</p>
                         <div className="relative ">
                             <label onClick={openSort} className="flex justify-center items-center gap-2 cursor-pointer">
                                 <p>Sort By</p>
@@ -60,9 +62,9 @@ const Products = () => {
                             </div>
                         </div>
                     </nav>
-                    <section className="grid grid-cols-2 md:grid-cols-3 w-full">
+                    <div className={`${errMsg !== null ? 'block' : 'hidden'} font-bold text-lg pt-10`}>{errMsg}</div>
+                    <div className={`grid-cols-2 md:grid-cols-3 w-full ${errMsg !== null ? 'hidden' : 'grid'}`}>
                         {productList.data?.map((data) => {
-                            
                             return (
                                 <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer" key={data.id} onClick={() => openProductDetail(data.id)}>
                                     <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
@@ -75,9 +77,9 @@ const Products = () => {
                                 </div>
                             )
                         })}
+                    </div>
 
-                    </section>
-                    <div className="btn-group pt-5">
+                    <div className="btn-group pt-5 absolute bottom-2">
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>«</button>
                         <button className={`btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>Page {productList.meta?.totalPage}</button>
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>»</button>

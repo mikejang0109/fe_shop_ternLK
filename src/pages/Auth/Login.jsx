@@ -41,7 +41,7 @@ function Login() {
 			toast.promise(
 				login(form.email, form.password).then((res) => {
 					const token = res["data"]["data"]["token"];
-
+					
 					if (isRemember === false) {
 						save("raz", token);
 					} else {
