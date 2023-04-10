@@ -57,8 +57,9 @@ const Products = () => {
                                 <img src={triangle} alt='filter' className={`${showSort === true && 'rotate-180'}`} />
                             </label>
                             <div className={`absolute z-10 right-0 flex flex-col items-end justify-center gap-2 p-2 shadow bg-white rounded-box w-32 ${showSort === true ? 'block' : 'hidden'}`}>
-                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Asc</p>
-                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Desc</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Newest</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Oldest</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right"></p>
                             </div>
                         </div>
                     </nav>
