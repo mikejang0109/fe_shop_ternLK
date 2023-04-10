@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { get } from "../../utils/sessionStorage";
 
 import decorativeVase from "../../assets/img/decorative-vase.png";
 
@@ -9,12 +12,21 @@ import cartIcon from "../../assets/icons/cart-icon.svg";
 import burgerMenu from "../../assets/icons/hamburger-menu.svg";
 
 function Header() {
+	const navigate = useNavigate();
+
 	const [toggleState, setToggleState] = useState(false);
 
 	const handleToggle = () => setToggleState((toggleState) => !toggleState);
 
 	let burgerActive = toggleState ? "lg:flex" : null;
 	let burgerMobileActive = toggleState ? "flex" : null;
+
+	const localToken = useSelector((state) => state.auth.token);
+	const sessionToken = get("raz");
+
+	const authNavigate = () => {
+		navigate("/auth");
+	};
 
 	return (
 		<div className="header-wrapper relative navbar font-arimo lg:flex lg:flex-row lg:justify-between grid grid-cols-2 px-8 lg:px-20">
@@ -102,7 +114,7 @@ function Header() {
 									</Link>
 								</li>
 								<li>
-									<Link>
+									<Link to={"/tracking"}>
 										<p className="hover:text-white active:text-white">Other Tracking</p>
 									</Link>
 								</li>
@@ -144,21 +156,33 @@ function Header() {
 				</div>
 				<div className="hamburger relative cursor-pointer">
 					<img src={burgerMenu} alt="hamburger menu" onClick={handleToggle} />
-					<div
-						className={`absolute text-[#919191] bg-primary-black py-10 pl-6 pr-28 mt-2 right-2 md:hidden ${
-							burgerActive || "hidden"
-						} flex-col gap-y-5`}
-					>
-						<p className="hover:text-white active:text-white">Profile</p>
-						<p className="hover:text-white active:text-white">Chat</p>
-						<p className="hover:text-white active:text-white">Notification</p>
-						<p className="hover:text-white active:text-white">Logout</p>
-						{/* Conditional Rendering */}
-						{/* <p className="hover:text-white active:text-white">Login</p>
-						<p className="hover:text-white active:text-white">Register</p>
-						<p className="hover:text-white active:text-white">Chat</p>
-						<p className="hover:text-white active:text-white">Notification</p> */}
-					</div>
+					{localToken || sessionToken ? (
+						<div
+							className={`absolute text-[#919191] bg-primary-black py-10 pl-6 pr-28 mt-2 right-2 md:hidden ${
+								burgerActive || "hidden"
+							} flex-col gap-y-5`}
+						>
+							<p className="hover:text-white active:text-white">Profile</p>
+							<p className="hover:text-white active:text-white">Chat</p>
+							<p className="hover:text-white active:text-white">Notification</p>
+							<p className="hover:text-white active:text-white">Logout</p>
+						</div>
+					) : (
+						<div
+							className={`absolute text-[#919191] bg-primary-black py-10 pl-6 pr-28 mt-2 right-2 md:hidden ${
+								burgerActive || "hidden"
+							} flex-col gap-y-5`}
+						>
+							<p onClick={authNavigate} className="hover:text-white active:text-white">
+								Login
+							</p>
+							<p onClick={authNavigate} className="hover:text-white active:text-white">
+								Register
+							</p>
+							<p className="hover:text-white active:text-white">Chat</p>
+							<p className="hover:text-white active:text-white">Notification</p>
+						</div>
+					)}
 				</div>
 			</div>
 			<div className="lg:hidden">
@@ -246,7 +270,7 @@ function Header() {
 											</Link>
 										</li>
 										<li>
-											<Link>
+											<Link to={"/tracking"}>
 												<p className="hover:text-white active:text-white">Other Tracking</p>
 											</Link>
 										</li>
@@ -291,25 +315,43 @@ function Header() {
 							</Link>
 						</div>
 					</div>
-					<div className="text-[#919191] md:flex md:flex-row md:justify-between grid grid-cols-2 gap-x-6 gap-y-6 md:gap-y-0 px-0 md:px-12">
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Profile
-						</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Chat
-						</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Notification
-						</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Logout
-						</p>
-						{/* Conditional Rendering */}
-						{/* <p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Login</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Register</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Chat</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Notification</p> */}
-					</div>
+					{localToken || sessionToken ? (
+						<div className="text-[#919191] md:flex md:flex-row md:justify-between grid grid-cols-2 gap-x-6 gap-y-6 md:gap-y-0 px-0 md:px-12">
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Profile
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Chat
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Notification
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Logout
+							</p>
+						</div>
+					) : (
+						<div className="text-[#919191] md:flex md:flex-row md:justify-between grid grid-cols-2 gap-x-6 gap-y-6 md:gap-y-0 px-0 md:px-12">
+							<p
+								onClick={authNavigate}
+								className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
+							>
+								Login
+							</p>
+							<p
+								onClick={authNavigate}
+								className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
+							>
+								Register
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Chat
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Notification
+							</p>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

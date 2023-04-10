@@ -1,6 +1,8 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
+import { PrivateRoute, IsLogin } from "./utils/wrapper/privateRoute";
+
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 import Faq from "./pages/Faq";
@@ -15,14 +17,34 @@ import OrderTrack from "./pages/Order Track";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
-  { path: "/auth", element: <Auth /> },
-  { path: "/forgot", element: <ForgotPassword /> },
+  { path: "/auth", element: (
+    <IsLogin>
+      <Auth />
+    </IsLogin>
+  ) },
+  { path: "/forgot", element: (
+    <IsLogin>
+      <ForgotPassword />
+    </IsLogin>
+  ) },
   { path: "/products", element: <Products /> },
   { path: "/productdetail", element: <ProductDetail /> },
 	{ path: "/blog", element: <Blog /> },
-  { path: "/mycart", element: <Cart /> },
-  { path: "/checkout", element: <Checkout /> },
-  { path: "/tracking", element: <OrderTrack /> },
+  { path: "/mycart", element: (
+    <PrivateRoute>
+      <Cart />
+    </PrivateRoute>
+  ) },
+  { path: "/checkout", element: (
+    <PrivateRoute>
+      <Checkout />
+    </PrivateRoute>
+  ) },
+  { path: "/tracking", element: (
+    <PrivateRoute>
+      <OrderTrack />
+    </PrivateRoute>
+  ) },
   {
     path: "/",
     element: <Home />,
