@@ -42,7 +42,7 @@ function Blog() {
 	return (
 		<div className="content-wrapper">
 			<Header />
-			<div className="body-wrapper grid-cols-1 grid-rows-1">
+			<div className="body-wrapper grid grid-cols-1 grid-rows-1">
 				<main>
 					<Title
 						isBreadcrumbs={true}

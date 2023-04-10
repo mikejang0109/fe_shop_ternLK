@@ -89,7 +89,7 @@ function Aside() {
 				<div className="tab-content">
 					{categories.map((category, idx) => {
 						return (
-							<div key={idx} className="flex flex-row justify-between">
+							<div key={idx} className="flex flex-row justify-between cursor-pointer">
 								<p>{category.name}</p>
 								<p>{category.qty}</p>
 							</div>
