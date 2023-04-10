@@ -25,7 +25,7 @@ const ForgotPass = () => {
               type="email"
               className="m-auto w-80 md:w-full p-5 border border-solid border-[#CECECE]"
             ></input>
-            <button className="m-auto md:m-0 md:mt-5 bg-black p-5 text-white text-base font-arimo font-bold text-center mt-[33px] w-80 md:w-[35%]">
+            <button className="m-auto md:m-0 md:mt-5 bg-black hover:bg-white p-5 text-white hover:text-black border border-solid border-primary-black text-base font-arimo font-bold text-center mt-[33px] w-80 md:w-[35%]">
               Reset Password
             </button>
           </div>
