@@ -131,7 +131,7 @@ function Login() {
 						</label>
 					</div>
 					<div className="forget-pwd">
-						<Link>
+						<Link to={"/forgot"} >
 							<p className="text-[#D25B5B]">Forget your password?</p>
 						</Link>
 					</div>

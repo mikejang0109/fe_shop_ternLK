@@ -10,7 +10,7 @@ import burgerMenu from "../../assets/icons/hamburger-menu.svg";
 
 function Header() {
 	const [toggleState, setToggleState] = useState(false);
-	
+
 	const handleToggle = () => setToggleState((toggleState) => !toggleState);
 
 	let burgerActive = toggleState ? "lg:flex" : null;
@@ -61,7 +61,7 @@ function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link>
+							<Link to={"/faq"} >
 								<p className="bg-primary-black hover:text-white active:text-white pb-8 py-2 px-6 pr-24 block whitespace-nowrap">
 									FAQ page
 								</p>
@@ -123,7 +123,7 @@ function Header() {
 					</div>
 				</div>
 				<div className="active:border-b-primary-black hover:border-b-2 hover:border-b-primary-black ease-in-out duration-100">
-					<Link>
+					<Link to={"/blog"} >
 						<p className="font-bold text-lg">BLOG</p>
 					</Link>
 				</div>
