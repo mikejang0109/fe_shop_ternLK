@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { get } from "../../utils/sessionStorage";
 
 import decorativeVase from "../../assets/img/decorative-vase.png";
 
@@ -9,17 +12,28 @@ import cartIcon from "../../assets/icons/cart-icon.svg";
 import burgerMenu from "../../assets/icons/hamburger-menu.svg";
 
 function Header() {
+	const navigate = useNavigate();
+
 	const [toggleState, setToggleState] = useState(false);
-	
+
 	const handleToggle = () => setToggleState((toggleState) => !toggleState);
 
 	let burgerActive = toggleState ? "lg:flex" : null;
 	let burgerMobileActive = toggleState ? "flex" : null;
 
+	const localToken = useSelector((state) => state.auth.token);
+	const sessionToken = get("raz");
+
+	const authNavigate = () => {
+		navigate("/auth");
+	};
+
 	return (
 		<div className="header-wrapper relative navbar font-arimo lg:flex lg:flex-row lg:justify-between grid grid-cols-2 px-8 lg:px-20">
 			<div className="site-title">
-				<p className="font-bold text-primary-black text-center text-[2.82rem]">RAZ</p>
+				<Link to={"/"}>
+					<p className="font-bold text-primary-black text-center text-[2.82rem]">RAZ</p>
+				</Link>
 			</div>
 			<div className="nav-tabs hidden lg:flex flex-row items-center gap-x-4 lg:gap-x-8">
 				<div className="active:border-b-2 active:border-b-primary-black hover:border-b-2 hover:border-b-primary-black ease-in-out duration-100">
@@ -61,7 +75,7 @@ function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link>
+							<Link to={"/faq"}>
 								<p className="bg-primary-black hover:text-white active:text-white pb-8 py-2 px-6 pr-24 block whitespace-nowrap">
 									FAQ page
 								</p>
@@ -85,12 +99,12 @@ function Header() {
 							<ul className="flex flex-col gap-y-3 text-xs">
 								<p className="mb-5 text-base text-white">Other Page</p>
 								<li>
-									<Link>
+									<Link to={"/mycart"}>
 										<p className="hover:text-white active:text-white">Shopping Cart</p>
 									</Link>
 								</li>
 								<li>
-									<Link>
+									<Link to={"/checkout"}>
 										<p className="hover:text-white active:text-white">Check Out</p>
 									</Link>
 								</li>
@@ -100,7 +114,7 @@ function Header() {
 									</Link>
 								</li>
 								<li>
-									<Link>
+									<Link to={"/tracking"}>
 										<p className="hover:text-white active:text-white">Other Tracking</p>
 									</Link>
 								</li>
@@ -123,7 +137,7 @@ function Header() {
 					</div>
 				</div>
 				<div className="active:border-b-primary-black hover:border-b-2 hover:border-b-primary-black ease-in-out duration-100">
-					<Link>
+					<Link to={"/blog"}>
 						<p className="font-bold text-lg">BLOG</p>
 					</Link>
 				</div>
@@ -136,25 +150,39 @@ function Header() {
 					<img src={favIcon} alt="heart icon" />
 				</div>
 				<div className="cart-icon hidden lg:block cursor-pointer">
-					<img src={cartIcon} alt="cart icon" />
+					<Link to={"/mycart"}>
+						<img src={cartIcon} alt="cart icon" />
+					</Link>
 				</div>
 				<div className="hamburger relative cursor-pointer">
 					<img src={burgerMenu} alt="hamburger menu" onClick={handleToggle} />
-					<div
-						className={`absolute text-[#919191] bg-primary-black py-10 pl-6 pr-28 mt-2 right-2 md:hidden ${
-							burgerActive || "hidden"
-						} flex-col gap-y-5`}
-					>
-						<p className="hover:text-white active:text-white">Profile</p>
-						<p className="hover:text-white active:text-white">Chat</p>
-						<p className="hover:text-white active:text-white">Notification</p>
-						<p className="hover:text-white active:text-white">Logout</p>
-						{/* Conditional Rendering */}
-						{/* <p className="hover:text-white active:text-white">Login</p>
-						<p className="hover:text-white active:text-white">Register</p>
-						<p className="hover:text-white active:text-white">Chat</p>
-						<p className="hover:text-white active:text-white">Notification</p> */}
-					</div>
+					{localToken || sessionToken ? (
+						<div
+							className={`absolute text-[#919191] bg-primary-black py-10 pl-6 pr-28 mt-2 right-2 md:hidden ${
+								burgerActive || "hidden"
+							} flex-col gap-y-5`}
+						>
+							<p className="hover:text-white active:text-white">Profile</p>
+							<p className="hover:text-white active:text-white">Chat</p>
+							<p className="hover:text-white active:text-white">Notification</p>
+							<p className="hover:text-white active:text-white">Logout</p>
+						</div>
+					) : (
+						<div
+							className={`absolute text-[#919191] bg-primary-black py-10 pl-6 pr-28 mt-2 right-2 md:hidden ${
+								burgerActive || "hidden"
+							} flex-col gap-y-5`}
+						>
+							<p onClick={authNavigate} className="hover:text-white active:text-white">
+								Login
+							</p>
+							<p onClick={authNavigate} className="hover:text-white active:text-white">
+								Register
+							</p>
+							<p className="hover:text-white active:text-white">Chat</p>
+							<p className="hover:text-white active:text-white">Notification</p>
+						</div>
+					)}
 				</div>
 			</div>
 			<div className="lg:hidden">
@@ -203,7 +231,7 @@ function Header() {
 									</Link>
 								</li>
 								<li>
-									<Link>
+									<Link to={"/faq"}>
 										<p className="bg-primary-black hover:text-white active:text-white pb-8 py-2 px-6 pr-24 block whitespace-nowrap">
 											FAQ page
 										</p>
@@ -227,12 +255,12 @@ function Header() {
 									<ul className="flex flex-col md:text-left text-center gap-y-3 text-xs">
 										<p className="mb-5 text-base text-white">Other Page</p>
 										<li>
-											<Link>
+											<Link to={"/mycart"}>
 												<p className="hover:text-white active:text-white">Shopping Cart</p>
 											</Link>
 										</li>
 										<li>
-											<Link>
+											<Link to={"/checkout"}>
 												<p className="hover:text-white active:text-white">Check Out</p>
 											</Link>
 										</li>
@@ -242,7 +270,7 @@ function Header() {
 											</Link>
 										</li>
 										<li>
-											<Link>
+											<Link to={"/tracking"}>
 												<p className="hover:text-white active:text-white">Other Tracking</p>
 											</Link>
 										</li>
@@ -269,7 +297,7 @@ function Header() {
 							</div>
 						</div>
 						<div className="active:border-b-primary-black hover:border-b-2 hover:border-b-primary-black ease-in-out duration-100 mx-auto">
-							<Link>
+							<Link to={"/blog"}>
 								<p className="font-bold text-lg">BLOG</p>
 							</Link>
 						</div>
@@ -282,28 +310,48 @@ function Header() {
 							<img src={favIcon} alt="heart icon" />
 						</div>
 						<div className="cart-icon cursor-pointer">
-							<img src={cartIcon} alt="cart icon" />
+							<Link to={"/mycart"}>
+								<img src={cartIcon} alt="cart icon" />
+							</Link>
 						</div>
 					</div>
-					<div className="text-[#919191] md:flex md:flex-row md:justify-between grid grid-cols-2 gap-x-6 gap-y-6 md:gap-y-0 px-0 md:px-12">
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Profile
-						</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Chat
-						</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Notification
-						</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
-							Logout
-						</p>
-						{/* Conditional Rendering */}
-						{/* <p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Login</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Register</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Chat</p>
-						<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">Notification</p> */}
-					</div>
+					{localToken || sessionToken ? (
+						<div className="text-[#919191] md:flex md:flex-row md:justify-between grid grid-cols-2 gap-x-6 gap-y-6 md:gap-y-0 px-0 md:px-12">
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Profile
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Chat
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Notification
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Logout
+							</p>
+						</div>
+					) : (
+						<div className="text-[#919191] md:flex md:flex-row md:justify-between grid grid-cols-2 gap-x-6 gap-y-6 md:gap-y-0 px-0 md:px-12">
+							<p
+								onClick={authNavigate}
+								className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
+							>
+								Login
+							</p>
+							<p
+								onClick={authNavigate}
+								className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
+							>
+								Register
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Chat
+							</p>
+							<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								Notification
+							</p>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

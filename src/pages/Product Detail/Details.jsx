@@ -2,7 +2,7 @@ import { useState } from "react";
 import Description from "./Description";
 import Review from "./Review";
 
-const Details = () => {
+const Details = (props) => {
     const [show, setShow] = useState(1);
 
     const showContent = (id) => {
@@ -22,7 +22,7 @@ const Details = () => {
 
             </nav>
             <section>
-                <Description isShow={show} />
+                <Description isShow={show} images={props.data} />
                 <Review isShow={show} />
             </section>
         </section>

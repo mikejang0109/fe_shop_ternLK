@@ -41,7 +41,7 @@ function Login() {
 			toast.promise(
 				login(form.email, form.password).then((res) => {
 					const token = res["data"]["data"]["token"];
-
+					
 					if (isRemember === false) {
 						save("raz", token);
 					} else {
@@ -131,7 +131,7 @@ function Login() {
 						</label>
 					</div>
 					<div className="forget-pwd">
-						<Link>
+						<Link to={"/forgot"} >
 							<p className="text-[#D25B5B]">Forget your password?</p>
 						</Link>
 					</div>

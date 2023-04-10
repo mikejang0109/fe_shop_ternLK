@@ -18,9 +18,17 @@ module.exports = {
         playFairItalic: ["Playfair Display Italic", "serif"],
       },
       backgroundImage: {
+<<<<<<< HEAD
         defaultRaz: "url('/src/assets/images/raz-bg.webp')",
         "home-bg": "url('/src/assets/images/homepage-bg.webp')",
       },
+=======
+        'defaultRaz': "url('/src/assets/images/raz-bg.webp')",
+        'home-bg': "url('/src/assets/images/homepage-bg.webp')",
+        'advert-bg': "url('/src/assets/images/ad-bg.webp')",
+        'timeline-bg': "url('/src/assets/icons/truck-icon.svg')"
+      }
+>>>>>>> 22fb1f22412b4be5a8294de0e5bdfc22ce2350e6
     },
   },
   variants: {
