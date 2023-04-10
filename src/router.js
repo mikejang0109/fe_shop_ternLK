@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import ForgotPassword from "./pages/Forgot Password";
 import Cart from "./pages/Cart/";
 import Checkout from "./pages/Checkout/";
+import OrderTrack from "./pages/Order Track";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
 	{ path: "/blog", element: <Blog /> },
   { path: "/mycart", element: <Cart /> },
   { path: "/checkout", element: <Checkout /> },
+  { path: "/tracking", element: <OrderTrack /> },
   {
     path: "/",
     element: <Home />,
