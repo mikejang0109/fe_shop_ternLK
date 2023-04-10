@@ -8,27 +8,27 @@ const Aside = () => {
                 <div className="flex flex-col justify-center items-stretch gap-3">
                     <div className="flex items-center justify-between ">
                         <p className="text-sm cursor-pointer">Accecories</p>
-                        <p className="text-sm">5</p>
+                        <p className="text-sm"></p>
                     </div>
                     <div className="flex items-center justify-between ">
                         <p className="text-sm cursor-pointer">Brands</p>
-                        <p className="text-sm">5</p>
+                        <p className="text-sm"></p>
                     </div>
                     <div className="flex items-center justify-between ">
                         <p className="text-sm cursor-pointer">Clothing</p>
-                        <p className="text-sm">5</p>
+                        <p className="text-sm"></p>
                     </div>
                     <div className="flex items-center justify-between ">
                         <p className="text-sm cursor-pointer">Fashion</p>
-                        <p className="text-sm">5</p>
+                        <p className="text-sm"></p>
                     </div>
                     <div className="flex items-center justify-between ">
                         <p className="text-sm cursor-pointer">Furniture</p>
-                        <p className="text-sm">5</p>
+                        <p className="text-sm"></p>
                     </div>
                     <div className="flex items-center justify-between ">
                         <p className="text-sm cursor-pointer">Men</p>
-                        <p className="text-sm">5</p>
+                        <p className="text-sm"></p>
                     </div>
                 </div>
             </section>
@@ -93,13 +93,11 @@ const Aside = () => {
             <section className="pb-14">
                 <p className="font-bold pb-5 text-2xl">Colors</p>
                 <div className="flex justify-center items-center gap-4 flex-wrap">
-                            <div className="h-4 w-4 rounded-full bg-red-600 cursor-pointer"></div>
-                            <div className="h-4 w-4 rounded-full bg-orange-600 cursor-pointer"></div>
-                            <div className="h-4 w-4 rounded-full bg-yellow-600 cursor-pointer"></div>
-                            <div className="h-4 w-4 rounded-full bg-green-600 cursor-pointer"></div>
-                            <div className="h-4 w-4 rounded-full bg-blue-600 cursor-pointer"></div>
-                            <div className="h-4 w-4 rounded-full bg-violet-600 cursor-pointer"></div>
-                            <div className="h-4 w-4 rounded-full bg-pink-600 cursor-pointer"></div>
+                            <button className="h-4 w-4 rounded-full bg-[#008080] cursor-pointer" type="button"></button>
+                            <button className="h-4 w-4 rounded-full bg-[#000080] cursor-pointer" type="button"></button>
+                            <button className="h-4 w-4 rounded-full bg-[#ffffff] border border-solid border-black cursor-pointer" type="button"></button>
+                            
+                            
                         </div>
             </section>
             <section className="pb-14">

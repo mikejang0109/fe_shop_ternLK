@@ -1,20 +1,34 @@
-import React, { useState } from "react";
-import Title from "../../components/Title";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import triangle from "../../assets/icons/triangle-icon.svg"
 import filter from "../../assets/icons/filter-icon.jpg"
-import chair from "../../assets/img/chair.webp"
-import vase from "../../assets/img/decorative-vase.png"
 
 import Aside from "./Aside";
+import Title from "../../components/Title";
 import Header from "../../components/Header";
 
 const Products = () => {
-    const [showSort, setShowSort] = useState(false)
-    const [filterModal, setFilterModal] = useState(false)
+    const [showSort, setShowSort] = useState(false);
+    const [filterModal, setFilterModal] = useState(false);
+    const [productList, setProductList] = useState([]);
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const controller = new AbortController()
+        const url = `${process.env.REACT_APP_SERVER_HOST}/products`
+        axios.get(url, {
+            signal: controller.signal
+        }).then(res => setProductList(res.data)).catch(err => console.log(err))
+    }, [])
 
     const openSort = () => {
         showSort === false ? setShowSort(true) : setShowSort(false)
+    }
+
+    const openProductDetail = (id) => {
+        navigate(`/product/${id}`)
     }
 
     return (
@@ -28,13 +42,13 @@ const Products = () => {
                 description="Find and buy the one you like" />
             <main className="p-[5%] flex justify-center items-start relative">
                 <Aside />
-                <section className="w-full md:w-[75%] flex flex-col items-center">
+                <section className="w-full md:w-[75%] flex flex-col items-center relative">
                     <nav className="flex justify-between items-center pb-3 w-full">
                         <div className="flex justify-center items-center md:hidden gap-2">
                             <button className="" onClick={() => setFilterModal(true)}>Filter</button>
                             <img className="w-5 h-auto" src={filter} alt="filter" />
                         </div>
-                        <p className="hidden md:block">Showing 1-16 of 39 Results</p>
+                        <p className="hidden md:block">`Showing 1-{productList.meta?.totalPage} of {productList.meta?.totalData} Results`</p>
                         <div className="relative ">
                             <label onClick={openSort} className="flex justify-center items-center gap-2 cursor-pointer">
                                 <p>Sort By</p>
@@ -47,56 +61,26 @@ const Products = () => {
                         </div>
                     </nav>
                     <section className="grid grid-cols-2 md:grid-cols-3 w-full">
-                        <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer">
-                            <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
-                                <img src={vase} alt="product" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                            <div className="p-[3%] h-1/5">
-                                <p className="text-xs md:text-base pb-1">Decorative Vase</p>
-                                <p className="font-bold text-sm md:text-lg">$765.99</p>
-                            </div>
-                        </div>
-                        <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer">
-                            <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
-                                <img src={chair} alt="product" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                            <div className="p-[3%] h-1/5">
-                                <p className="text-xs md:text-base pb-1">Coaster 506222-CO Loveseat</p>
-                                <p className="font-bold text-sm md:text-lg">$765.99</p>
-                            </div>
-                        </div>
-                        <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer">
-                            <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
-                                <img src={chair} alt="product" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                            <div className="p-[3%] h-1/5">
-                                <p className="text-xs md:text-base pb-1">Coaster 506222-CO Loveseat</p>
-                                <p className="font-bold text-sm md:text-lg">$765.99</p>
-                            </div>
-                        </div>
-                        <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer">
-                            <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
-                                <img src={chair} alt="product" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                            <div className="p-[3%] h-1/5">
-                                <p className="text-xs md:text-base pb-1">Coaster 506222-CO Loveseat</p>
-                                <p className="font-bold text-sm md:text-lg">$765.99</p>
-                            </div>
-                        </div>
-                        <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer">
-                            <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
-                                <img src={chair} alt="product" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                            <div className="p-[3%] h-1/5">
-                                <p className="text-xs md:text-base pb-1">Coaster 506222-CO Loveseat</p>
-                                <p className="font-bold text-sm md:text-lg">$765.99</p>
-                            </div>
-                        </div>
+                        {productList.data?.map((data) => {
+                            
+                            return (
+                                <div className="text-center w-[90%] h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] mx-auto mb-[15%] xl:mb-0 hover:scale-105 cursor-pointer" key={data.id} onClick={() => openProductDetail(data.id)}>
+                                    <div className="w-full h-4/5  overflow-hidden relative bg-slate-50">
+                                        <img src={data.image_urls[0]} alt="product" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                                    </div>
+                                    <div className="p-[3%] h-1/5">
+                                        <p className="text-xs md:text-base pb-1">{data.name}</p>
+                                        <p className="font-bold text-sm md:text-lg">IDR {data.price}</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+
                     </section>
                     <div className="btn-group pt-5">
-                        <button className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">«</button>
-                        <button className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">Page 22</button>
-                        <button className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">»</button>
+                        <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>«</button>
+                        <button className={`btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>Page {productList.meta?.totalPage}</button>
+                        <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>»</button>
                     </div>
                 </section>
 
@@ -218,7 +202,7 @@ const Products = () => {
                 </section>
 
             </section>
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 

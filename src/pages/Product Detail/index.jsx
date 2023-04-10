@@ -62,7 +62,7 @@ const ProductDetail = () => {
                     </div>
                     <button type="button" className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black rounded-none">Add to cart</button>
                     <button type="button" className="flex justify-center items-center btn bg-primary-black text-white hover:bg-primary-black active:bg-primary-black rounded-none"><img src={heartIcon} alt="like" className="w-5 h-auto "/></button>
-                    <button type="button" className="btn rounded-none">Add to wishlish</button>
+                    <button type="button" className="btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black rounded-none">Add to wishlist</button>
                 </div>
                 <div className="py-4 md:py-6 lg:py-8 xl:py-10 text-sm">
                     <p className="md:py-1">SKU: N/A</p>
@@ -85,13 +85,13 @@ const ProductDetail = () => {
                     </div>
                 </div>
                 <div className="pt-5 md:pt-7 lg:pt-9 xl:pt-11 flex justify-start items-center gap-4">
-                    <div className="w-8 h-8 rounded-full border border-solid border-primary-gray flex justify-center items-center">
+                    <div className="w-8 h-8 rounded-full border border-solid border-primary-gray flex justify-center items-center cursor-pointer">
                         <img src={fb} alt="facebook" />
                     </div>
-                    <div className="w-8 h-8 rounded-full border border-solid border-primary-gray flex justify-center items-center">
+                    <div className="w-8 h-8 rounded-full border border-solid border-primary-gray flex justify-center items-center cursor-pointer">
                         <img src={twitter} alt="twitter" />
                     </div>
-                    <div className="w-8 h-8 rounded-full border border-solid border-primary-gray flex justify-center items-center">
+                    <div className="w-8 h-8 rounded-full border border-solid border-primary-gray flex justify-center items-center cursor-pointer">
                         <img src={youtube} alt="youtube" />
                     </div>
                 </div>
