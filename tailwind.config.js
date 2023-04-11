@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -13,10 +11,11 @@ module.exports = {
         "tertiary-gray": "#979797",
         "accent-red": "#D94141",
       },
-      fontFamily : {
+      fontFamily: {
         arimo: ["Arimo", "sans-serif"],
         playFair: ["Playfair Display", "serif"],
         openSans: ["Open Sans", "sans-serif"],
+        playFairItalic: ["Playfair Display Italic", "serif"],
       },
       backgroundImage: {
         'defaultRaz': "url('/src/assets/images/raz-bg.webp')",
@@ -27,11 +26,10 @@ module.exports = {
     },
   },
   variants: {
-    display: ["group-hover"]
+    display: ["group-hover"],
   },
   plugins: [require("daisyui")],
   daisyui: {
     themes: [],
   },
-}
-
+};

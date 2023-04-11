@@ -12,6 +12,7 @@ import ProductDetail from "./pages/Product Detail";
 import ForgotPassword from "./pages/Forgot Password";
 import Cart from "./pages/Cart/";
 import Checkout from "./pages/Checkout/";
+import BlogDetail from "./pages/BlogDetail";
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog"
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   { path: "/products", element: <Products /> },
   { path: "/product/:id", element: <ProductDetail /> },
 	{ path: "/blog", element: <Blog /> },
+  { path: "/blogdetail", element: <BlogDetail /> },
   { path: "/mycart", element: (
     <PrivateRoute>
       <Cart />
