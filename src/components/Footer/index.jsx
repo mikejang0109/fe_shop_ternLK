@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import fb from '../assets/footer/facebook-f.svg';
-import twit from '../assets/footer/twitter.svg';
-import yt from '../assets/footer/youtube.svg';
-import dribble from '../assets/footer/dribble.svg';
-import email from '../assets/footer/letter.svg';
-import phone from '../assets/footer/phone-call.svg';
-import clock from '../assets/footer/clock.svg';
+import fb from '../../assets/footer/facebook-f.svg';
+import twit from '../../assets/footer/twitter.svg';
+import yt from '../../assets/footer/youtube.svg';
+import dribble from '../../assets/footer/dribble.svg';
+import email from '../../assets/footer/letter.svg';
+import phone from '../../assets/footer/phone-call.svg';
+import clock from '../../assets/footer/clock.svg';
 
 class Footer extends Component {
   render() {
