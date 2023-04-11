@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import Title from "../../components/Title";
 import Aside from "./Aside";
 
@@ -12,7 +14,6 @@ import beautifulCorner from "../../assets/img/beautiful-corner.webp";
 
 import clockIcon from "../../assets/icons/clock-icon.svg";
 import tagIcon from "../../assets/icons/tag-icon.svg";
-import { Link } from "react-router-dom";
 
 function Blog() {
 	const blogs = [
@@ -122,6 +123,7 @@ function Blog() {
 					</section>
 				</main>
 			</div>
+			<Footer />
 		</div>
 	);
 }
