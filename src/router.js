@@ -12,12 +12,9 @@ import ProductDetail from "./pages/Product Detail";
 import ForgotPassword from "./pages/Forgot Password";
 import Cart from "./pages/Cart/";
 import Checkout from "./pages/Checkout/";
-<<<<<<< HEAD
 import BlogDetail from "./pages/BlogDetail";
-=======
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog"
->>>>>>> 22fb1f22412b4be5a8294de0e5bdfc22ce2350e6
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
@@ -33,12 +30,8 @@ const router = createBrowserRouter([
   ) },
   { path: "/products", element: <Products /> },
   { path: "/productdetail", element: <ProductDetail /> },
-<<<<<<< HEAD
-  { path: "/mycart", element: <Cart /> },
-  { path: "/checkout", element: <Checkout /> },
-  { path: "/blogdetail", element: <BlogDetail /> },
-=======
 	{ path: "/blog", element: <Blog /> },
+  { path: "/blogdetail", element: <BlogDetail /> },
   { path: "/mycart", element: (
     <PrivateRoute>
       <Cart />
@@ -54,7 +47,6 @@ const router = createBrowserRouter([
       <OrderTrack />
     </PrivateRoute>
   ) },
->>>>>>> 22fb1f22412b4be5a8294de0e5bdfc22ce2350e6
   {
     path: "/",
     element: <Home />,

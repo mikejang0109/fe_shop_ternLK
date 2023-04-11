@@ -12,6 +12,7 @@ import beautifulCorner from "../../assets/img/beautiful-corner.webp";
 
 import clockIcon from "../../assets/icons/clock-icon.svg";
 import tagIcon from "../../assets/icons/tag-icon.svg";
+import { Link } from "react-router-dom";
 
 function Blog() {
 	const blogs = [
@@ -85,9 +86,17 @@ function Blog() {
 											</p>
 										</div>
 										<div className="flex flex-row items-center gap-4">
-											<p className="text-primary-black font-bold cursor-pointer whitespace-nowrap">
-												Read More
-											</p>
+											{idx === 0 ? (
+												<Link to={"/blogdetail"}>
+													<p className="text-primary-black font-bold cursor-pointer whitespace-nowrap">
+														Read More
+													</p>
+												</Link>
+											) : (
+												<p className="text-primary-black font-bold cursor-pointer whitespace-nowrap">
+													Read More
+												</p>
+											)}
 											<div className="divider bg-[#D8D8D8] h-[1px] w-full"></div>
 										</div>
 									</div>
