@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import cartIcon from "../../assets/icons/cart-icon.svg";
 import walletIcon from "../../assets/icons/wallet-icon.svg";
 import miscellaneousIcon from "../../assets/icons/miscellaneous-icon.svg"
+import Footer from "../../components/Footer";
 
 const Faq = () => {
     return (
@@ -101,6 +102,7 @@ const Faq = () => {
                     <button className="btn bg-secondary-black text-white hover:bg-white hover:text-secondary-black active:bg-white active:text-secondary-black" type="button">Contact Us</button>
                 </section>
             </main>
+            <Footer />
         </React.Fragment>
     )
 }

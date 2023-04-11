@@ -20,7 +20,7 @@ import { cartAction } from "../../redux/slices/cart";
 
 
 const ProductDetail = () => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
     const [data, setData] = useState([])
     const location = useLocation();
     const id = location.pathname.split('/').reverse()[0];
@@ -56,7 +56,7 @@ const ProductDetail = () => {
     }
 
     const subCount = () => {
-        if (count === 0) {
+        if (count === 1) {
             return
         }
         setCount(prev => prev - 1)

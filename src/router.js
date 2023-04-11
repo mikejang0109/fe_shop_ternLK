@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     </IsLogin>
   ) },
   { path: "/products", element: <Products /> },
-  { path: "/productdetail", element: <ProductDetail /> },
+  { path: "/product/:id", element: <ProductDetail /> },
 	{ path: "/blog", element: <Blog /> },
   { path: "/mycart", element: (
     <PrivateRoute>

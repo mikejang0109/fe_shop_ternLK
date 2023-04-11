@@ -33,6 +33,12 @@ const Products = () => {
         navigate(`/product/${id}`)
     }
 
+    const addSort = (sort) => {
+        
+        navigate(`?${location.search}&sort=${sort}`)
+        setShowSort(false)
+    }
+
     return (
         <React.Fragment>
             <Header />
@@ -57,9 +63,11 @@ const Products = () => {
                                 <img src={triangle} alt='filter' className={`${showSort === true && 'rotate-180'}`} />
                             </label>
                             <div className={`absolute z-10 right-0 flex flex-col items-end justify-center gap-2 p-2 shadow bg-white rounded-box w-32 ${showSort === true ? 'block' : 'hidden'}`}>
-                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Newest</p>
-                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right">Oldest</p>
-                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right"></p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right" onClick={() => addSort('newest')}>Newest</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right" onClick={() => addSort('oldest')}>Oldest</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right" onClick={() => addSort('cheapest')}>Cheapest</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right" onClick={() => addSort('priciest')}>Priciest</p>
+                                <p className="cursor-pointer hover:bg-zinc-50 w-full text-right" onClick={() => addSort('bestselling')}>Bestselling</p>
                             </div>
                         </div>
                     </nav>
@@ -80,7 +88,7 @@ const Products = () => {
                         })}
                     </div>
 
-                    <div className="btn-group pt-5 absolute bottom-2">
+                    <div className="btn-group pt-5 ">
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>«</button>
                         <button className={`btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>Page {productList.meta?.totalPage}</button>
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>»</button>
