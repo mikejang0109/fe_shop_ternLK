@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-// import Footer from "../../components/Footer";
+import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
 import List from "./List";
+import ListEmpty from "./ListEmpty";
 
 const Wishlist = () => {
   const [isCartEmpty, setIsCartEmpty] = useState(true);
@@ -21,9 +22,8 @@ const Wishlist = () => {
         title="Wishlist"
         description="Pay and get your ordered items"
       />
-      <List />
-      {/* {isCartEmpty ? <CartEmpty /> : <Cart onCart={handleCart} />} */}
-      {/* <Footer /> */}
+      {isCartEmpty ? <ListEmpty /> : <List onCart={handleCart} />}
+      <Footer />
     </>
   );
 };
