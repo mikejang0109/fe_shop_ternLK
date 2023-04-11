@@ -12,15 +12,15 @@ class Footer extends Component {
     render() {
         return (
             <>
-                <section className="bg-black px-[50px] py-[70px] flex gap-10">
+                <section className="bg-black px-[50px] py-[70px] flex gap-10 justify-between">
                     <div className="basis-2/4 text-white pr-[170px]">
                         <p className="text-5xl pb-[20px]">RAZ</p>
                         <p className="">Donec nunc nunc, gravida vitae diam vel, varius interdum erat. Quisque a nunc vel diam auctor commodo.</p>
                         <div className="flex gap-5 mt-[40px]">
-                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[12px] pt-[5px]" src={fb} alt="" /></div>
-                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[7px] pt-[8px]" src={twit} alt="" /></div>
-                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[7px] pt-[10px]" src={yt} alt="" /></div>
-                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[7px] pt-[7px]" src={dribble} alt="" /></div>
+                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[12px] pt-[5px] flex justify-center items-center" src={fb} alt="icon" /></div>
+                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[12px] pt-[5px] flex justify-center items-center" src={twit} alt="icon" /></div>
+                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[12px] pt-[5px] flex justify-center items-center" src={yt} alt="icon" /></div>
+                            <div class="h-10 w-10 rounded-full border my-[10px]"><img className="pl-[12px] pt-[5px] flex justify-center items-center" src={dribble} alt="icon" /></div>
                         </div>
                     </div>
                     <div className="basis-1/3 text-white pl-[50px]">

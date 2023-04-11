@@ -85,6 +85,7 @@ const ProductDetail = () => {
             size_id: null,
             color_id: null,
             qty: count,
+            image: data.images[0]
         }
         dispatch(cartAction.submitCart(cart))
     }
@@ -108,7 +109,7 @@ const ProductDetail = () => {
                         <input type="radio" name="rating-1" className="mask mask-star bg-primary-black w-4" />
                         <input type="radio" name="rating-1" className="mask mask-star bg-primary-black w-4" />
                         <input type="radio" name="rating-1" className="mask mask-star bg-primary-black w-4" />
-                        <input type="radio" name="rating-1" className="mask mask-star bg-primary-black w-4" checked />
+                        <input type="radio" name="rating-1" className="mask mask-star bg-primary-black w-4" />
                         <input type="radio" name="rating-1" className="mask mask-star bg-primary-black w-4" />
                     </div>
                     <p className="text-xs">2 (reviews)</p>

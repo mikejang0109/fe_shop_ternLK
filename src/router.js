@@ -18,35 +18,49 @@ import Blog from "./pages/Blog"
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
-  { path: "/auth", element: (
-    <IsLogin>
-      <Auth />
-    </IsLogin>
-  ) },
-  { path: "/forgot", element: (
-    <IsLogin>
-      <ForgotPassword />
-    </IsLogin>
-  ) },
+  {
+    path: "/auth", element: (
+      <IsLogin>
+        <Auth />
+      </IsLogin>
+    )
+  },
+  {
+    path: "/forgot", element: (
+      <IsLogin>
+        <ForgotPassword />
+      </IsLogin>
+    )
+  },
   { path: "/products", element: <Products /> },
-  { path: "/product/:id", element: <ProductDetail /> },
+  {
+    path: "/product/:id", element:
+      <PrivateRoute>
+        <ProductDetail /> 
+      </PrivateRoute>},
 	{ path: "/blog", element: <Blog /> },
   { path: "/blogdetail", element: <BlogDetail /> },
-  { path: "/mycart", element: (
-    <PrivateRoute>
-      <Cart />
-    </PrivateRoute>
-  ) },
-  { path: "/checkout", element: (
-    <PrivateRoute>
-      <Checkout />
-    </PrivateRoute>
-  ) },
-  { path: "/tracking", element: (
-    <PrivateRoute>
-      <OrderTrack />
-    </PrivateRoute>
-  ) },
+  {
+    path: "/mycart", element: (
+      <PrivateRoute>
+        <Cart />
+      </PrivateRoute>
+    )
+  },
+  {
+    path: "/checkout", element: (
+      <PrivateRoute>
+        <Checkout />
+      </PrivateRoute>
+    )
+  },
+  {
+    path: "/tracking", element: (
+      <PrivateRoute>
+        <OrderTrack />
+      </PrivateRoute>
+    )
+  },
   {
     path: "/",
     element: <Home />,
