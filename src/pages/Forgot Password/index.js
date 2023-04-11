@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
+import Footer from "../../components/Footer";
 
 const ForgotPass = () => {
   return (
@@ -31,6 +32,7 @@ const ForgotPass = () => {
           </div>
         </section>
       </section>
+      <Footer />
     </>
   );
 };

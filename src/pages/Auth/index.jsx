@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import Title from "../../components/Title";
 import Login from "./Login";
 import Register from "./Register";
@@ -44,6 +45,7 @@ function Auth() {
 					{activeTabIndex === 0 ? <Login /> : <Register />}
 				</main>
 			</section>
+			<Footer />
 		</div>
 	);
 }
