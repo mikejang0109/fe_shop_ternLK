@@ -1,10 +1,10 @@
 import React from "react";
-import CountdownTimer from "../../component/CountdownTimer";
-import '../css/ComingSoon.css';
-import fb from '../assets/footer/facebook-f.svg';
-import twit from '../assets/footer/twitter.svg';
-import yt from '../assets/footer/youtube.svg';
-import dribble from '../assets/footer/dribble.svg';
+import CountdownTimer from "../../components/Footer/CountdownTimer";
+import '../../css/ComingSoon.css';
+import fb from '../../assets/footer/facebook-f.svg';
+import twit from '../../assets/footer/twitter.svg';
+import yt from '../../assets/footer/youtube.svg';
+import dribble from '../../assets/footer/dribble.svg';
 
 function ComingSoon() {
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;

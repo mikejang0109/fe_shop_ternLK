@@ -1,6 +1,6 @@
 import React from 'react';
 import DateTimeDisplay from './DateTimeDisplay';
-import { UseCountDown } from '../hooks/UseCountdown';
+import { UseCountDown } from '../../hooks/UseCountdown';
 
 const ExpiredNotice = () => {
   return (

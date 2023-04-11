@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Cust from '../assets/profilecust/cust.png';
-import Edit2 from '../assets/profilecust/edit-3.svg';
-import Logout from '../assets/profilecust/log-out.svg';
-import PathDown from '../assets/profileseller/small-down.svg';
+import Cust from '../../assets/profilecust/cust.png';
+import Edit2 from '../../assets/profilecust/edit-3.svg';
+import Logout from '../../assets/profilecust/log-out.svg';
+import PathDown from '../../assets/profileseller/small-down.svg';
 
 class ProfileCust extends Component {
     render() {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import path from '../assets/aboutus/path.svg';
-import Mask from '../assets/aboutus/Mask.png';
-import person1 from '../assets/aboutus/person1.png';
-import person2 from '../assets/aboutus/person2.png';
-import person3 from '../assets/aboutus/person3.png';
-import Oval from '../assets/aboutus/Oval.png';
+import path from '../../assets/aboutus/path.svg';
+import Mask from '../../assets/aboutus/Mask.png';
+import person1 from '../../assets/aboutus/person1.png';
+import person2 from '../../assets/aboutus/person2.png';
+import person3 from '../../assets/aboutus/person3.png';
+import Oval from '../../assets/aboutus/Oval.png';
 
 class AboutUs extends Component {
     render() {
