@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" stroke-linecap="square"/>
+<path d="M12 6V12H18" stroke="white" stroke-width="2" stroke-linecap="square"/>
+=======
+<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="7.5" cy="7.5" r="7" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.5 3.5V7.5H11.5" stroke="#111111" stroke-linecap="round" stroke-linejoin="round"/>
+>>>>>>> dc7e9c6906fe50ebdb8bbc09c1fd0e2e9919d7d2
+</svg>
