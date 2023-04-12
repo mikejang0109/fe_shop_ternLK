@@ -20,9 +20,11 @@ import AboutUs from './pages/AboutUs';
 import PreLaunching from "./pages/ComingSoon";
 import ProfileCust from './pages/Profile';
 import ProfileSeller from './pages/Profile/Seller';
+import MyOrder from "./pages/Profile/MyOrder";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
+  { path: "/cek", element: <MyOrder /> },
   {
     path: "/auth", element: (
       <IsLogin>
