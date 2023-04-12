@@ -12,6 +12,7 @@ const Cart = (props) => {
 
   const deleteCart = (idx) => {
     dispatch(cartAction.deleteCart(idx));
+    console.log(idx);
 }
   
   return (
@@ -33,10 +34,10 @@ const Cart = (props) => {
             </p>
           </div>
           {cartList.map((data, i) => {
-            console.log();
+            
             return (
               <div className="flex items-center" key={i}>
-                <img className="mt-10" src={remove} alt="delete" onClick={(i) => deleteCart(i)}/>
+                <img className="mt-10" src={remove} alt="delete" onClick={() => deleteCart(i)}/>
                 <img className="ml-[31px] mt-[60px] w-[69px]" src={data.image} alt="product" />
                 <p className="mt-[94px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
                   {data.name}
