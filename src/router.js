@@ -15,79 +15,89 @@ import Checkout from "./pages/Checkout/";
 import BlogDetail from "./pages/BlogDetail";
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
 //angga
-import AboutUs from './pages/AboutUs';
+import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
-import ProfileCust from './pages/Profile';
-import ProfileSeller from './pages/Profile/Seller';
+import ProfileCust from "./pages/Profile";
+import ProfileSeller from "./pages/Profile/Seller";
 
 const router = createBrowserRouter([
-  { path: "/faq", element: <Faq /> },
-  {
-    path: "/auth", element: (
-      <IsLogin>
-        <Auth />
-      </IsLogin>
-    )
-  },
-  {
-    path: "/forgot", element: (
-      <IsLogin>
-        <ForgotPassword />
-      </IsLogin>
-    )
-  },
-  { path: "/products", element: <Products /> },
-  {
-    path: "/product/:id", element:
-      <PrivateRoute>
-        <ProductDetail /> 
-      </PrivateRoute>},
+	{ path: "/faq", element: <Faq /> },
+	{
+		path: "/auth",
+		element: (
+			<IsLogin>
+				<Auth />
+			</IsLogin>
+		),
+	},
+	{
+		path: "/forgot",
+		element: (
+			<IsLogin>
+				<ForgotPassword />
+			</IsLogin>
+		),
+	},
+	{ path: "/products", element: <Products /> },
+	{
+		path: "/product/:id",
+		element: (
+			<PrivateRoute>
+				<ProductDetail />
+			</PrivateRoute>
+		),
+	},
 	{ path: "/blog", element: <Blog /> },
-  { path: "/blogdetail", element: <BlogDetail /> },
-  {
-    path: "/mycart", element: (
-      <PrivateRoute>
-        <Cart />
-      </PrivateRoute>
-    )
-  },
-  {
-    path: "/checkout", element: (
-      <PrivateRoute>
-        <Checkout />
-      </PrivateRoute>
-    )
-  },
-  {
-    path: "/tracking", element: (
-      <PrivateRoute>
-        <OrderTrack />
-      </PrivateRoute>
-    )
-  },
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <Error />,
-  },
-  //angga
-  {
-    path: "/aboutus",
-    element: <AboutUs />,
-  },
-  {
-    path: "/soon",
-    element: <PreLaunching />,
-  },
-  {
-    path: "/profilecust",
-    element: <ProfileCust />,
-  },
-  {
-    path: "/profileseller",
-    element: <ProfileSeller />,
-  },
+	{ path: "/blogdetail", element: <BlogDetail /> },
+	{ path: "/contact", element: <ContactUs /> },
+	{
+		path: "/mycart",
+		element: (
+			<PrivateRoute>
+				<Cart />
+			</PrivateRoute>
+		),
+	},
+	{
+		path: "/checkout",
+		element: (
+			<PrivateRoute>
+				<Checkout />
+			</PrivateRoute>
+		),
+	},
+	{
+		path: "/tracking",
+		element: (
+			<PrivateRoute>
+				<OrderTrack />
+			</PrivateRoute>
+		),
+	},
+	{
+		path: "/",
+		element: <Home />,
+		errorElement: <Error />,
+	},
+	//angga
+	{
+		path: "/aboutus",
+		element: <AboutUs />,
+	},
+	{
+		path: "/soon",
+		element: <PreLaunching />,
+	},
+	{
+		path: "/profilecust",
+		element: <ProfileCust />,
+	},
+	{
+		path: "/profileseller",
+		element: <ProfileSeller />,
+	},
 ]);
 
 export default router;

@@ -62,7 +62,7 @@ function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link>
+							<Link to={"/contact"}>
 								<p className="bg-primary-black hover:text-white active:text-white py-2 px-6 pr-24 block whitespace-nowrap">
 									Contact Us
 								</p>
@@ -257,7 +257,7 @@ function Header() {
 										</Link>
 									</li>
 									<li>
-										<Link>
+										<Link to={"/contact"}>
 											<p className="bg-primary-black hover:text-white active:text-white py-2 px-6 pr-24 block whitespace-nowrap">
 												Contact Us
 											</p>
