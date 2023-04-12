@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Title from "../../components/Title";
 
 import map from "../../assets/img/map.webp";
+import Footer from "../../components/Footer";
 
 function OrderTrack() {
 	const [isSubmitted, setIsSubmitted] = React.useState(false);
@@ -128,6 +129,7 @@ function OrderTrack() {
 					</section>
 				</main>
 			</div>
+			<Footer />
 		</div>
 	);
 }

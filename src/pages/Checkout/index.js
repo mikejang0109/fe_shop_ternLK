@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ const Checkout = () => {
           Check Out
         </button>
       </section>
+      <Footer />
     </>
   );
 };
