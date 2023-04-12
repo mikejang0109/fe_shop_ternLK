@@ -16,10 +16,6 @@ const CartPage = () => {
 
   }, [cart])
 
-  // const handleCart = () => {
-  //   setIsCartEmpty(false);
-  // };
-
   return (
     <>
       <Header />
