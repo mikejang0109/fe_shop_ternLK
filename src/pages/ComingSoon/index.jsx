@@ -15,16 +15,16 @@ function ComingSoon() {
   return (
     <>
       <section className="bg-black w-full h-full pb-[16px]">
-        <p className="text-6xl text-white pt-[100px] pl-[140px] pr-[676px] pb-[100px]">We’re Building Something New</p>
+        <p className="text-titleSoon text-white pt-[50px] pl-[140px] pr-[676px] pb-[50px]">We’re Building Something New</p>
         <CountdownTimer targetDate={dateTimeAfterThreeDays} />
         <div className="flex">
           <p className="text-white pl-[140px] pt-[50px]">Your Email</p>
           <p className="text-white pl-[350px] pt-[50px]">Subscribe</p>
         </div>
         <div className='border-b-2 border-solid border-white w-[500px] pt-[15px] ml-[140px] mb-[50px]'></div>
-        <div className="flex text-white gap-24 pl-[140px]">
-          <div className="flex max-w-[650px] gap-3">
-            <p className="text-5xl">RAZ</p>
+        <div className="flex text-white gap-24 pl-[140px] ">
+          <div className="flex max-w-[650px] gap-3 items-center">
+            <p className="text-titleSoon2">RAZ</p>
             <p>Donec nunc nunc, gravida vitae diam vel, varius interdum erat. Quisque a nunc vel diam auctor commodo.</p>
           </div>
           <div className="flex gap-5 pl-[100px]">

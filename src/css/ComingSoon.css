@@ -20,7 +20,7 @@
     padding: 0.5rem;
   }
   
-  .show-counter .countdown-link {
+  .show-counter {
     display: flex;
     flex-direction: row;
     font-weight: 700;
@@ -46,9 +46,17 @@
   .show-counter .countdown.danger {
     color: #fff;
   }
-  
+
   .show-counter .countdown > p {
     margin: 0;
+    color: white;
+    padding-top:10px;
+  }
+  
+  .show-counter .countdown > p::before {
+    margin: 0;
+    color: white;
+    content:none;
   }
   
   .show-counter .countdown > span {
