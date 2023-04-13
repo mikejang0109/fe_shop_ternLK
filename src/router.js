@@ -19,7 +19,8 @@ import Blog from "./pages/Blog";
 import AboutUs from './pages/AboutUs';
 import PreLaunching from "./pages/ComingSoon";
 import ProfileCust from './pages/Profile';
-import ProfileSeller from './pages/Profile/Seller';
+import ProfileSeller from './pages/Seller';
+import MyProductSeller from "./pages/Seller/MyProduct";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
   {
     path: "/profileseller",
     element: <ProfileSeller />,
+  },
+  {
+    path: "/productseller",
+    element: <MyProductSeller />,
   },
 ]);
 
