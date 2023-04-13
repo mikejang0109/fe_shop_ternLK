@@ -3,8 +3,9 @@ import Cust from '../../assets/profilecust/cust.png';
 import Edit2 from '../../assets/profilecust/edit-3.svg';
 import Logout from '../../assets/profilecust/log-out.svg';
 import PathDown from '../../assets/profileseller/small-down.svg';
+import Footer from "../../components/Footer";
 
-class ProfileCust extends Component {
+class ProfileSeller extends Component {
     render() {
         return (
             <>
@@ -44,54 +45,59 @@ class ProfileCust extends Component {
                 </section>
                 <section className="grid mx-[150px] border-2 mb-[100px]
                 handphone:max-tablet:mx-[5vw] handphone:max-tablet:mb-[2vh]">
-                    <div className="flex px-[50px] py-[50px] border-b-2
-                    handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-                        <form className="grow">
-                            <label>Gender</label>
-                            <br></br>
-                            <input type="text" placeholder="Female" className="" />
-                        </form>
-                        <div className="grow-0 flex gap-2 font-bold">
-                            <button className="">EDIT</button>
-                            <img src={Edit2} alt="" className="w-[15px]" />
-                        </div>
-                    </div>
-                    <div className="flex px-[50px] py-[50px] border-b-2
-                    handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-                        <form className="grow">
-                            <label>Your Email</label>
-                            <br></br>
-                            <input type="text" placeholder="syifa@gamil.com" className="" />
-                        </form>
-                        <div className="grow-0 flex gap-2 font-bold">
-                            <button className="">EDIT</button>
-                            <img src={Edit2} alt="" className="w-[15px]" />
-                        </div>
-                    </div>
-                    <div className="flex px-[50px] py-[50px] border-b-2 
-                    handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-                        <form className="grow">
-                            <label>Store Name</label>
-                            <br></br>
-                            <input type="text" placeholder="Apple Store" className="" />
-                        </form>
-                        <div className="grow-0 flex gap-2 font-bold">
-                            <button className="">EDIT</button>
-                            <img src={Edit2} alt="" className="w-[15px]" />
-                        </div>
-                    </div>
-                    <div className="flex px-[50px] py-[50px] 
-                    handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-                        <form className="grow">
-                            <label>Store Description</label>
-                            <br></br>
-                            <input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className="" />
-                        </form>
-                        <div className="grow-0 flex gap-2 font-bold">
-                            <button className="">EDIT</button>
-                            <img src={Edit2} alt="" className="w-[15px]" />
-                        </div>
-                    </div>
+                    <form className="flex flex-wrap">
+            <div className="grid grid-cols-3 grid-flow-row-dense px-[50px] py-[50px] border-b-2 w-full
+          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
+              <div className="col-span-2">
+                <label>Gender</label>
+                <br></br>
+                <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1" className="mr-[10px]" disabled/>
+                Pria
+                <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2" className="mx-[10px]" disabled/>
+                Wanita
+              </div>
+              <div className="flex justify-end col-span-1 gap-2 font-bold">
+                <button className="">EDIT</button>
+                <img src={Edit2} alt="" className="w-[15px]" />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 grid-flow-row-dense px-[50px] py-[50px] border-b-2 w-full
+          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
+              <div className="col-span-2">
+                <label>Your Email</label>
+                <br></br>
+                <input type="text" placeholder="syifa@gamil.com" className="p-[10px]" disabled/>
+              </div>
+              <div className="flex justify-end col-span-1 gap-2 font-bold">
+                <button className="">EDIT</button>
+                <img src={Edit2} alt="" className="w-[15px]" />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 grid-flow-row-dense px-[50px] py-[50px] w-full
+          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
+              <div className="col-span-2">
+                <label>Store Name</label>
+                <br></br>
+                <input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className="w-full p-[10px]" disabled/>
+              </div>
+              <div className="flex justify-end col-span-1 gap-2 font-bold">
+                <button className="">EDIT</button>
+                <img src={Edit2} alt="" className="w-[15px]" />
+              </div>
+            </div>
+            <div className="grid grid-cols-3 grid-flow-row-dense px-[50px] py-[50px] w-full
+          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
+              <div className="col-span-2">
+                <label>Store Description</label>
+                <br></br>
+                <input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className="w-full p-[10px]" disabled/>
+              </div>
+              <div className="flex justify-end col-span-1 gap-2 font-bold">
+                <button className="">EDIT</button>
+                <img src={Edit2} alt="" className="w-[15px]" />
+              </div>
+            </div>
+          </form>
                 </section>
                 <section className="px-[150px] pb-[100px]">
                     <button className="flex bg-[#D94141] px-[50px] py-[15px] rounded-md gap-2 text-white
@@ -99,9 +105,10 @@ class ProfileCust extends Component {
                     handphone:max-tablet:py-[5px]"><img src={Logout} alt="" className="
                     handphone:max-tablet:w-image1.5"/> LOGOUT</button>
                 </section>
+                <Footer/>
             </>
         )
     }
 }
 
-export default ProfileCust;
+export default ProfileSeller;
