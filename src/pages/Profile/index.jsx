@@ -87,7 +87,7 @@ class ProfileCust extends Component {
         handphone:max-tablet:px-[10px] handphone:max-tablet:py-[5px]"><img src={Logout} alt="" className="
         handphone:max-tablet:w-image1.5"/> LOGOUT</button>
         </section>
-        <Footer />
+        {/* <Footer /> */}
       </>
     )
   }
