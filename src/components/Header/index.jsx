@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
 
-import { get } from "../../utils/sessionStorage";
+import { authAction } from "../../redux/slices/auth";
+import { get, remove } from "../../utils/sessionStorage";
+import { logout } from "../../utils/https/auth";
 
 import decorativeVase from "../../assets/img/decorative-vase.png";
 
@@ -13,6 +16,7 @@ import burgerMenu from "../../assets/icons/hamburger-menu.svg";
 
 function Header() {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [toggleState, setToggleState] = useState(false);
 	const [isSearch, setIsSearch] = useState(false);
@@ -27,6 +31,32 @@ function Header() {
 
 	const authNavigate = () => {
 		navigate("/auth");
+	};
+
+	const handleLogout = (e) => {
+		e.preventDefault();
+
+		const token = localToken || sessionToken;
+
+		toast.promise(
+			logout(token).then((res) => {
+				console.log(res["data"]);
+				if (localToken) {
+					dispatch(authAction.delete(token));
+				} else {
+					remove("raz");
+				}
+			}),
+			{
+				loading: "Please wait...",
+				success: () => {
+					navigate("/");
+					return <>Succesfully logged out</>;
+				},
+				error: "Something went wrong",
+			},
+			{ success: { duration: Infinity } }
+		);
 	};
 
 	return (
@@ -182,7 +212,9 @@ function Header() {
 							<p className="hover:text-white active:text-white">Profile</p>
 							<p className="hover:text-white active:text-white">Chat</p>
 							<p className="hover:text-white active:text-white">Notification</p>
-							<p className="hover:text-white active:text-white">Logout</p>
+							<p className="hover:text-white active:text-white" onClick={handleLogout}>
+								Logout
+							</p>
 						</div>
 					) : (
 						<div
@@ -202,7 +234,7 @@ function Header() {
 			</div>
 			<div className="lg:hidden">
 				<div
-					className={`mobile-menu absolute top-[65px] right-[0px] w-screen h-screen ease-in-out duration-300 ${
+					className={`mobile-menu z-50 absolute top-[65px] right-[0px] w-screen h-screen ease-in-out duration-300 ${
 						burgerMobileActive || "hidden"
 					} flex-col justify-between py-8 items-center gap-y-10 bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-60 border-b border-b-slate-400`}
 				>
@@ -358,7 +390,10 @@ function Header() {
 								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
 									Notification
 								</p>
-								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								<p
+									className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
+									onClick={handleLogout}
+								>
 									Logout
 								</p>
 							</div>
