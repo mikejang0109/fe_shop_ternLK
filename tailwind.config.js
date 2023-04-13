@@ -2,6 +2,20 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontSize: {
+      small: '0.7rem',
+      medium: '1rem',
+      mid: '1.5rem',
+      title: '2rem',
+      titleSoon2 : '2.5rem',
+      titleSoon: '4rem',
+      TitleHeader : '3.75rem'
+    },
+    fontWeight: {
+      titleWeight: '500',
+      700: '700',
+
+    },
     extend: {
       colors: {
         "primary-black": "#1A1A1A",
@@ -22,7 +36,26 @@ module.exports = {
         'home-bg': "url('/src/assets/images/homepage-bg.webp')",
         'advert-bg': "url('/src/assets/images/ad-bg.webp')",
         'timeline-bg': "url('/src/assets/icons/truck-icon.svg')"
-      }
+      },
+      screens: {
+        'handphone': '412px',
+        'tablet': '768px',
+        'laptop': '1040px',
+        'desktop': '1240px',
+      },
+      width: {
+        'image': '15px',
+        'image1.5': '20px',
+        'image2': '25px',
+        '50': '50px',
+        'textimage': '100px',
+        'ProfileImage': '100px',
+        '150': '150px',
+      },
+      spacing: {
+        'wFormProfile': '5vw',
+        'hFormProfile': '1vh',
+      },
     },
   },
   variants: {
