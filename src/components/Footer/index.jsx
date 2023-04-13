@@ -23,7 +23,7 @@ class Footer extends Component {
             <p className="handphone:max-tablet:text-small handphone:max-tablet:">Donec nunc nunc, gravida vitae diam vel, varius interdum erat. Quisque a nunc vel diam auctor commodo.</p>
             <div className="flex gap-5 mt-[40px]
           handphone:max-tablet:gap-2 handphone:max-tablet:mt-[0]">
-              <div class="h-10 w-10 rounded-full border my-[10px] 
+              <div className="h-10 w-10 rounded-full border my-[10px] 
           handphone:max-tablet:w-[30px] handphone:max-tablet:h-[30px]"><img className="pl-[12px] pt-[5px] cursor-pointer 
           handphone:max-tablet:w-[30px] handphone:max-tablet:pt-[3px] handphone:max-tablet:pl-[8px] handphone:max-tablet:cursor-pointer
           handphone:max-tablet:pr-[8px]" src={fb} alt="" /></div>
