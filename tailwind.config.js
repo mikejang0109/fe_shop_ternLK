@@ -36,26 +36,7 @@ module.exports = {
         'home-bg': "url('/src/assets/images/homepage-bg.webp')",
         'advert-bg': "url('/src/assets/images/ad-bg.webp')",
         'timeline-bg': "url('/src/assets/icons/truck-icon.svg')"
-      },
-      screens: {
-        'handphone': '412px',
-        'tablet': '768px',
-        'laptop': '1040px',
-        'desktop': '1240px',
-      },
-      width: {
-        'image': '15px',
-        'image1.5': '20px',
-        'image2': '25px',
-        '50': '50px',
-        'textimage': '100px',
-        'ProfileImage': '100px',
-        '150': '150px',
-      },
-      spacing: {
-        'wFormProfile': '5vw',
-        'hFormProfile': '1vh',
-      },
+      }
     },
   },
   variants: {

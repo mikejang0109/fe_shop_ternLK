@@ -15,8 +15,9 @@ import Checkout from "./pages/Checkout/";
 import BlogDetail from "./pages/BlogDetail";
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
 //angga
-import AboutUs from './pages/AboutUs';
+import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
 import ProfileCust from './pages/Profile';
 import ProfileSeller from './pages/Seller';
@@ -88,10 +89,6 @@ const router = createBrowserRouter([
   {
     path: "/profileseller",
     element: <ProfileSeller />,
-  },
-  {
-    path: "/productseller",
-    element: <MyProductSeller />,
   },
 ]);
 

@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
 import CartEmpty from "./EmptyCart";
 import Cart from "./Cart";
-import Footer from "../../components/Footer";
+import { useSelector } from "react-redux";
 
 const CartPage = () => {
   const [isCartEmpty, setIsCartEmpty] = useState(true);
+  const cart = useSelector(state => state.cart);
 
-  const handleCart = () => {
-    setIsCartEmpty(false);
-  };
+  useEffect(() => {
+    if (cart) {
+      setIsCartEmpty(false)
+    }
+
+  }, [cart])
 
   return (
     <>
@@ -21,8 +25,7 @@ const CartPage = () => {
         title="Your Cart"
         description="Buy everything in your cart now!"
       />
-      {isCartEmpty ? <CartEmpty /> : <Cart onCart={handleCart} />}
-      <Footer />
+      {isCartEmpty ? <CartEmpty /> : <Cart cart={cart} />}
     </>
   );
 };

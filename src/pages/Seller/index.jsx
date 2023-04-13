@@ -31,7 +31,7 @@ class ProfileSeller extends Component {
                 <section className="flex px-[150px] py-[100px] gap-10
                 handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-[50px] handphone:max-tablet:gap-2">
                     <div className="w-max">
-                        <img src={Cust} alt="" className="handphone:max-tablet:w-50"/>
+                        <img src={Cust} alt="" className="handphone:max-tablet:w-50" />
                     </div>
                     <div className="flex flex-wrap w-[100px] h-[50px] gap-2 items-center pt-[15px]
                     handphone:max-tablet:h-[0] handphone:max-tablet:pt-[0] handphone:max-tablet:gap-1">
