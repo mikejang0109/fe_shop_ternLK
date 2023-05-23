@@ -5,7 +5,7 @@ const CartEmpty = () => {
   return (
     <>
       <section className="w-[570px] h-[278px] m-auto mb-[120px]">
-        <img className="mt-20 m-auto" src={shoppingcart} />
+        <img alt="shopping cart illustration" className="mt-20 m-auto" src={shoppingcart} />
         <h1 className="mt-10 font-arimo text-primary-black text-3xl text-center">
           Your Cart is Empty
         </h1>

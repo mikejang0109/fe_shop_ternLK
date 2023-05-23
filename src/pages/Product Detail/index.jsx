@@ -49,7 +49,7 @@ const ProductDetail = () => {
             }
             setData(productData)
         })).catch(err => console.log(err.message))
-    }, [])
+    }, [id])
 
     const addCount = () => {
         setCount(prev => prev + 1)
