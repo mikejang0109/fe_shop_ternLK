@@ -10,7 +10,7 @@ import MyProduct from "./MyProduct";
 import SellingProduct from './SellingProduct'
 import MyOrder from './MyOrder'
 
-const ProfileCust = () => {
+const Profile = () => {
   const [navValue, setNavValue] = useState(1)
   const [content, setContent] = useState(1)
   const [gender, setGender] = useState()
@@ -244,4 +244,4 @@ const ProfileCust = () => {
 }
 
 
-export default ProfileCust;
+export default Profile;
