@@ -4,8 +4,8 @@ const DisplayPict = (props) => {
     const [image, setImage] = useState(0)
 
     return (
-        <section className="justify-center items-center w-full gap-5 bg-slate-100 hidden md:flex md:mt-10 lg:mt-11">
-            <div className="w-1/5">
+        <section className="justify-center items-center w-3/4 mx-auto gap-5 bg-slate-100 hidden md:flex md:mt-10 lg:mt-11">
+            <div className="w-1/5 cursor-pointer">
                 {props.data?.map((data, i) => {
                     return (
                         <div key={i} className={`w-full ${image === i && 'border-2 border-solid border-primary-black'}`} onClick={() => setImage(i)}>
