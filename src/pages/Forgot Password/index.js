@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 import { forgotPassword } from "../../utils/https/auth";
@@ -10,6 +10,10 @@ import Footer from "../../components/Footer";
 const ForgotPass = () => {
 	const [email, setEmail] = useState("");
 	const [error, setError] = useState("");
+
+	useEffect(() => {
+		document.title = "Forgot your password?";
+	}, []);
 
 	const onFormChange = (e) => {
 		setEmail(e.target.value);

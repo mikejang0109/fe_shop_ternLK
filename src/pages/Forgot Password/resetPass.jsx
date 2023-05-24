@@ -8,6 +8,8 @@ import Header from "../../components/Header";
 import Title from "../../components/Title";
 import Footer from "../../components/Footer";
 
+document.title = "Reset your old password";
+
 const ResetPass = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
