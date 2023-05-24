@@ -4,17 +4,16 @@ import remove from "../../assets/icons/small-remove.svg";
 import { useDispatch } from "react-redux";
 import { cartAction } from "../../redux/slices/cart";
 
-
 const Cart = (props) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const {cartList} = props.cart;
+  const dispatch = useDispatch();
+  const { cartList } = props.cart;
 
   const deleteCart = (idx) => {
     dispatch(cartAction.deleteCart(idx));
     console.log(idx);
-}
-  
+  };
+
   return (
     <>
       <section className="flex justify-center flex-col xl:flex-row mb-[133px]">
@@ -34,11 +33,19 @@ const Cart = (props) => {
             </p>
           </div>
           {cartList.map((data, i) => {
-            
             return (
               <div className="flex items-center" key={i}>
-                <img className="mt-10" src={remove} alt="delete" onClick={() => deleteCart(i)}/>
-                <img className="ml-[31px] mt-[60px] w-[69px]" src={data.image} alt="product" />
+                <img
+                  className="mt-10"
+                  src={remove}
+                  alt="delete"
+                  onClick={() => deleteCart(i)}
+                />
+                <img
+                  className="ml-[31px] mt-[60px] w-[69px]"
+                  src={data.image}
+                  alt="product"
+                />
                 <p className="mt-[94px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
                   {data.name}
                 </p>
@@ -50,9 +57,9 @@ const Cart = (props) => {
                   {Math.floor(data.price * data.qty)}
                 </p>
               </div>
-            )
+            );
           })}
-          
+
           <hr className="border-b border-solid border-secondary-gray" />
           <div className="flex mt-10">
             <div className="border-b border-solid border-secondary-gray">

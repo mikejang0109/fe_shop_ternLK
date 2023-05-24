@@ -7,14 +7,13 @@ import { useSelector } from "react-redux";
 
 const CartPage = () => {
   const [isCartEmpty, setIsCartEmpty] = useState(true);
-  const cart = useSelector(state => state.cart);
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     if (cart) {
-      setIsCartEmpty(false)
+      setIsCartEmpty(false);
     }
-
-  }, [cart])
+  }, [cart]);
 
   return (
     <>
