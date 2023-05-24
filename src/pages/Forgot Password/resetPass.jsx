@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
 import { resetPassword } from "../../utils/https/auth";
@@ -10,26 +10,40 @@ import Footer from "../../components/Footer";
 
 const ResetPass = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 
-	const [form, setForm] = useState({ otp: "", password: "" });
+	const searchParams = new URLSearchParams(location.search);
+
+	const verifyCode = searchParams.get("verify");
+
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 
 	const onChangeForm = (e) => {
-		setForm((form) => {
-			return { ...form, [e.target.name]: e.target.value };
-		});
+		setPassword(e.target.value);
 	};
 
 	const resetHandler = (e) => {
 		e.preventDefault();
 
-		toast.promise(resetPassword(form.otp, form.password), {
-			loading: "Please wait...",
-			success: () => {
-				navigate("/auth");
-				return <>Succesfully change password</>;
-			},
-			error: "Something went wrong",
-		});
+		let invalid = "";
+
+		if (password.length < 8) {
+			invalid = "Password must be at least 8 characters";
+		}
+
+		setError(invalid);
+
+		if (invalid === "") {
+			toast.promise(resetPassword(verifyCode, password), {
+				loading: "Please wait...",
+				success: () => {
+					navigate("/auth");
+					return <>Succesfully change password</>;
+				},
+				error: "Something went wrong",
+			});
+		}
 	};
 
 	return (
@@ -50,19 +64,13 @@ const ResetPass = () => {
 					</p>
 					<div className="flex flex-col mt-10 gap-y-3">
 						<input
-							name="otp"
-							placeholder="Your otp code *"
-							type="text"
-							onChange={onChangeForm}
-							className="m-auto w-80 md:w-full p-5 border border-solid border-[#CECECE]"
-						></input>
-						<input
 							name="password"
 							placeholder="Your new password *"
 							type="password"
 							onChange={onChangeForm}
 							className="m-auto w-80 md:w-full p-5 border border-solid border-[#CECECE]"
 						></input>
+						{error && <div className="text-red-700 font-arimo">{error}</div>}
 						<button
 							onClick={resetHandler}
 							className="m-auto md:m-0 md:mt-5 bg-black hover:bg-white p-5 text-white hover:text-black border border-solid border-primary-black text-base font-arimo font-bold text-center mt-[33px] w-80 md:w-[35%]"
