@@ -36,10 +36,18 @@ const ForgotPass = () => {
 		setError(invalid);
 
 		if (invalid === "") {
+			e.target.disabled = true;
+
 			toast.promise(forgotPassword(email), {
 				loading: "Please wait...",
-				success: "Check your email inbox",
-				error: "Something went wrong",
+				success: () => {
+					e.target.disabled = false;
+					return <>Check your email inbox</>
+				},
+				error: () => {
+					e.target.disabled = false;
+					<>Something went wrong</>
+				},
 			});
 		}
 	};
@@ -70,7 +78,7 @@ const ForgotPass = () => {
 						{error && <div className="text-red-700 font-arimo">{error}</div>}
 						<button
 							onClick={forgotHandler}
-							className="m-auto md:m-0 md:mt-5 bg-black hover:bg-white p-5 text-white hover:text-black border border-solid border-primary-black text-base font-arimo font-bold text-center mt-[33px] w-80 md:w-[35%]"
+							className="m-auto md:m-0 md:mt-5 bg-black hover:bg-white disabled:bg-primary-gray p-5 text-white hover:text-black disabled:text-tertiary-gray border border-solid border-primary-black text-base font-arimo font-bold text-center mt-[33px] w-80 md:w-[35%]"
 						>
 							Reset Password
 						</button>
