@@ -19,9 +19,8 @@ import ContactUs from "./pages/ContactUs";
 //angga
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
-import ProfileCust from './pages/Profile';
-import ProfileSeller from './pages/Seller';
-import MyProductSeller from "./pages/Seller/MyProduct";
+import Profile from './pages/Profile';
+
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
@@ -83,13 +82,10 @@ const router = createBrowserRouter([
     element: <PreLaunching />,
   },
   {
-    path: "/profilecust",
-    element: <ProfileCust />,
+    path: "/profile",
+    element: <Profile />,
   },
-  {
-    path: "/profileseller",
-    element: <ProfileSeller />,
-  },
+  
 ]);
 
 export default router;
