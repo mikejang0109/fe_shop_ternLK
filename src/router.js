@@ -16,34 +16,47 @@ import BlogDetail from "./pages/BlogDetail";
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
+import ResetPass from "./pages/Forgot Password/resetPass";
 //angga
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
 import Profile from './pages/Profile';
 
-
 const router = createBrowserRouter([
-  { path: "/faq", element: <Faq /> },
-  {
-    path: "/auth", element: (
-      <IsLogin>
-        <Auth />
-      </IsLogin>
-    )
-  },
-  {
-    path: "/forgot", element: (
-      <IsLogin>
-        <ForgotPassword />
-      </IsLogin>
-    )
-  },
-  { path: "/products", element: <Products /> },
-  {
-    path: "/product/:id", element:
-      <PrivateRoute>
-        <ProductDetail /> 
-      </PrivateRoute>},
+	{ path: "/faq", element: <Faq /> },
+	{
+		path: "/auth",
+		element: (
+			<IsLogin>
+				<Auth />
+			</IsLogin>
+		),
+	},
+	{
+		path: "/reset",
+		element: (
+			<IsLogin>
+				<ResetPass />
+			</IsLogin>
+		),
+	},
+	{
+		path: "/forgot",
+		element: (
+			<IsLogin>
+				<ForgotPassword />
+			</IsLogin>
+		),
+	},
+	{ path: "/products", element: <Products /> },
+	{
+		path: "/product/:id",
+		element: (
+			<PrivateRoute>
+				<ProductDetail />
+			</PrivateRoute>
+		),
+	},
 	{ path: "/blog", element: <Blog /> },
   { path: "/blogdetail", element: <BlogDetail /> },
   {

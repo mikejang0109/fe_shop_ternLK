@@ -21,3 +21,20 @@ export const logout = (token) => {
 	};
 	return axios.delete(url, config);
 };
+
+export const forgotPassword = (email) => {
+	const url = `${baseUrl}/apiv1/auth/forgotpass`;
+	const body = { email };
+	return axios.post(url, body);
+};
+
+export const verifyResetPassword = (code) => {
+	const url = `${baseUrl}/apiv1/auth/resetpass?verify=${code}`;
+	return axios.get(url);
+};
+
+export const resetPassword = (code, password) => {
+	const url = `${baseUrl}/apiv1/auth/resetpass?verify=${code}`;
+	const body = { password };
+	return axios.patch(url, body);
+};
