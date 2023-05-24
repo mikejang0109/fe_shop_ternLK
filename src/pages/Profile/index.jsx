@@ -19,8 +19,13 @@ const Profile = () => {
   const [storeDescription, setStoreDescription] = useState()
   const [myOrderModal, setMyOrderModal] = useState()
   const [myProductModal, setMyProductModal] = useState()
+  const [editGender, setEditGender] = useState(false)
+  const [editEmail, setEditEmail] = useState(false)
+  const [editAdress, setEditAddress] = useState(false)
+  const [editStoreName, setEditStoreName] = useState(false)
+  const [editStoreDescription, setEditStoreDescription] = useState(false)
 
-  const role = 2
+  const role = 1
 
   return (
     <>
@@ -40,20 +45,20 @@ const Profile = () => {
               setContent(1)
               setMyOrderModal(false)
               setMyProductModal(false)
-              }}>
+            }}>
               <p>Profile</p>
             </div>
             <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 2 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
               setNavValue(2)
               setMyOrderModal(false)
               myProductModal ? setMyProductModal(false) : setMyProductModal(true)
-              }}>
+            }}>
               <p className={`hover:text-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 2 ? 'text-primary-black ' : 'text-[#b4b4b4]'}`}>My Product</p>
               <img src={PathDown} alt="path" className="w-4 h-2" />
               <div className={`${myProductModal ? 'flex' : 'hidden'} w-[150px] lg:w-[300px] p-5 md:p-10 bg-primary-black flex-col gap-5 absolute top-16 z-50`}>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(21)}}>All</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(21)}}>Archive</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(21)}}>Sold</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>All</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>Archive</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>Sold</p>
               </div>
             </div>
             <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 3 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
@@ -61,22 +66,23 @@ const Profile = () => {
               setContent(3)
               setMyOrderModal(false)
               setMyProductModal(false)
-              }}>
+            }}>
               <p>Selling Product</p>
             </div>
             <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 4 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
               setNavValue(4)
               setMyProductModal(false)
-              myOrderModal ? setMyOrderModal(false) : setMyOrderModal(true)}}>
+              myOrderModal ? setMyOrderModal(false) : setMyOrderModal(true)
+            }}>
               <p>My Order</p>
               <img src={PathDown} alt="path" className="w-4 h-2" />
               <div className={`${myOrderModal ? 'flex' : 'hidden'} w-[200px] lg:w-[300px] p-5 md:p-10 bg-primary-black flex-col gap-5 absolute top-16 right-0`}>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(41)}}>All</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(41)}}>Get Paid</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(41)}}>Processed</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(41)}}>Sent</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(41)}}>Completed</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => {setContent(41)}}>Order Cancel</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>All</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Get Paid</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Processed</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Sent</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Completed</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Order Cancel</p>
               </div>
             </div>
           </nav>
@@ -99,13 +105,13 @@ const Profile = () => {
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Gender</p>
                 <div className="flex items-center gap-10">
-                  <button type="button" className="flex items-center gap-3" disabled onClick={() => setGender('male')}>
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => setGender('male')}>
                     <div className={`w-5 h-5 rounded-full border ${gender === 'male' ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
                       <div className={`w-3 h-3 rounded-full ${gender === 'male' ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
                     </div>
                     <p className="font-arimo font-normal text-lg md:text-xl lg:text-2xl">Male</p>
                   </button>
-                  <button type="button" className="flex items-center gap-3" disabled onClick={() => setGender('female')}>
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => setGender('female')}>
                     <div className={`w-5 h-5 rounded-full border ${gender === 'female' ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
                       <div className={`w-3 h-3 rounded-full ${gender === 'female' ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
                     </div>
@@ -114,7 +120,7 @@ const Profile = () => {
                 </div>
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editGender ? setEditGender(false) : setEditGender(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
@@ -123,10 +129,10 @@ const Profile = () => {
             <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Your Email</p>
-                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={email} placeholder="Input your mail" disabled onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={email} placeholder="Input your mail" disabled={editEmail} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editEmail ? setEditEmail(false) : setEditEmail(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
@@ -135,10 +141,10 @@ const Profile = () => {
             <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Store Name</p>
-                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={storeName} placeholder="Input your store name" disabled onChange={(e) => setStoreName(e.target.value)} />
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={storeName} placeholder="Input your store name" disabled={editStoreName} onChange={(e) => setStoreName(e.target.value)} />
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editStoreName ? setEditStoreName(false) : setEditStoreName(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
@@ -147,10 +153,10 @@ const Profile = () => {
             <div className=" px-7 md:px-14 py-5 md:py-10 flex items-center">
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Store Description</p>
-                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={storeDescription} placeholder="Input your store description" disabled onChange={(e) => setStoreDescription(e.target.value)} />
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={storeDescription} placeholder="Input your store description" disabled={editStoreDescription} onChange={(e) => setStoreDescription(e.target.value)} />
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editStoreDescription ? setEditStoreDescription(false) : setEditStoreDescription(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
@@ -185,13 +191,13 @@ const Profile = () => {
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Gender</p>
                 <div className="flex items-center gap-10">
-                  <button type="button" className="flex items-center gap-3" disabled onClick={() => setGender('male')}>
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => setGender('male')}>
                     <div className={`w-5 h-5 rounded-full border ${gender === 'male' ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
                       <div className={`w-3 h-3 rounded-full ${gender === 'male' ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
                     </div>
                     <p className="font-arimo font-normal text-lg md:text-xl lg:text-2xl">Male</p>
                   </button>
-                  <button type="button" className="flex items-center gap-3" disabled onClick={() => setGender('female')}>
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => setGender('female')}>
                     <div className={`w-5 h-5 rounded-full border ${gender === 'female' ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
                       <div className={`w-3 h-3 rounded-full ${gender === 'female' ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
                     </div>
@@ -200,7 +206,7 @@ const Profile = () => {
                 </div>
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editGender ? setEditGender(false) : setEditGender(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
@@ -209,23 +215,23 @@ const Profile = () => {
             <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Your Email</p>
-                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={email} placeholder="Input your mail" disabled onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={email} placeholder="Input your mail" disabled={editEmail} onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editEmail ? setEditEmail(false) : setEditEmail(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
               </div>
             </div>
-            
+
             <div className=" px-7 md:px-14 py-5 md:py-10 flex items-center">
               <div className="flex flex-col gap-4 w-4/5">
                 <p className="font-arimo font-normal text-base text-primary-black">Address</p>
-                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={storeDescription} placeholder="Input your address" disabled onChange={(e) => setStoreDescription(e.target.value)} />
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={storeDescription} placeholder="Input your address" disabled={editAdress} onChange={(e) => setStoreDescription(e.target.value)} />
               </div>
               <div className="w-1/5 flex justify-end items-center">
-                <button className="flex gap-4 items-center " type="button">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editAdress ? setEditAddress(false) : setEditAddress(true)}>
                   <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
@@ -238,7 +244,7 @@ const Profile = () => {
           </button>
         </section>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
