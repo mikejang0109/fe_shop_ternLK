@@ -20,7 +20,7 @@ import ResetPass from "./pages/Forgot Password/resetPass";
 //angga
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
-import Profile from './pages/Profile';
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
 	{ path: "/faq", element: <Faq /> },
@@ -58,47 +58,53 @@ const router = createBrowserRouter([
 		),
 	},
 	{ path: "/blog", element: <Blog /> },
-  { path: "/blogdetail", element: <BlogDetail /> },
-  {
-    path: "/mycart", element: (
-      <PrivateRoute>
-        <Cart />
-      </PrivateRoute>
-    )
-  },
-  {
-    path: "/checkout", element: (
-      <PrivateRoute>
-        <Checkout />
-      </PrivateRoute>
-    )
-  },
-  {
-    path: "/tracking", element: (
-      <PrivateRoute>
-        <OrderTrack />
-      </PrivateRoute>
-    )
-  },
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <Error />,
-  },
-  //angga
-  {
-    path: "/aboutus",
-    element: <AboutUs />,
-  },
-  {
-    path: "/soon",
-    element: <PreLaunching />,
-  },
-  {
-    path: "/profile",
-    element: <Profile />,
-  },
-  
+	{ path: "/blogdetail", element: <BlogDetail /> },
+	{
+		path: "/mycart",
+		element: (
+			<PrivateRoute>
+				<Cart />
+			</PrivateRoute>
+		),
+	},
+	{
+		path: "/checkout",
+		element: (
+			<PrivateRoute>
+				<Checkout />
+			</PrivateRoute>
+		),
+	},
+	{
+		path: "/tracking",
+		element: (
+			<PrivateRoute>
+				<OrderTrack />
+			</PrivateRoute>
+		),
+	},
+	{
+		path: "/contact",
+		element: <ContactUs />,
+	},
+	{
+		path: "/",
+		element: <Home />,
+		errorElement: <Error />,
+	},
+	//angga
+	{
+		path: "/aboutus",
+		element: <AboutUs />,
+	},
+	{
+		path: "/soon",
+		element: <PreLaunching />,
+	},
+	{
+		path: "/profile",
+		element: <Profile />,
+	},
 ]);
 
 export default router;

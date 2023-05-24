@@ -219,7 +219,7 @@ function Header() {
 								burgerActive || "hidden"
 							} flex-col gap-y-5`}
 						>
-							<p className="hover:text-white active:text-white">Profile</p>
+							<p onClick={() => navigate("/profile")} className="hover:text-white active:text-white">Profile</p>
 							<p className="hover:text-white active:text-white">Chat</p>
 							<p className="hover:text-white active:text-white">Notification</p>
 							<p className="hover:text-white active:text-white" onClick={() => setIsDialogOpen(true)}>
@@ -391,7 +391,7 @@ function Header() {
 						</div>
 						{localToken || sessionToken ? (
 							<div className="text-primary-gray flex flex-col gap-x-6 gap-y-6 md:gap-y-6 px-0 ">
-								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								<p onClick={() => navigate("/profile")} className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
 									Profile
 								</p>
 								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
