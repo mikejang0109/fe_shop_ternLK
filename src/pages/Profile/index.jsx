@@ -25,7 +25,7 @@ const Profile = () => {
   const [editStoreName, setEditStoreName] = useState(false)
   const [editStoreDescription, setEditStoreDescription] = useState(false)
 
-  const role = 1
+  const role = 2
 
   return (
     <>
@@ -238,9 +238,9 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <button className=" h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex justify-center items-center bg-[#D94141]">
+          <button type="button" className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex justify-center items-center bg-[#D94141]">
             <img src={Logout} alt="logout" className="w-6 h-6" />
-            <p className="font-arimo font-bold text-base text-white">LOGOUT</p>
+            <p className=" font-arimo font-bold text-base text-white">LOGOUT</p>
           </button>
         </section>
       </main>

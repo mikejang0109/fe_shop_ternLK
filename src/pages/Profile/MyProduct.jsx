@@ -25,7 +25,7 @@ const MyProduct = ({ show }) => {
                         <p className="text-sm md:text-base">10 stock</p>
                     </div>
                     <p className="font-bold text-base md:text-lg flex items-center justify-end sm:justify-start">$765</p>
-                    <button type="button" className="h-14 lg:h-20 hidden sm:block my-auto font-bold text-white bg-[#D94141]">Delete</button>
+                    <button type="button" className="btn h-14 lg:h-20 hidden sm:block my-auto font-bold hover:text-white hover:bg-[#D94141] text-white bg-[#D94141]">Delete</button>
                     <div className="absolute w-full h-full block sm:hidden" onClick={() => setModalId(1)}></div>
                     <div className={` ${modalId === 1 ? 'flex' : 'hidden'} sm:hidden bg-secondary-black/20 absolute w-full h-full justify-center items-center gap-5`}>
                         <button type="button" className="h-full text-center bg-red-500 px-4 font-semibold text-white" onClick={() => setModalId(null)}>Cancel</button>
@@ -42,7 +42,7 @@ const MyProduct = ({ show }) => {
                         <p className="text-sm md:text-base">10 stock</p>
                     </div>
                     <p className="font-bold text-base md:text-lg flex items-center justify-end sm:justify-start">$765</p>
-                    <button type="button" className="h-14 lg:h-20 hidden sm:block my-auto font-bold text-white bg-[#D94141]">Delete</button>
+                    <button type="button" className="btn h-14 lg:h-20 hidden sm:block my-auto font-bold hover:text-white hover:bg-[#D94141] text-white bg-[#D94141]">Delete</button>
                     <div className="absolute w-full h-full block sm:hidden" onClick={() => setModalId(2)}></div>
                     <div className={` ${modalId === 2 ? 'flex' : 'hidden'} sm:hidden bg-secondary-black/20 absolute w-full h-full justify-center items-center gap-5`}>
                         <button type="button" className="h-full text-center bg-red-500 px-4 font-semibold text-white" onClick={() => setModalId(null)}>Cancel</button>
