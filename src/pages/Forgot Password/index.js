@@ -41,12 +41,14 @@ const ForgotPass = () => {
 			toast.promise(forgotPassword(email), {
 				loading: "Please wait...",
 				success: () => {
+					setEmail("");
 					e.target.disabled = false;
-					return <>Check your email inbox</>
+					return <>Check your email inbox</>;
 				},
 				error: () => {
+					setEmail("");
 					e.target.disabled = false;
-					<>Something went wrong</>
+					return <>Something went wrong</>;
 				},
 			});
 		}
@@ -73,6 +75,7 @@ const ForgotPass = () => {
 							onChange={onFormChange}
 							placeholder="Your email address *"
 							type="email"
+							value={email}
 							className="m-auto w-80 md:w-full p-5 border border-solid border-[#CECECE]"
 						></input>
 						{error && <div className="text-red-700 font-arimo">{error}</div>}
