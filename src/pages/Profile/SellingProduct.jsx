@@ -3,11 +3,11 @@ import bgadd from "../../assets/images/bg.svg"
 
 const SellingProduct = ({ show }) => {
     return (
-        <section className={`${show === 3 ? 'flex' : 'hidden'} mt-8 sm:mt-10 md:mt-24 w-full md:w-2/3 mx-auto flex-col gap-10 md:gap-20`}>
+        <section className={`${show === 3 ? 'flex' : 'hidden'} mt-8 sm:mt-10 md:mt-24 w-full mx-auto flex-col gap-10 md:gap-20`}>
             <section className="flex flex-col justify-center items-start gap-5 md:gap-10">
                 <p className="font-bold text-xl md:text-2xl font-arimo">Inventory</p>
                 <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center border border-solid border-primary-gray p-5 w-full">
-                    <p className="w-full sm:w-1/3">Name of goods *</p>
+                    <p className="w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">Name of goods *</p>
                     <input type="text" className="w-full outline-none" />
                 </div>
                 <div className=" border border-solid border-primary-gray p-5 w-full">
@@ -18,12 +18,12 @@ const SellingProduct = ({ show }) => {
             <section className="flex flex-col justify-center items-start gap-5 md:gap-10">
                 <p className="font-bold text-2xl">Item Details</p>
                 <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center border border-solid border-primary-gray p-5 w-full">
-                    <p className="w-full sm:w-1/4">Unit price *</p>
+                    <p className="w-full sm:w-1/3 md:w-1/6">Unit price *</p>
                     <input type="number" className="w-full outline-none" />
                 </div>
                 <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center border border-solid border-primary-gray p-5 w-full">
-                    <p className="w-full sm:w-1/4">Unit stock *</p>
-                    <div className="flex justify-start">
+                    <p className="w-full sm:w-1/3 md:w-1/6">Unit stock *</p>
+                    <div className="flex justify-start w-full">
                         <input type="number" className="w-full outline-none" />
                         <p className="w-1/5">/pcs</p>
                     </div>

@@ -163,7 +163,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <button className=" h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex justify-center items-center bg-[#D94141]">
+          <button className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex border-none justify-center items-center bg-[#D94141] hover:bg-[#D94141]/80">
             <img src={Logout} alt="logout" className="w-6 h-6" />
             <p className="font-arimo font-bold text-base text-white">LOGOUT</p>
           </button>
@@ -238,7 +238,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <button type="button" className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex justify-center items-center bg-[#D94141]">
+          <button type="button" className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex border-none justify-center items-center bg-[#D94141] hover:bg-[#D94141]/80">
             <img src={Logout} alt="logout" className="w-6 h-6" />
             <p className=" font-arimo font-bold text-base text-white">LOGOUT</p>
           </button>
