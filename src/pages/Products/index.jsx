@@ -50,7 +50,7 @@ const Products = () => {
                 description="Find and buy the one you like" />
             <main className="p-[5%] flex justify-center items-start relative">
                 <Aside />
-                <section className="w-full md:w-[75%] flex flex-col items-center relative h-screen md:h-[1300px]">
+                <section className="w-full md:w-[75%] flex flex-col items-center relative min-h-screen md:h-[1300px]">
                     <nav className="flex justify-between items-center pb-3 w-full">
                         <div className="flex justify-center items-center md:hidden gap-2">
                             <button className="" onClick={() => setFilterModal(true)}>Filter</button>
@@ -88,7 +88,7 @@ const Products = () => {
                         })}
                     </div>
 
-                    <div className="btn-group pt-5 ">
+                    <div className="btn-group pt-5 absolute bottom-5">
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>«</button>
                         <button className={`btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>Page {productList.meta?.totalPage}</button>
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>»</button>
