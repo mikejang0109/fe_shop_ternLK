@@ -1,11 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import chair from "../../assets/img/chair.svg";
-import chair2 from "../../assets/img/chair2.svg";
 import remove from "../../assets/icons/small-remove.svg";
+import { useDispatch } from "react-redux";
+import { cartAction } from "../../redux/slices/cart";
 
-const Cart = () => {
+
+const Cart = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const {cartList} = props.cart;
+
+  const deleteCart = (idx) => {
+    dispatch(cartAction.deleteCart(idx));
+    console.log(idx);
+}
+  
   return (
     <>
       <section className="flex justify-center flex-col xl:flex-row mb-[133px]">
@@ -24,36 +33,26 @@ const Cart = () => {
               TOTAL
             </p>
           </div>
-          <div className="flex">
-            <img className="mt-10" src={remove} alt="tedts" />
-            <img className="ml-[31px] mt-[60px]" src={chair} alt="test" />
-            <p className="mt-[94px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
-              Fabric Mid Century Chair
-            </p>
-            <p className="mt-[88px] ml-14 font-arimo">$10.50</p>
-            <button className="mt-14 ml-10 font-arimo">-</button>
-            <p className="mt-[88px] ml-7 font-arimo">02</p>
-            <button className="mt-14 ml-7 font-arimo">+</button>
-            <p className="mt-[88px] ml-28 font-arimo font-bold text-sm text-primary-black">
-              $21.00
-            </p>
-          </div>
-          <div className="flex mb-14">
-            <img className="mt-10" src={remove} alt="tedts" />
-            <img className="ml-[31px] mt-[60px]" src={chair2} alt="test" />
-            <p className="mt-[94px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
-              Chair in Dark Grey
-            </p>
-            <p className="mt-[88px] ml-14 font-arimo">$10.50</p>
-            <div className="flex">
-              <button className="mt-14 ml-10 font-arimo">-</button>
-              <p className="mt-[88px] ml-7 font-arimo">01</p>
-              <button className=" mt-14 ml-7 font-arimo">+</button>
-              <p className="mt-[88px] ml-28 font-arimo font-bold text-sm text-primary-black">
-                $10.50
-              </p>
-            </div>
-          </div>
+          {cartList.map((data, i) => {
+            
+            return (
+              <div className="flex items-center" key={i}>
+                <img className="mt-10" src={remove} alt="delete" onClick={() => deleteCart(i)}/>
+                <img className="ml-[31px] mt-[60px] w-[69px]" src={data.image} alt="product" />
+                <p className="mt-[94px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
+                  {data.name}
+                </p>
+                <p className="mt-[88px] ml-14 font-arimo">IDR {data.price}</p>
+                <button className="mt-14 ml-10 font-arimo">-</button>
+                <p className="mt-[88px] ml-7 font-arimo">{data.qty}</p>
+                <button className="mt-14 ml-7 font-arimo">+</button>
+                <p className="mt-[88px] ml-28 font-arimo font-bold text-sm text-primary-black">
+                  {Math.floor(data.price * data.qty)}
+                </p>
+              </div>
+            )
+          })}
+          
           <hr className="border-b border-solid border-secondary-gray" />
           <div className="flex mt-10">
             <div className="border-b border-solid border-secondary-gray">

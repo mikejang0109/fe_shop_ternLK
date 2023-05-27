@@ -49,7 +49,7 @@ const ProductDetail = () => {
             }
             setData(productData)
         })).catch(err => console.log(err.message))
-    }, [])
+    }, [id])
 
     const addCount = () => {
         setCount(prev => prev + 1)
@@ -85,7 +85,9 @@ const ProductDetail = () => {
             size_id: null,
             color_id: null,
             qty: count,
-            image: data.images[0]
+            image: data.images[0],
+            name: data.name,
+            price: data.price
         }
         dispatch(cartAction.submitCart(cart))
     }
