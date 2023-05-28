@@ -4,7 +4,6 @@ import check from "../../assets/icons/check-circle-08.svg"
 const MyOrder = ({ show }) => {
     return (
         <section className={`${show === 41 ? 'block' : 'hidden'} mt-10 md:mt-24`}>
-            
                 <div className="grid grid-cols-7 py-3">
                     <p className="col-span-3 font-arimo font-normal text-xs sm:text-sm md:text-base">PRODUCTS</p>
                     <p className="font-arimo font-normal text-xs sm:text-sm md:text-base">PRICE</p>
