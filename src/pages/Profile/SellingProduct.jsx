@@ -64,7 +64,7 @@ const SellingProduct = ({ show, token }) => {
 
     
     return (
-        <section className="min-h-screen" >
+        <section className="" >
 {isLoading ? <Loader /> : 
             <section className={`${show === 3 ? 'flex' : 'hidden'} mt-8 sm:mt-10 md:mt-24 w-full mx-auto flex-col gap-10 md:gap-20`}>
                 <section className="flex flex-col justify-center items-start gap-5 md:gap-10">

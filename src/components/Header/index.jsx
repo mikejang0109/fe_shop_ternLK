@@ -95,7 +95,7 @@ function Header() {
 					</button>
 					<ul className="group-hover:block absolute hidden text-[#919191] pt-1">
 						<li>
-							<Link>
+							<Link to={"/aboutus"}>
 								<p className="bg-primary-black hover:text-white active:text-white pt-8 py-2 px-6 pr-24 block whitespace-nowrap">
 									About Us
 								</p>
@@ -109,7 +109,7 @@ function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link>
+							<Link to={"/soon"}>
 								<p className="bg-primary-black hover:text-white active:text-white py-2 px-6 pr-24 block whitespace-nowrap">
 									Coming Soon
 								</p>
