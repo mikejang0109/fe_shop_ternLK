@@ -143,6 +143,29 @@ const SellingProduct = ({ show, token }) => {
                             </label>
                         </div>
                     </div>
+                    <div>
+                        <p>Brand</p>
+                        <div className="flex justify-start items-center gap-10 pt-5">
+                            <label className="flex justify-start items-center gap-5">
+                                <input
+                                    type="radio"
+                                    name="stock"
+                                    className="box-border cursor-pointer appearance-none bg-transparent outline-2 outline-[#333] border border-[#979797] h-4 w-4 checked:bg-primary-black checked:border-2"
+                                    onClick={() => setCondition(1)}
+                                />
+                                <p className="text-sm">New product</p>
+                            </label>
+                            <label className="flex justify-start items-center gap-5">
+                                <input
+                                    type="radio"
+                                    name="stock"
+                                    className="box-border cursor-pointer appearance-none bg-transparent outline-2 outline-[#333] border border-[#979797] h-4 w-4 checked:bg-primary-black checked:border-2"
+                                    onClick={() => setCondition(2)}
+                                />
+                                <p className="text-sm">Second product</p>
+                            </label>
+                        </div>
+                    </div>
                 </section>
                 <section className="flex flex-col justify-center items-start gap-10">
                     <p className="font-bold text-2xl">Photo of Goods</p>

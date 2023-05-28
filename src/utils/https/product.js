@@ -13,3 +13,12 @@ export const wishlist = (productId, token) => {
         }
     });
 };
+
+export const deleteProduct = (productId, token) => {
+    const url = `${baseUrl}/products/${productId}`
+    return axios.delete(url, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+}

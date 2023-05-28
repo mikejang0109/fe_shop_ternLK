@@ -11,9 +11,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../../components/Loader";
 import { toast } from "react-hot-toast";
 import { cartAction } from "../../redux/slices/cart";
+import { wishlist } from "../../utils/https/product";
 
 const Wishlist = () => {
   const [wishlistData,setWishlistData] = useState()
+  const [isLoading, setIsLoading] = useState(false)
 
   const dispatch = useDispatch()
   const localToken = useSelector((state) => state.auth.token);
@@ -21,18 +23,20 @@ const Wishlist = () => {
   const token = sessionToken || localToken
 
 useEffect(() => {
-  const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/userPanel/wishlist`
-  axios.get(url, {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  }).then(res => setWishlistData(res.data.data))
+  let getData = true
+  if(getData) {
+    setIsLoading(true)
+    const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/userPanel/wishlist`
+    axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(res => setWishlistData(res.data.data)).catch(err => toast.error(err.response.data.msg)).finally(() => setIsLoading(false))
+  }
+  return () => {getData = false}
 }, [])
-
-
-
 console.log(wishlistData);
-if(!wishlistData) return <Loader />
+if(isLoading) return <Loader />
 
   return (
     <>

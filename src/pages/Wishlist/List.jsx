@@ -3,9 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import axios from "axios";
-import Loader from "../../components/Loader";
 import { cartAction } from "../../redux/slices/cart";
+import { wishlist } from '../../utils/https/product'
 
 function List({ wishlistData, token }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -30,27 +29,29 @@ function List({ wishlistData, token }) {
     navigate(`/product/${id}`)
   }
 
-  const deleteWishlist = async(id) => {
-    try {
-      setIsLoading(true)
-      const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/userPanel/wishlist/${id}`
-      const result = await axios.delete(url, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      console.log(result.data);
-      window.location.reload()
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false)
-    }
+  const deleteWishlist = (e, id) => {
+    e.preventDefault();
+		toast.dismiss();
+    toast.promise(wishlist(id, token).then(res => console.log(res)).catch(err => console.log(err)), {
+      loading: () => {
+        e.target.disabled = true;
+        return <>Please wait...</>;
+      },
+      success: () => {
+        return <>Delete success</>;
+      },
+      error: () => {
+        e.target.disabled = false;
+        return <>Delete failed</>;
+      },
+    },
+    { success: { duration: Infinity }, error: { duration: Infinity } })
+    window.location.reload()
   }
-  // if(isLoading) return <Loader />
+
+  
   return (
     <section className="flex justify-center flex-col xl:flex-row min-h-screen">
-      {isLoading ? <Loader /> : 
       <section className="w-full px-8 lg:px-20 lg:m-auto xl:m-0 py-20">
         <hr className="border-b border-solid border-secondary-gray" />
         <div className="flex my-7">
@@ -71,7 +72,7 @@ function List({ wishlistData, token }) {
             return (
               <div className="flex items-center my-7 flex-col sm:flex-row gap-y-7">
                 <div className="flex-[3_3_0%] flex-col sm:flex-row flex items-center gap-x-10" onClick={() => openProductDetail(data.product_id)}>
-                  <img src={data.img_url} alt="" className="w-36" />
+                  <img src={data.img_urls[0]} alt="" className="w-36" />
                   <div className="flex-[2_2_0%] font-arimo text-center sm:text-left text-primary-black mx-2 flex flex-col">
                     <p className="font-bold md:font-normal text-lg md:text-base">
                       {data.name}
@@ -99,7 +100,7 @@ function List({ wishlistData, token }) {
                           stroke-linejoin="round"
                         />
                       </svg>{" "}
-                      {data.stock > 0 ? 'In Stock' : 'OutStock'}
+                      {data.stock > 0 ? 'In Stock' : 'Out Stock'}
                     </p>
                     <p className="font-bold md:hidden">Price: Rp {Number(data.price).toLocaleString()}</p>
                   </div>
@@ -136,14 +137,14 @@ function List({ wishlistData, token }) {
                   <button className="btn bg-primary-black hover:bg-secondary-black text-white rounded-none px-8" onClick={() => addCart(data)}>
                     Add to Cart
                   </button>
-                  <p className="text-sm text-center hover:underline" onClick={() => deleteWishlist(data.id)}>Remove</p>
+                  <p className="text-sm text-center hover:underline" onClick={(e) => deleteWishlist(e, data.id)}>Remove</p>
                 </div>
               </div>
             )
           })}
 
         </section>
-      </section>}
+      </section>
     </section>
   );
 }

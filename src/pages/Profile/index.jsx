@@ -31,7 +31,7 @@ const Profile = () => {
   const [editName, setEditName] = useState(false)
   const [editGender, setEditGender] = useState(false)
   const [editEmail, setEditEmail] = useState(false)
-  const [editAdress, setEditAddress] = useState(false)
+  // const [editAdress, setEditAddress] = useState(false)
   const [editStoreName, setEditStoreName] = useState(false)
   const [editStoreDescription, setEditStoreDescription] = useState(false)
   const [profile, setProfile] = useState()
@@ -158,8 +158,8 @@ const Profile = () => {
               <img src={PathDown} alt="path" className="w-4 h-2" />
               <div className={`${myProductModal ? 'flex' : 'hidden'} w-[150px] lg:w-[300px] p-5 md:p-10 bg-primary-black flex-col gap-5 absolute top-16 z-50`}>
                 <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>All</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>Archive</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>Sold</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(22) }}>Available</p>
+                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(23) }}>Sold</p>
               </div>
             </div>
             <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 3 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
