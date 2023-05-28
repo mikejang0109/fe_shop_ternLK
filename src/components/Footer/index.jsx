@@ -11,6 +11,7 @@ class Footer extends Component {
   render() {
     return (
       <>
+      <div className="overflow-hidden">
         <section className="bg-black 
         handphone:px-[10px] 
         handphone:py-[10px] 
@@ -108,8 +109,7 @@ class Footer extends Component {
               <div className="flex-initial text-white
               handphone:flex-initial w-60
               handphone:justify-center
-              laptop:flex-initial w-52
-              laptop:justify-center">
+              laptop:flex-initial w-52">
                   <p className="pb-[20px] font-700">CONTACT US</p>
                   <ul className="grid gap-1">
                     <li className="flex gap-3"><div class="h-10 w-10 rounded-full border my-[25px]">
@@ -125,6 +125,7 @@ class Footer extends Component {
               </div>
           </div>
         </section>
+        </div>
       </>
     )
   }
