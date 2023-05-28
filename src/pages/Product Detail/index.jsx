@@ -17,15 +17,21 @@ import Details from "./Details";
 import RelatedProducts from "./RelatedProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "../../redux/slices/cart";
+import Footer from "../../components/Footer";
+import Loader from "../../components/Loader";
+import { wishlist } from "../../utils/https/product";
+import { toast } from "react-hot-toast";
 
 
 const ProductDetail = () => {
     const [count, setCount] = useState(1);
-    const [data, setData] = useState([])
+    const [data, setData] = useState()
+    const [isLoading, setIsLoading] = useState(false)
     const location = useLocation();
     const id = location.pathname.split('/').reverse()[0];
     const { token } = useSelector((state) => state.auth)
     const dispatch = useDispatch();
+
     useEffect(() => {
         const controller = new AbortController()
         const url = `${process.env.REACT_APP_SERVER_HOST}/products/${id}`
@@ -61,22 +67,26 @@ const ProductDetail = () => {
         }
         setCount(prev => prev - 1)
     }
-
-    const addWishlist = async() => {
-        const { productId } = data;
-        const controller = new AbortController()
-        try {
-            const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/userPanel/wishlist`;
-            const result = await axios.post(url, {product_id: productId}, {
-                signal: controller.signal,
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            console.log(result);
-        } catch (err) {
-            console.log(err.response.data.msg);
-        }
+    const addWishlist = (e) => {
+        e.preventDefault();
+		toast.dismiss();
+        toast.promise(
+            wishlist(id, token).then(res => console.log(res.data.msg)),{
+                loading: () => {
+                    e.target.disabled = true;
+                    return <>Please wait...</>;
+                },
+                success: () => {
+                    return <>Success add new wishlist</>;
+                },
+                error: () => {
+                    e.target.disabled = false;
+                    return <>Failed add new wishlist</>;
+                },
+            },
+            { success: { duration: Infinity }, error: { duration: Infinity } }
+            
+        )
     }
 
     const addCart = () => {
@@ -90,12 +100,16 @@ const ProductDetail = () => {
             price: data.price
         }
         dispatch(cartAction.submitCart(cart))
+        toast.success('Add new cart')
     }
+
+console.log(!data);
+    if(!data) return <Loader />
 
     return (
         <React.Fragment>
             <Header />
-            <main className="px-[5%] ">
+            <main className="px-[5%] pb-[5%]">
                 <div className="text-sm breadcrumbs">
                     <ul>
                         <li>Shop</li>
@@ -116,7 +130,7 @@ const ProductDetail = () => {
                     </div>
                     <p className="text-xs">2 (reviews)</p>
                 </div>
-                <p className="font-bold text-xl md:text-2xl lg:text-3xl md:pt-2 lg:pt-3 xl:pt-4">IDR {data.price}</p>
+                <p className="font-bold text-xl md:text-2xl lg:text-3xl md:pt-2 lg:pt-3 xl:pt-4">IDR {Number(data.price).toLocaleString()}</p>
                 <p className="text-justify py-4 md:py-6 lg:py-8 xl:py-10">{data.description}</p>
                 <div className="flex justify-start items-center gap-4 flex-wrap">
                     <div className="flex justify-between items-center border border-solid border-primary-black py-2 px-4 w-28">
@@ -163,6 +177,7 @@ const ProductDetail = () => {
                 <RelatedProducts />
 
             </main>
+            <Footer />
         </React.Fragment>
     )
 }

@@ -20,9 +20,15 @@ import ResetPass from "./pages/Forgot Password/resetPass";
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
 import Profile from "./pages/Profile";
+import Wishlist from './pages/Wishlist';
+
+import {
+	IsLogin,
+	PrivateRoute,
+  } from './utils/wrapper/privateRoute';
 
 const router = createBrowserRouter([
-	{ path: "/faq", element: <Faq /> },
+	{ path: "/faq", element:( <Faq />) },
 	{
 		path: "/auth",
 		element: (

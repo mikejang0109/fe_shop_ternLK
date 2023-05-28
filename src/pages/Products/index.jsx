@@ -8,6 +8,7 @@ import filter from "../../assets/icons/filter-icon.jpg"
 import Aside from "./Aside";
 import Title from "../../components/Title";
 import Header from "../../components/Header";
+import Loader from "../../components/Loader";
 
 const Products = () => {
     const [showSort, setShowSort] = useState(false);
@@ -34,10 +35,11 @@ const Products = () => {
     }
 
     const addSort = (sort) => {
-        
         navigate(`?${location.search}&sort=${sort}`)
         setShowSort(false)
     }
+
+   
 
     return (
         <React.Fragment>
@@ -50,13 +52,14 @@ const Products = () => {
                 description="Find and buy the one you like" />
             <main className="p-[5%] flex justify-center items-start relative">
                 <Aside />
+                {!productList ? <Loader /> :
                 <section className="w-full md:w-[75%] flex flex-col items-center relative min-h-screen md:h-[1300px]">
                     <nav className="flex justify-between items-center pb-3 w-full">
                         <div className="flex justify-center items-center md:hidden gap-2">
                             <button className="" onClick={() => setFilterModal(true)}>Filter</button>
                             <img className="w-5 h-auto" src={filter} alt="filter" />
                         </div>
-                        <p className="hidden md:block">Showing 1-{errMsg ? '1' : productList.meta?.totalPage} of { errMsg ? '0' : productList.meta?.totalData} Results</p>
+                        <p className="hidden md:block">Showing 1-{errMsg ? '1' : productList.meta?.totalPage} of {errMsg ? '0' : productList.meta?.totalData} Results</p>
                         <div className="relative ">
                             <label onClick={openSort} className="flex justify-center items-center gap-2 cursor-pointer">
                                 <p>Sort By</p>
@@ -81,7 +84,7 @@ const Products = () => {
                                     </div>
                                     <div className="p-[3%] h-1/5">
                                         <p className="text-xs md:text-base pb-1">{data.name}</p>
-                                        <p className="font-bold text-sm md:text-lg">IDR {data.price}</p>
+                                        <p className="font-bold text-sm md:text-lg">IDR {Number(data.price).toLocaleString()}</p>
                                     </div>
                                 </div>
                             )
@@ -94,6 +97,7 @@ const Products = () => {
                         <button className={`${productList.meta?.totalPage === 1 ? "invisible" : "visible"} btn bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black`}>»</button>
                     </div>
                 </section>
+                }
 
             </main>
             <section className={`fixed ${filterModal === true ? "block" : "hidden"} top-0 bottom-0 p-[5%] bg-white h-screen w-screen overflow-y-scroll md:hidden`}>
