@@ -203,7 +203,7 @@ function Header() {
 						/>
 					</div>
 				</div>
-				<div className="fav-icon hidden lg:block cursor-pointer">
+				<div className="fav-icon hidden lg:block cursor-pointer" onClick={() => navigate('/wishlist')}>
 					<img src={favIcon} alt="heart icon" />
 				</div>
 				<div className="cart-icon hidden lg:block cursor-pointer">
