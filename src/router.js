@@ -1,7 +1,6 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
 
-import { PrivateRoute, IsLogin } from "./utils/wrapper/privateRoute";
+import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Error from "./pages/Error";
@@ -21,6 +20,9 @@ import ResetPass from "./pages/Forgot Password/resetPass";
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
 import Profile from "./pages/Profile";
+import Wishlist from "./pages/Wishlist";
+
+import { IsLogin, PrivateRoute } from "./utils/wrapper/privateRoute";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <OrderTrack />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/wishlist",
+    element: (
+      <PrivateRoute>
+        <Wishlist />
       </PrivateRoute>
     ),
   },

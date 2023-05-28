@@ -38,10 +38,10 @@ module.exports = {
         'timeline-bg': "url('/src/assets/icons/truck-icon.svg')"
       },
       screens: {
-        'handphone': '412px',
-        'tablet': '768px',
-        'laptop': '1040px',
-        'desktop': '1240px',
+        'handphone': {'min' : '412px', 'max' : '767px'},
+        'tablet': {'min' : '768px', 'max' : '1023px'},
+        'laptop': {'min' : '1024px', 'max' : '1468px'},
+        // 'desktop' : {'min' : '1369px', 'max' : '1768px'}
       },
       width: {
         'image': '15px',

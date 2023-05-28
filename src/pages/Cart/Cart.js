@@ -1,17 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import remove from "../../assets/icons/small-remove.svg";
 import { useDispatch } from "react-redux";
 import { cartAction } from "../../redux/slices/cart";
 
 const Cart = (props) => {
+  const [ship, setShipping] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { cartList } = props.cart;
+  const { shoppingCart } = props.cart;
 
-  const deleteCart = (idx) => {
-    dispatch(cartAction.deleteCart(idx));
-    console.log(idx);
+  const deleteCart = (index) => {
+    dispatch(
+      cartAction.deleteItem({
+        id: shoppingCart[index].product_id,
+        size: shoppingCart[index].size_id,
+      })
+    );
+  };
+
+  let subtotal = 0;
+  shoppingCart.forEach((item) => {
+    subtotal += item.price * item.qty;
+  });
+  const total = ship + subtotal;
+
+  const handleQty = (info, index) => {
+    if (info === "inc") {
+      dispatch(
+        cartAction.increment({
+          id: shoppingCart[index].product_id,
+          size: shoppingCart[index].size_id,
+        })
+      );
+    } else {
+      dispatch(
+        cartAction.decrement({
+          id: shoppingCart[index].product_id,
+          size: shoppingCart[index].size_id,
+        })
+      );
+    }
   };
 
   return (
@@ -25,14 +54,14 @@ const Cart = (props) => {
             <p className="text-[0.68rem] text-secondary-gray font-arimo ml-[261px]">
               PRICE
             </p>
-            <p className="text-[0.68rem] text-secondary-gray font-arimo ml-[62px]">
+            <p className="text-[0.68rem] text-secondary-gray font-arimo ml-[115px]">
               QUANTITY
             </p>
             <p className="text-[0.68rem] text-secondary-gray font-arimo ml-[137px]">
               TOTAL
             </p>
           </div>
-          {cartList.map((data, i) => {
+          {shoppingCart.map((data, i) => {
             return (
               <div className="flex items-center" key={i}>
                 <img
@@ -46,21 +75,33 @@ const Cart = (props) => {
                   src={data.image}
                   alt="product"
                 />
-                <p className="mt-[94px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
+                <p className="mt-[60px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
                   {data.name}
                 </p>
-                <p className="mt-[88px] ml-14 font-arimo">IDR {data.price}</p>
-                <button className="mt-14 ml-10 font-arimo">-</button>
-                <p className="mt-[88px] ml-7 font-arimo">{data.qty}</p>
-                <button className="mt-14 ml-7 font-arimo">+</button>
-                <p className="mt-[88px] ml-28 font-arimo font-bold text-sm text-primary-black">
-                  {Math.floor(data.price * data.qty)}
+                <p className="mt-[60px] ml-[30px] font-arimo w-[130px]">
+                  IDR {data.price.toLocaleString("id-ID")}
+                </p>
+                <button
+                  onClick={() => handleQty("dec", i)}
+                  className="mt-[60px] ml-10 font-arimo"
+                >
+                  -
+                </button>
+                <p className="mt-[60px] ml-7 font-arimo">{data.qty}</p>
+                <button
+                  onClick={() => handleQty("inc", i)}
+                  className="mt-[60px] ml-7 font-arimo"
+                >
+                  +
+                </button>
+                <p className="mt-[60px] ml-28 font-arimo font-bold text-sm text-primary-black">
+                  {Math.floor(data.price * data.qty).toLocaleString("id-ID")}
                 </p>
               </div>
             );
           })}
 
-          <hr className="border-b border-solid border-secondary-gray" />
+          <hr className="border-b border-solid border-secondary-gray mt-[60px]" />
           <div className="flex mt-10">
             <div className="border-b border-solid border-secondary-gray">
               <input
@@ -91,8 +132,8 @@ const Cart = (props) => {
               <p className="font-bold text-sm text-primary-black font-arimo pl-[30px]">
                 Subtotal
               </p>
-              <p className="ml-[211px] font-bold text-sm text-primary-black font-arimo">
-                $125
+              <p className="ml-[190px] font-bold text-sm text-primary-black font-arimo">
+                {total.toLocaleString("id-ID")}
               </p>
             </div>
             <div className="flex mt-9">
@@ -106,11 +147,17 @@ const Cart = (props) => {
                       className="mr-6 mt-2 font-arimo text-secondary-gray text-xs font-normal"
                       type="radio"
                       name="shipping"
+                      onChange={() => setShipping(10000)}
                     />
-                    Flat rate: $10
+                    Flat rate: 10.000
                   </li>
                   <li className="font-arimo text-secondary-gray text-xs font-normal">
-                    <input className="mr-5 mt-4" type="radio" name="shipping" />
+                    <input
+                      className="mr-5 mt-4"
+                      type="radio"
+                      name="shipping"
+                      onChange={() => setShipping(0)}
+                    />
                     Free shipping
                   </li>
                   <li className="font-arimo text-secondary-gray text-xs font-normal">
@@ -118,6 +165,7 @@ const Cart = (props) => {
                       className="mr-6 mt-4 font-arimo text-secondary-gray text-xs font-normal"
                       type="radio"
                       name="shipping"
+                      onChange={() => setShipping(0)}
                     />
                     Local pickup
                   </li>
@@ -129,8 +177,8 @@ const Cart = (props) => {
               <p className="font-bold text-sm text-primary-black font-arimo pl-[30px]">
                 Total Price
               </p>
-              <p className="ml-[197px] font-bold text-sm text-primary-black font-arimo">
-                $125
+              <p className="ml-[170px] font-bold text-sm text-primary-black font-arimo">
+                {total.toLocaleString("id-ID")}
               </p>
             </div>
           </div>
