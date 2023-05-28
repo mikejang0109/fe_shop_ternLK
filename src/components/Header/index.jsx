@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
+import { Dialog } from "@headlessui/react";
 
 import { authAction } from "../../redux/slices/auth";
 import { get, remove } from "../../utils/sessionStorage";
@@ -20,6 +21,7 @@ function Header() {
 
 	const [toggleState, setToggleState] = useState(false);
 	const [isSearch, setIsSearch] = useState(false);
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 	const handleToggle = () => setToggleState((toggleState) => !toggleState);
 
@@ -31,6 +33,10 @@ function Header() {
 
 	const authNavigate = () => {
 		navigate("/auth");
+	};
+
+	const handleCloseDialog = () => {
+		setIsDialogOpen(false);
 	};
 
 	const handleLogout = (e) => {
@@ -51,9 +57,13 @@ function Header() {
 				loading: "Please wait...",
 				success: () => {
 					navigate("/");
+					setIsDialogOpen(false);
 					return <>Succesfully logged out</>;
 				},
-				error: "Something went wrong",
+				error: () => {
+					setIsDialogOpen(false);
+					return <>Something went wrong</>
+				},
 			},
 			{ success: { duration: Infinity } }
 		);
@@ -209,10 +219,10 @@ function Header() {
 								burgerActive || "hidden"
 							} flex-col gap-y-5`}
 						>
-							<p className="hover:text-white active:text-white">Profile</p>
+							<p onClick={() => navigate("/profile")} className="hover:text-white active:text-white">Profile</p>
 							<p className="hover:text-white active:text-white">Chat</p>
 							<p className="hover:text-white active:text-white">Notification</p>
-							<p className="hover:text-white active:text-white" onClick={handleLogout}>
+							<p className="hover:text-white active:text-white" onClick={() => setIsDialogOpen(true)}>
 								Logout
 							</p>
 						</div>
@@ -381,7 +391,7 @@ function Header() {
 						</div>
 						{localToken || sessionToken ? (
 							<div className="text-primary-gray flex flex-col gap-x-6 gap-y-6 md:gap-y-6 px-0 ">
-								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								<p onClick={() => navigate("/profile")} className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
 									Profile
 								</p>
 								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
@@ -392,7 +402,7 @@ function Header() {
 								</p>
 								<p
 									className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
-									onClick={handleLogout}
+									onClick={() => setIsDialogOpen(true)}
 								>
 									Logout
 								</p>
@@ -416,6 +426,33 @@ function Header() {
 					</div>
 				</div>
 			</div>
+			<Dialog
+				open={isDialogOpen}
+				onClose={handleCloseDialog}
+				className="fixed z-50 bg-white-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 inset-0 overflow-y-auto font-arimo"
+			>
+				<div className="flex items-center justify-center min-h-screen">
+					<div className="bg-white w-1/2 lg:p-16 p-6 rounded-lg shadow-lg text-center z-20">
+						<p className="text-2xl font-bold mb-2">Are you sure?</p>
+						<div className="logout-button pt-10">
+							<button
+								onClick={handleLogout}
+								className="btn normal-case w-full border-transparent text-white bg-primary-black hover:text-primary-black hover:bg-white disabled:bg-[#DADADA] disabled:text-[#88888F]"
+							>
+								Yes
+							</button>
+						</div>
+						<div className="cancel-button pt-10">
+							<button
+								onClick={handleCloseDialog}
+								className="btn normal-case w-full border-transparent text-white bg-accent-red hover:text-accent-red hover:bg-white"
+							>
+								No
+							</button>
+						</div>
+					</div>
+				</div>
+			</Dialog>
 		</div>
 	);
 }

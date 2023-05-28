@@ -16,12 +16,11 @@ import BlogDetail from "./pages/BlogDetail";
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
+import ResetPass from "./pages/Forgot Password/resetPass";
 //angga
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
-import ProfileCust from "./pages/Profile";
-import ProfileSeller from "./pages/Seller";
-import MyProductSeller from "./pages/Seller/MyProduct";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
@@ -30,6 +29,14 @@ const router = createBrowserRouter([
     element: (
       <IsLogin>
         <Auth />
+      </IsLogin>
+    ),
+  },
+  {
+    path: "/resetpass",
+    element: (
+      <IsLogin>
+        <ResetPass />
       </IsLogin>
     ),
   },
@@ -54,7 +61,11 @@ const router = createBrowserRouter([
   { path: "/blogdetail", element: <BlogDetail /> },
   {
     path: "/mycart",
-    element: <Cart />,
+    element: (
+      <PrivateRoute>
+        <Cart />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/checkout",
@@ -73,6 +84,10 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/contact",
+    element: <ContactUs />,
+  },
+  {
     path: "/",
     element: <Home />,
     errorElement: <Error />,
@@ -87,12 +102,8 @@ const router = createBrowserRouter([
     element: <PreLaunching />,
   },
   {
-    path: "/profilecust",
-    element: <ProfileCust />,
-  },
-  {
-    path: "/profileseller",
-    element: <ProfileSeller />,
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
