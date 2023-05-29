@@ -30,7 +30,7 @@ const CartPage = (props) => {
   };
 
   let subtotal = 0;
-  shoppingCart.forEach((item) => {
+  shoppingCart?.forEach((item) => {
     subtotal += item.price * item.qty;
   });
   const total = ship + subtotal;
@@ -109,7 +109,7 @@ const CartPage = (props) => {
                   src={data.image}
                   alt="product"
                 />
-                <p className="mt-[60px] w-[134px] ml-[61px] text-xs font-arimo text-primary-black">
+                <p className="mt-[60px] w-[174px] ml-[20px] text-xs font-arimo text-primary-black">
                   {data.name}
                 </p>
                 <p className="mt-[60px] ml-[30px] font-arimo w-[130px]">
