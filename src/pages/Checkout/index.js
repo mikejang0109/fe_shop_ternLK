@@ -7,8 +7,9 @@ import { transactions as makeTransactions } from "../../utils/https/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { cartAction } from "../../redux/slices/cart";
-
+import { get, remove } from "../../utils/sessionStorage";
 const Checkout = () => {
+  const token = get("raz");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -24,8 +25,6 @@ const Checkout = () => {
   console.log(dataShopping);
   const disabled = name === "" || address === "" || phone === "";
   const performTransactions = () => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNzM0ZTBmLTVmM2ItNDg0Mi1iNDRjLTU1NWMyODIyODVmYyIsInJvbGUiOjEsImltZyI6bnVsbCwiaWF0IjoxNjg1MzAyMTA1LCJleHAiOjE2ODUzMzIxMDV9.ZLleycSJUSwY5e-lIgVr5xuRHDxyN9DhLTE-4jOOyxI";
     const dataShopping = cart.shoppingCart.map((item) => {
       const { image, name, price, ...newItem } = item;
       return {
@@ -53,6 +52,7 @@ const Checkout = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.success("Your Payment Is Failed,Try again");
       });
   };
 
