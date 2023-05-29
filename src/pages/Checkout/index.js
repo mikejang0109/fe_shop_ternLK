@@ -4,10 +4,13 @@ import Title from "../../components/Title";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { transactions as makeTransactions } from "../../utils/https/auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import { cartAction } from "../../redux/slices/cart";
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -44,6 +47,9 @@ const Checkout = () => {
     makeTransactions(token, body)
       .then((response) => {
         console.log(response);
+        toast.success("Your Payment Is Success");
+        navigate("/mycart");
+        dispatch(cartAction.resetCart());
       })
       .catch((err) => {
         console.log(err);
