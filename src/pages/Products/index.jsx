@@ -17,7 +17,6 @@ const Products = () => {
 	const [errMsg, setErrMsg] = useState(null);
 	const navigate = useNavigate();
 	const location = useLocation();
-	document.title = "Products";
 
 	useEffect(() => {
 		const controller = new AbortController();

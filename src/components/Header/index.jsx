@@ -162,7 +162,7 @@ function Header(props) {
 								</li>
 								<li>
 									<Link to={"/tracking"}>
-										<p className="hover:text-white active:text-white">Order Tracking</p>
+										<p className="hover:text-white active:text-white">Other Tracking</p>
 									</Link>
 								</li>
 							</ul>
