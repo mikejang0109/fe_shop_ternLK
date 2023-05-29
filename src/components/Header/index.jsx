@@ -15,13 +15,14 @@ import favIcon from "../../assets/icons/heart-icon.svg";
 import cartIcon from "../../assets/icons/cart-icon.svg";
 import burgerMenu from "../../assets/icons/hamburger-menu.svg";
 
-function Header() {
+function Header(props) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const [toggleState, setToggleState] = useState(false);
 	const [isSearch, setIsSearch] = useState(false);
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [searchInput, setSearchInput] = useState("");
 
 	const handleToggle = () => setToggleState((toggleState) => !toggleState);
 
@@ -62,7 +63,7 @@ function Header() {
 				},
 				error: () => {
 					setIsDialogOpen(false);
-					return <>Something went wrong</>
+					return <>Something went wrong</>;
 				},
 			},
 			{ success: { duration: Infinity } }
@@ -192,15 +193,33 @@ function Header() {
 				<div className="search-icon hidden lg:block cursor-pointer">
 					<img src={searchIcon} alt="search icon" onClick={() => setIsSearch(!isSearch)} />
 					<div className={`nav-search ${isSearch ? "top-24" : "top-[-7rem]"}`}>
-						<button className="btn bg-primary-black">
-							<i className="bi bi-search text-white"></i>
-						</button>
-						<input
-							type="text"
-							name="search"
-							placeholder="Search..."
-							className="input input-bordered input-secondary w-full bg-white rounded-none"
-						/>
+						{props.searchFunc ? (
+							<>
+								<button onClick={() => props.searchFunc(searchInput)} className="btn bg-primary-black">
+									<i className="bi bi-search text-white"></i>
+								</button>
+								<input
+									type="text"
+									name="search"
+									value={searchInput}
+									onChange={(e) => setSearchInput(e.target.value)}
+									placeholder="Search..."
+									className="input input-bordered input-secondary w-full bg-white rounded-none"
+								/>
+							</>
+						) : (
+							<>
+								<button className="btn bg-primary-black">
+									<i className="bi bi-search text-white"></i>
+								</button>
+								<input
+									type="text"
+									name="search"
+									placeholder="Search..."
+									className="input input-bordered input-secondary w-full bg-white rounded-none"
+								/>
+							</>
+						)}
 					</div>
 				</div>
 				<div className="fav-icon hidden lg:block cursor-pointer">
@@ -219,10 +238,18 @@ function Header() {
 								burgerActive || "hidden"
 							} flex-col gap-y-5`}
 						>
-							<p onClick={() => navigate("/profile")} className="hover:text-white active:text-white">Profile</p>
+							<p
+								onClick={() => navigate("/profile")}
+								className="hover:text-white active:text-white"
+							>
+								Profile
+							</p>
 							<p className="hover:text-white active:text-white">Chat</p>
 							<p className="hover:text-white active:text-white">Notification</p>
-							<p className="hover:text-white active:text-white" onClick={() => setIsDialogOpen(true)}>
+							<p
+								className="hover:text-white active:text-white"
+								onClick={() => setIsDialogOpen(true)}
+							>
 								Logout
 							</p>
 						</div>
@@ -391,7 +418,10 @@ function Header() {
 						</div>
 						{localToken || sessionToken ? (
 							<div className="text-primary-gray flex flex-col gap-x-6 gap-y-6 md:gap-y-6 px-0 ">
-								<p onClick={() => navigate("/profile")} className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
+								<p
+									onClick={() => navigate("/profile")}
+									className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0"
+								>
 									Profile
 								</p>
 								<p className="hover:text-primary-black hover:font-bold active:text-primary-black active:font-bold mx-auto md:mx-0">
