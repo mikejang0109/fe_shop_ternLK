@@ -44,6 +44,8 @@ function Home() {
 		},
 	];
 
+	document.title = "RAZ: find your dream furniture with us today"
+
 	return (
 		<div className="content-wrapper">
 			<Header />

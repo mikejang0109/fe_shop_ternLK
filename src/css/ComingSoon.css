@@ -1,3 +1,30 @@
+@media screen and (min-width: 768px) and (max-width: 1023px)  {
+  #countdwn p {
+    font-size:4rem;
+    /* padding-bottom:40px;
+    padding-top:40px */
+  }
+}
+
+@media screen and (min-width: 412px) and (max-width: 767px)  {
+  #countdwn p {
+    font-size:3rem;
+    padding-right: 1vw!important;
+    /* padding-bottom:40px;
+    padding-top:40px */
+  }
+}
+
+@media screen and (min-width: 1024px)  {
+  #countdwn p {
+    font-size:5rem;
+    /* padding-bottom:40px;
+    padding-top:40px */
+  }
+}
+
+
+
 .expired-notice {
     text-align: center;
     padding: 2rem;
@@ -17,10 +44,6 @@
   }
   
   .show-counter {
-    padding: 0.5rem;
-  }
-  
-  .show-counter .countdown-link {
     display: flex;
     flex-direction: row;
     font-weight: 700;
@@ -33,9 +56,8 @@
     padding-left : 120px;
   }
   
-  .show-counter .countdown {
+  .counter .countdown {
     line-height: 1.25rem;
-    padding: 0 0.75rem 0 0.75rem;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -43,15 +65,23 @@
     font-size: 50px;
   }
   
-  .show-counter .countdown.danger {
+  .counter .countdown.danger {
     color: #fff;
+    display:flex;
+    flex-wrap:wrap;
+  }
+
+  .counter .countdown > p {
+    color: white;
+    padding-top:15px;
   }
   
-  .show-counter .countdown > p {
-    margin: 0;
+  .counter .countdown > p::before {
+    color: white;
+    content:none;
   }
   
-  .show-counter .countdown > span {
+  .counter .countdown > span {
     text-transform: uppercase;
     line-height: 1rem;
     font-size:20px;

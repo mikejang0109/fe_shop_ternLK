@@ -1,13 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import Title from "../../components/Title";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 import cartIcon from "../../assets/icons/cart-icon.svg";
 import walletIcon from "../../assets/icons/wallet-icon.svg";
 import miscellaneousIcon from "../../assets/icons/miscellaneous-icon.svg"
-import Footer from "../../components/Footer";
 
 const Faq = () => {
+    const navigate = useNavigate();
+
     return (
         <React.Fragment>
             <Header />
@@ -99,7 +103,7 @@ const Faq = () => {
                 </section>
                 <section className="flex justify-center items-center flex-col">
                     <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl pb-5 md:pb-6 lg:pb-7 xl:pb-8">You Still Need Help?</h3>
-                    <button className="btn bg-secondary-black text-white hover:bg-white hover:text-secondary-black active:bg-white active:text-secondary-black" type="button">Contact Us</button>
+                    <button className="btn bg-secondary-black text-white hover:bg-white hover:text-secondary-black active:bg-white active:text-secondary-black" type="button" onClick={() => navigate("/contact")}>Contact Us</button>
                 </section>
             </main>
             <Footer />

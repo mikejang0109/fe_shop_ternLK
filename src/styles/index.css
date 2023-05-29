@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .nav-search {
+    @apply right-[25%] md:right-[25%] lg:right-[5%] flex w-1/2 md:w-80 bg-primary-black fixed z-50 md:z-30;
+    transition: 0.2s linear;
+  }
+}

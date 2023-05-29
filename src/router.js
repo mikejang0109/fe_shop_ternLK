@@ -1,7 +1,6 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
 
-import { PrivateRoute, IsLogin } from "./utils/wrapper/privateRoute";
+import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Error from "./pages/Error";
@@ -15,56 +14,88 @@ import Checkout from "./pages/Checkout/";
 import BlogDetail from "./pages/BlogDetail";
 import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog";
+import ContactUs from "./pages/ContactUs";
+import ResetPass from "./pages/Forgot Password/resetPass";
 //angga
-import AboutUs from './pages/AboutUs';
+import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
-import ProfileCust from './pages/Profile';
-import ProfileSeller from './pages/Profile/Seller';
+import Profile from "./pages/Profile";
+import Wishlist from "./pages/Wishlist";
+
+import { IsLogin, PrivateRoute } from "./utils/wrapper/privateRoute";
 
 const router = createBrowserRouter([
   { path: "/faq", element: <Faq /> },
   {
-    path: "/auth", element: (
+    path: "/auth",
+    element: (
       <IsLogin>
         <Auth />
       </IsLogin>
-    )
+    ),
   },
   {
-    path: "/forgot", element: (
+    path: "/resetpass",
+    element: (
+      <IsLogin>
+        <ResetPass />
+      </IsLogin>
+    ),
+  },
+  {
+    path: "/forgot",
+    element: (
       <IsLogin>
         <ForgotPassword />
       </IsLogin>
-    )
+    ),
   },
   { path: "/products", element: <Products /> },
   {
-    path: "/product/:id", element:
+    path: "/product/:id",
+    element: (
       <PrivateRoute>
-        <ProductDetail /> 
-      </PrivateRoute>},
-	{ path: "/blog", element: <Blog /> },
+        <ProductDetail />
+      </PrivateRoute>
+    ),
+  },
+  { path: "/blog", element: <Blog /> },
   { path: "/blogdetail", element: <BlogDetail /> },
   {
-    path: "/mycart", element: (
+    path: "/mycart",
+    element: (
       <PrivateRoute>
         <Cart />
       </PrivateRoute>
-    )
+    ),
   },
   {
-    path: "/checkout", element: (
+    path: "/checkout",
+    element: (
       <PrivateRoute>
         <Checkout />
       </PrivateRoute>
-    )
+    ),
   },
   {
-    path: "/tracking", element: (
+    path: "/tracking",
+    element: (
       <PrivateRoute>
         <OrderTrack />
       </PrivateRoute>
-    )
+    ),
+  },
+  {
+    path: "/wishlist",
+    element: (
+      <PrivateRoute>
+        <Wishlist />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/contact",
+    element: <ContactUs />,
   },
   {
     path: "/",
@@ -81,12 +112,8 @@ const router = createBrowserRouter([
     element: <PreLaunching />,
   },
   {
-    path: "/profilecust",
-    element: <ProfileCust />,
-  },
-  {
-    path: "/profileseller",
-    element: <ProfileSeller />,
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 
