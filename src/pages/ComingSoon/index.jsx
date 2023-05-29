@@ -2,6 +2,8 @@ import React from "react";
 import CountdownTimer from "../../components/Footer/CountdownTimer";
 import '../../css/ComingSoon.css';
 import Footer from "../../components/Footer";
+// import blackHeader from "../../components/Header/blackHeader";
+import Header from "../../components/Header";
 
 function ComingSoon() {
   const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
@@ -11,7 +13,10 @@ function ComingSoon() {
 
   return (
     <>
-    <div className="bg-black overflow-hidden">
+    <div className="bg-white">
+    <Header/>
+    </div>
+    <div className="bg-black overflow-hidden" >
       <section className=" pt-[50px] pl-[50px]">
         <p className="text-white handphone:text-titleSoon2 tablet:text-titleSoon laptop:text-[5rem] laptop:pr-[30vw] w-full pr-[50px] pb-[5vw]">We’re Building Something New</p>
         <CountdownTimer targetDate={dateTimeAfterThreeDays} />
