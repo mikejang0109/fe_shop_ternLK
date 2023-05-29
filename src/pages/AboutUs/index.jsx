@@ -9,8 +9,9 @@ import Footer from '../../components/Footer/index';
 import Header from "../../components/Header";
 import Title from "../../components/Title";
 
-class AboutUs extends Component {
-  render() {
+const AboutUs = () => {
+  document.title = "About Us";
+
     return (
       <>
         <div className="overflow-hidden">
@@ -116,6 +117,6 @@ class AboutUs extends Component {
       </>
     )
   }
-}
+
 
 export default AboutUs;

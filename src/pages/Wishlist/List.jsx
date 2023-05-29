@@ -139,7 +139,7 @@ function List({ wishlistData, token }) {
                   <button className="btn bg-primary-black hover:bg-secondary-black text-white rounded-none px-8" onClick={() => addCart(data)}>
                     Add to Cart
                   </button>
-                  <p className="text-sm text-center hover:underline" onClick={(e) => delWishlist(e, data.id)}>Remove</p>
+                  <p className="text-sm text-center hover:underline cursor-pointer" onClick={(e) => delWishlist(e, data.id)}>Remove</p>
                 </div>
               </div>
             )

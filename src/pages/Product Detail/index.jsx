@@ -30,6 +30,7 @@ const ProductDetail = () => {
   const id = location.pathname.split("/").reverse()[0];
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  document.title = "Product Detail";
 
   useEffect(() => {
     const controller = new AbortController();

@@ -7,6 +7,7 @@ import Title from "../../components/Title";
 import map from "../../assets/img/map-contact.webp";
 
 function ContactUs() {
+	document.title = "Contact Us";
 	return (
 		<div className="content-wrapper">
 			<Header />

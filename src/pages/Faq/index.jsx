@@ -10,6 +10,7 @@ import walletIcon from "../../assets/icons/wallet-icon.svg";
 import miscellaneousIcon from "../../assets/icons/miscellaneous-icon.svg"
 
 const Faq = () => {
+    document.title = "FAQ";
     const navigate = useNavigate();
 
     return (

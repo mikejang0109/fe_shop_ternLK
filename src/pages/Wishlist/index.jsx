@@ -14,6 +14,7 @@ import { cartAction } from "../../redux/slices/cart";
 import { wishlist } from "../../utils/https/product";
 
 const Wishlist = () => {
+  document.title = "Wishlist";
   const [wishlistData,setWishlistData] = useState()
   const [isLoading, setIsLoading] = useState(false)
 

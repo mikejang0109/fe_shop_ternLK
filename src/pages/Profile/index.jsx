@@ -42,6 +42,7 @@ const Profile = () => {
   const sessionToken = get("raz");
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  document.title = "Profile"
 
   const token = sessionToken || localToken
   const { role } = jwtDecode(token)
