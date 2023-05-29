@@ -16,7 +16,6 @@ const MyProduct = ({ show, token }) => {
     const { id } = jwtDecode(token)
 
     useEffect(() => {
-        let stock
         let url = `${process.env.REACT_APP_SERVER_HOST}/products?seller_id=${id}`
         if (show === 21) {
             url += `&stock=all`
