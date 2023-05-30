@@ -47,7 +47,7 @@ if(isLoading) return <Loader />
         title="Wishlist"
         description="Pay and get your ordered items"
       />
-      {!wishlistData ? <ListEmpty /> : <List wishlistData={wishlistData} token={token}/>}
+      {wishlistData?.length === 0 ? <ListEmpty /> : <List wishlistData={wishlistData} token={token}/>}
       <Footer />
     </>
   );

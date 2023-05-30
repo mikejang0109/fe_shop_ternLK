@@ -51,19 +51,19 @@ class Footer extends Component {
           handphone:mt-[0]
           handphone:justify-center 
           tablet:justify-center">
-              <div class="h-10 w-10 rounded-full border my-[10px] 
+              <div className="h-10 w-10 rounded-full border my-[10px] 
           handphone:w-[30px] handphone:h-[30px]"><img className="pl-[12px] pt-[5px] cursor-pointer 
           handphone:w-[30px] handphone:pt-[3px] handphone:pl-[8px] handphone:cursor-pointer
           handphone:pr-[8px]" src={fb} alt="" /></div>
-              <div class="h-10 w-10 rounded-full border my-[10px] 
+              <div className="h-10 w-10 rounded-full border my-[10px] 
           handphone:w-[30px] handphone:h-[30px]"><img className="pl-[7px] pt-[8px] cursor-pointer
           handphone:w-[30px] handphone:pt-[6px] handphone:pl-[3px] handphone:cursor-pointer
           handphone:pr-[3px]" src={twit} alt="" /></div>
-              <div class="h-10 w-10 rounded-full border my-[10px] 
+              <div className="h-10 w-10 rounded-full border my-[10px] 
           handphone:w-[30px] handphone:h-[30px]"><img className="pl-[7px] pt-[10px] cursor-pointer
           handphone:w-[30px] handphone:pt-[8px] handphone:pl-[7px] handphone:cursor-pointer
           handphone:pr-[7px] " src={yt} alt="" /></div>
-              <div class="h-10 w-10 rounded-full border my-[10px] 
+              <div className="h-10 w-10 rounded-full border my-[10px] 
           handphone:w-[30px] handphone:h-[30px]"><img className="pl-[7px] pt-[7px] cursor-pointer
           handphone:w-[30px] handphone:pt-[5px] handphone:pl-[5px] handphone:cursor-pointer
           handphone:pr-[5px]" src={dribble} alt="" /></div>

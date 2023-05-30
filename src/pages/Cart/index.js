@@ -17,6 +17,8 @@ const CartPage = (props) => {
   const shoppingCart = cart?.shoppingCart;
   const disabled = disable === false;
 
+  console.log(shoppingCart);
+  
   const deleteALL = () => {
     dispatch(cartAction.resetCart());
   };
