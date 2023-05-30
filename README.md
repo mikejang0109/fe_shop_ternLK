@@ -14,6 +14,10 @@
 
 <img src="https://i.imgur.com/ZepdkCM.png" alt="project-screenshot">
 
+<img src="https://i.imgur.com/spnMVrx.png" alt="project-screenshot">
+
+<img src="https://i.imgur.com/u5OK1bZ.png" alt="project-screenshot">
+
 <h2>🛠️ Installation Steps:</h2>
 
 <p>1. Clone this repo</p>
@@ -43,7 +47,7 @@ REACT_APP_SERVER_HOST = [YOUR SERVER HOST]
 <p>5. Start a local server</p>
 
 ```bash
-npm start
+npm run start
 ```
 
 
@@ -52,10 +56,18 @@ npm start
 
 Technologies used in the project:
 
-*   React
-*   Redux
-*   TailwindCSS
-*   DaisyUI
+*   [React](https://react.dev/)
+*   [Redux](https://github.com/reduxjs/redux)
+*   [TailwindCSS](https://tailwindcss.com/)
+*   [DaisyUI](https://daisyui.com/)
+
+<h2>👨‍💻Contributors</h2>
+
+*   [M. Pria Admaja](https://github.com/priaadmaja) - Project Manager & Fullstack Developer
+*   [Raihan Irvana](https://github.com/raihanirvana) - Back-end Developer
+*   [Farhan Brillan W](https://github.com/nyannss) - Back-end Developer
+*   [Akmal Susetio](https://github.com/wyakaga) - Front-end Developer
+*   [Damar Anggoro](https://github.com/marrdamar)  - Front-end Developer
 
 <h2>🛡️ License:</h2>
 
