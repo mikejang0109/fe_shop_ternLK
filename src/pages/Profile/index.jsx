@@ -14,20 +14,17 @@ import Edit2 from '../../assets/profilecust/edit-3.svg';
 import Logout from '../../assets/profilecust/log-out.svg';
 import Title from "../../components/Title";
 import Header from "../../components/Header";
-import PathDown from '../../assets/profileseller/small-down.svg';
+
 import Footer from '../../components/Footer';
-import MyProduct from "./MyProduct";
-import SellingProduct from './SellingProduct';
-import MyOrder from './MyOrder';
+
 import Loader from "../../components/Loader";
+import Nav from "./Nav";
 
 
 const Profile = () => {
-  const [navValue, setNavValue] = useState(1)
-  const [content, setContent] = useState(1)
+  
   const [image, setImage] = useState()
-  const [myOrderModal, setMyOrderModal] = useState()
-  const [myProductModal, setMyProductModal] = useState()
+  
   const [editName, setEditName] = useState(false)
   const [editGender, setEditGender] = useState(false)
   const [editEmail, setEditEmail] = useState(false)
@@ -38,11 +35,11 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-  const localToken = useSelector((state) => state.auth.token);
-  const sessionToken = get("raz");
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const localToken = useSelector((state) => state.auth.token);
+  const sessionToken = get("raz");
   const token = sessionToken || localToken
   const { role } = jwtDecode(token)
 
@@ -139,56 +136,8 @@ const Profile = () => {
         description="See your notifications for the latest updates"
       />
       <main className={`${role === 2 ? 'block' : 'hidden'} py-[5%] px-[8%] w-full`}>
-        <section className="overflow-visible">
-          <nav className="flex justify-start gap-5 sm:gap-10 md:gap-16 lg:gap-20 w-max ">
-            <div className={`flex pb-4 cursor-pointer  hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 1 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'}`} onClick={() => {
-              setNavValue(1)
-              setContent(1)
-              setMyOrderModal(false)
-              setMyProductModal(false)
-            }}>
-              <p>Profile</p>
-            </div>
-            <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 2 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
-              setNavValue(2)
-              setMyOrderModal(false)
-              myProductModal ? setMyProductModal(false) : setMyProductModal(true)
-            }}>
-              <p className={`hover:text-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 2 ? 'text-primary-black ' : 'text-[#b4b4b4]'}`}>My Product</p>
-              <img src={PathDown} alt="path" className="w-4 h-2" />
-              <div className={`${myProductModal ? 'flex' : 'hidden'} w-[150px] lg:w-[300px] p-5 md:p-10 bg-primary-black flex-col gap-5 absolute top-16 z-50`}>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(21) }}>All</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(22) }}>Available</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(23) }}>Sold</p>
-              </div>
-            </div>
-            <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 3 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
-              setNavValue(3)
-              setContent(3)
-              setMyOrderModal(false)
-              setMyProductModal(false)
-            }}>
-              <p>Selling Product</p>
-            </div>
-            <div className={`flex pb-4 cursor-pointer items-center gap-1 sm:gap-2 hover:text-primary-black hover:border-b-2 hover:border-b-primary-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${navValue === 4 ? 'text-primary-black border-b-2 border-b-primary-black' : 'text-[#b4b4b4]'} relative`} onClick={() => {
-              setNavValue(4)
-              setMyProductModal(false)
-              myOrderModal ? setMyOrderModal(false) : setMyOrderModal(true)
-            }}>
-              <p>My Order</p>
-              <img src={PathDown} alt="path" className="w-4 h-2" />
-              <div className={`${myOrderModal ? 'flex' : 'hidden'} w-[200px] lg:w-[300px] p-5 md:p-10 bg-primary-black flex-col gap-5 absolute top-16 right-0`}>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>All</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Get Paid</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Processed</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Sent</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Completed</p>
-                <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => { setContent(41) }}>Order Cancel</p>
-              </div>
-            </div>
-          </nav>
-        </section>
-        <section className={`${content === 1 ? 'flex' : 'hidden'} mt-10 md:mt-24 items-start gap-10 flex-col justify-start w-full`}>
+        <Nav />
+        <section className={`flex mt-10 md:mt-24 items-start gap-10 flex-col justify-start w-full`}>
           <div className="flex gap-10 items-center">
             <label className="w-24 h-24 rounded-full overflow-hidden relative cursor-pointer">
               <img src={image ? URL.createObjectURL(image) : profile?.img ? profile?.img : defaultAvatar} alt="avatar" className="object-cover" />
@@ -277,12 +226,9 @@ const Profile = () => {
             <p className="font-arimo font-bold text-base text-white">LOGOUT</p>
           </button>
         </section>
-        <MyProduct show={content} token={token}/>
-        <SellingProduct show={content} token={token} />
-        <MyOrder show={content} token={token}/>
       </main>
       <main className={`${role === 1 ? 'block' : 'hidden'} py-[5%] px-[8%] w-full`}>
-        <section className={`${navValue === 1 ? 'flex' : 'hidden'} mt-10 md:mt-24 items-start gap-10 flex-col justify-start w-full`}>
+        <section className={`flex mt-10 md:mt-24 items-start gap-10 flex-col justify-start w-full`}>
           <div className="flex gap-10 items-center">
             <label className="w-24 h-24 rounded-full overflow-hidden relative">
               <img src={image ? URL.createObjectURL(image) : profile?.img ? profile?.img : defaultAvatar} alt="avatar" className="object-cover" />

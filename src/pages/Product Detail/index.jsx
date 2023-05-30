@@ -73,6 +73,7 @@ const ProductDetail = () => {
     if (count === 1) {
       return;
     }
+    setCount((prev) => prev - 1);
   };
 
   const addWishlist = (e) => {
