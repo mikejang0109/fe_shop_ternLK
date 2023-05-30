@@ -97,7 +97,7 @@ const Products = () => {
 	const [filterModal, setFilterModal] = useState(false);
 	const [productList, setProductList] = useState([]);
 	const [categories, setCategories] = useState(null);
-	const [minPrice] = useState(10000);
+	const [minPrice, setMinPrice] = useState(10000);
 	const [maxPrice, setMaxPrice] = useState(null);
 	const [brands, setBrands] = useState(null);
 	const [colors, setColors] = useState(null);
@@ -194,6 +194,42 @@ const Products = () => {
 		navigate(`?${searchParams.toString()}`);
 	};
 
+	const mobileFilter = (categoryId, brandId, sizeId, minPrice, maxPrice, colorId) => {
+		const searchParams = new URLSearchParams(location.search);
+
+		if (categoryId) {
+			searchParams.delete("category");
+			searchParams.append("category", categoryId);
+		}
+
+		if (brandId) {
+			searchParams.delete("brand");
+			searchParams.append("brand", brandId);
+		}
+
+		if (sizeId) {
+			searchParams.delete("sizes");
+			searchParams.append("sizes", sizeId);
+		}
+
+		if (minPrice) {
+			searchParams.delete("min_price");
+			searchParams.append("min_price", minPrice);
+		}
+
+		if (maxPrice) {
+			searchParams.delete("max_price");
+			searchParams.append("max_price", maxPrice);
+		}
+
+		if (colorId) {
+			searchParams.delete("colors");
+			searchParams.append("colors", colorId);
+		}
+
+		navigate(`?${searchParams.toString()}`);
+	};
+
 	document.title = "Products";
 
 	return (
@@ -209,9 +245,9 @@ const Products = () => {
 			<main className="p-[5%] flex justify-center items-start relative">
 				<section
 					className={
-						isLoading ?
-						`fixed z-50 bg-white-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 inset-0 overflow-y-auto`
-						: ""
+						isLoading
+							? `fixed z-50 bg-white-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 inset-0 overflow-y-auto`
+							: ""
 					}
 				>
 					{isLoading && <Loader />}
@@ -527,7 +563,20 @@ const Products = () => {
 						</button>
 						<p className="font-semibold">Filter</p>
 					</div>
-					<button onClick={() => navigate(``)} className="font-semibold text-sm">reset</button>
+					<button
+						onClick={() => {
+							setCategories("");
+							setMinPrice("");
+							setMaxPrice("");
+							setBrands("");
+							setColors("");
+							setSizes("");
+							navigate(``);
+						}}
+						className="font-semibold text-sm"
+					>
+						reset
+					</button>
 				</div>
 				<section>
 					<div className="pb-4">
@@ -535,37 +584,55 @@ const Products = () => {
 						<div className="flex justify-center items-center gap-3 flex-wrap">
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div onClick={() => addCategories(1)} className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setCategories(1)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Accessories</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div onClick={() => addCategories(2)} className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setCategories(2)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Brands</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div onClick={() => addCategories(3)} className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setCategories(3)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Clothing</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div onClick={() => addCategories(4)} className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setCategories(4)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Fashion</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div onClick={() => addCategories(5)} className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setCategories(5)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Furniture</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div onClick={() => addCategories(6)} className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setCategories(6)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Men</p>
 								</div>
 							</label>
@@ -576,11 +643,23 @@ const Products = () => {
 						<div className="flex justify-center items-center gap-5">
 							<div className="flex justify-start items-center gap-1 border border-solid border-primary-gray py-1 px-2 flex-1">
 								<p>Rp</p>
-								<input type="number" placeholder="Lowest" className="w-full py-1 px-2" />
+								<input
+									type="number"
+									placeholder="Lowest"
+									value={minPrice}
+									onChange={(e) => setMinPrice(e.target.value)}
+									className="w-full py-1 px-2"
+								/>
 							</div>
 							<div className="flex justify-start items-center gap-1 border border-solid border-primary-gray py-1 px-2 flex-1">
 								<p>Rp</p>
-								<input type="number" placeholder="Highest" className="w-full py-1 px-2" />
+								<input
+									type="number"
+									placeholder="Highest"
+									value={maxPrice}
+									onChange={(e) => setMaxPrice(e.target.value)}
+									className="w-full py-1 px-2"
+								/>
 							</div>
 						</div>
 					</div>
@@ -589,31 +668,46 @@ const Products = () => {
 						<div className="flex justify-center items-center gap-3 flex-wrap">
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setBrands(2)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>IKEA</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setBrands(3)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Mr Royal</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setBrands(4)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Sweet House</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setBrands(5)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>North Oxford</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setBrands(6)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Mr Poppins 1928</p>
 								</div>
 							</label>
@@ -622,13 +716,22 @@ const Products = () => {
 					<div className="pb-4">
 						<p className="font-semibold pb-2">Colors</p>
 						<div className="flex justify-center items-center gap-4 flex-wrap">
-							<div className="h-4 w-4 rounded-full bg-red-600"></div>
-							<div className="h-4 w-4 rounded-full bg-orange-600"></div>
-							<div className="h-4 w-4 rounded-full bg-yellow-600"></div>
-							<div className="h-4 w-4 rounded-full bg-green-600"></div>
-							<div className="h-4 w-4 rounded-full bg-blue-600"></div>
-							<div className="h-4 w-4 rounded-full bg-violet-600"></div>
-							<div className="h-4 w-4 rounded-full bg-pink-600"></div>
+							<div onClick={() => setColors(1)} className="h-4 w-4 rounded-full bg-red-600"></div>
+							<div
+								onClick={() => setColors(2)}
+								className="h-4 w-4 rounded-full bg-orange-600"
+							></div>
+							<div
+								onClick={() => setColors(3)}
+								className="h-4 w-4 rounded-full bg-yellow-600"
+							></div>
+							<div onClick={() => setColors(4)} className="h-4 w-4 rounded-full bg-green-600"></div>
+							<div onClick={() => setColors(5)} className="h-4 w-4 rounded-full bg-blue-600"></div>
+							<div
+								onClick={() => setColors(6)}
+								className="h-4 w-4 rounded-full bg-violet-600"
+							></div>
+							<div onClick={() => setColors(7)} className="h-4 w-4 rounded-full bg-pink-600"></div>
 						</div>
 					</div>
 					<div className="pb-4">
@@ -636,37 +739,55 @@ const Products = () => {
 						<div className="flex justify-center items-center flex-wrap gap-4">
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setSizes(1)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>S</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setSizes(2)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>M</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setSizes(3)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>L</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setSizes(4)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>XL</p>
 								</div>
 							</label>
 							<label className="relative ">
 								<input className="peer absolute opacity-0" type="checkbox" />
-								<div className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center">
+								<div
+									onClick={() => setSizes(5)}
+									className="peer-checked:bg-black peer-checked:text-white py-2 px-3 border border-tertiary-gray border-solid flex justify-center items-center"
+								>
 									<p>Full Size</p>
 								</div>
 							</label>
 						</div>
 					</div>
-					<button className="btn w-full bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black">
+					<button
+						onClick={() => mobileFilter(categories, brands, sizes, minPrice, maxPrice, colors)}
+						className="btn w-full bg-primary-black text-white hover:bg-white hover:text-primary-black active:bg-white active:text-primary-black"
+					>
 						Filter
 					</button>
 				</section>
