@@ -80,7 +80,7 @@ const ProductDetail = () => {
     e.preventDefault();
     toast.dismiss();
     toast.promise(
-      wishlist(id, token).then((res) => console.log(res.data.msg)),
+      wishlist(id, token).then((res) => console.log(res.data.msg)).catch(err => console.log(err)),
       {
         loading: () => {
           e.target.disabled = true;
@@ -108,7 +108,7 @@ const ProductDetail = () => {
       name: data.name,
       price: data.price,
     };
-    dispatch(cartAction.addtoCart(cart));
+    dispatch(cartAction.addtoCart(cart))
     toast.success("Add new cart");
   };
 

@@ -7,10 +7,11 @@ import { transactions as makeTransactions } from "../../utils/https/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { cartAction } from "../../redux/slices/cart";
-import { get, remove } from "../../utils/sessionStorage";
+import { get } from "../../utils/sessionStorage";
 const Checkout = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const token = get("raz");
+  const sessionToken = get("raz");
+  const localToken = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -35,29 +36,35 @@ const Checkout = () => {
     });
     const body = {
       payment: 1,
-      products: [
-        {
-          product_id: "fbf2c36e-4f43-43d5-b987-07d18dc86b99",
-          size_id: "1",
-          color_id: "1",
-          qty: 2,
-        },
-      ],
+      products: dataShopping,
     };
     console.log(body);
-    makeTransactions(token, body)
-      .then((response) => {
-        console.log(response);
-        setIsLoading(false);
-        toast.success("Your Payment Is Success");
-        navigate("/mycart");
-        dispatch(cartAction.resetCart());
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        console.log(err);
-        toast.success("Your Payment Is Failed,Try again");
-      });
+
+    if (sessionToken) {
+      makeTransactions(sessionToken, body)
+        .then((response) => {
+          console.log(response);
+          toast.success("Your Payment Is Success");
+          navigate("/mycart");
+          dispatch(cartAction.resetCart());
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Your Payment Is Failed,Try again");
+        });
+    } else if (localToken) {
+      makeTransactions(localToken, body)
+        .then((response) => {
+          console.log(response);
+          toast.success("Your Payment Is Success");
+          navigate("/mycart");
+          dispatch(cartAction.resetCart());
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Your Payment Is Failed,Try again");
+        });
+    }
   };
 
   return (

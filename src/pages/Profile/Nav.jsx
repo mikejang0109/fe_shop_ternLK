@@ -47,11 +47,12 @@ const Nav = () => {
                     <img src={PathDown} alt="path" className="w-4 h-2" />
                     <div className={`${myOrderModal ? 'flex' : 'hidden'} w-[200px] lg:w-[300px] p-5 md:p-10 bg-primary-black flex-col gap-5 absolute top-16 right-0 z-40`}>
                         <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder')}>All</p>
-                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" >Get Paid</p>
-                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" >Processed</p>
-                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" >Sent</p>
-                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" >Completed</p>
-                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" >Order Cancel</p>
+                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder?status_id=1')}>Pending</p>
+                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder?status_id=2')}>Get Paid</p>
+                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder?status_id=3')}>Processed</p>
+                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder?status_id=4')}>Sent</p>
+                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder?status_id=5')}>Completed</p>
+                        <p className="text-[#b4b4b4] text-sm sm:text-base md:text-lg hover:text-white cursor-pointer" onClick={() => navigate('/myorder?status_id=6')}>Order Cancel</p>
                     </div>
                 </div>
             </nav>

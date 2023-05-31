@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Dialog } from "@headlessui/react";
 import { toast } from "react-hot-toast";
 import { logout } from "../../utils/https/auth";
+import { cartAction } from "../../redux/slices/cart";
 import { authAction } from "../../redux/slices/auth";
 import { get, remove } from "../../utils/sessionStorage";
 import { useNavigate } from "react-router-dom";
@@ -22,15 +23,15 @@ import Nav from "./Nav";
 
 
 const Profile = () => {
-  
+
   const [image, setImage] = useState()
-  
-  const [editName, setEditName] = useState(false)
-  const [editGender, setEditGender] = useState(false)
-  const [editEmail, setEditEmail] = useState(false)
+
+  const [editName, setEditName] = useState(true)
+  const [editGender, setEditGender] = useState(true)
+  const [editEmail, setEditEmail] = useState(true)
   // const [editAdress, setEditAddress] = useState(false)
-  const [editStoreName, setEditStoreName] = useState(false)
-  const [editStoreDescription, setEditStoreDescription] = useState(false)
+  const [editStoreName, setEditStoreName] = useState(true)
+  const [editStoreDescription, setEditStoreDescription] = useState(true)
   const [profile, setProfile] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -85,9 +86,10 @@ const Profile = () => {
           'Authorization': `Bearer ${token}`
         }
       })
-      console.log(result);
+      toast.success('Success update profile')
     } catch (error) {
       console.log(error);
+      toast.error('Failed update profile')
     } finally {
       setIsLoading(false)
     }
@@ -103,6 +105,7 @@ const Profile = () => {
         console.log(res["data"]);
         if (localToken) {
           dispatch(authAction.delete(token));
+          dispatch(cartAction.resetCart());
         } else {
           remove("raz");
         }
@@ -124,6 +127,7 @@ const Profile = () => {
   };
 
 
+  if (!profile) return <Loader />
   if (isLoading) return <Loader />
   return (
     <>
@@ -176,7 +180,8 @@ const Profile = () => {
               </div>
               <div className="w-1/5 flex justify-end items-center">
                 <button className="flex gap-4 items-center " type="button" onClick={() => editGender ? setEditGender(false) : setEditGender(true)}>
-                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                  <p className={`${editGender ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg hidden sm:block`}>SAVE</p>
+                  <p className={`${editGender ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg hidden sm:block`}>EDIT</p>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
               </div>
@@ -188,7 +193,10 @@ const Profile = () => {
               </div>
               <div className="w-1/5 flex justify-end items-center invisible">
                 <button className="flex gap-4 items-center " type="button" onClick={() => editEmail ? setEditEmail(false) : setEditEmail(true)}>
-                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                  <div className="hidden sm:block">
+                    <p className={`${editGender === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editGender === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
               </div>
@@ -200,7 +208,10 @@ const Profile = () => {
               </div>
               <div className="w-1/5 flex justify-end items-center">
                 <button className="flex gap-4 items-center " type="button" onClick={() => editStoreName ? setEditStoreName(false) : setEditStoreName(true)}>
-                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                  <div className="hidden sm:block">
+                    <p className={`${editStoreName === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editStoreName === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
               </div>
@@ -212,7 +223,10 @@ const Profile = () => {
               </div>
               <div className="w-1/5 flex justify-end items-center">
                 <button className="flex gap-4 items-center " type="button" onClick={() => editStoreDescription ? setEditStoreDescription(false) : setEditStoreDescription(true)}>
-                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                <div className="hidden sm:block">
+                    <p className={`${editStoreDescription === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editStoreDescription === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
               </div>
@@ -266,7 +280,10 @@ const Profile = () => {
               </div>
               <div className="w-1/5 flex justify-end items-center">
                 <button className="flex gap-4 items-center " type="button" onClick={() => editGender ? setEditGender(false) : setEditGender(true)}>
-                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                  <div className="hidden sm:block">
+                    <p className={`${editGender === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editGender === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
                   <img src={Edit2} alt="edit" className="w-5 h-5" />
                 </button>
               </div>
