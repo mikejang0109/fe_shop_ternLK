@@ -18,7 +18,7 @@ const CartPage = (props) => {
   const disabled = disable === false;
 
   console.log(shoppingCart);
-  
+
   const deleteALL = () => {
     dispatch(cartAction.resetCart());
   };
@@ -58,7 +58,7 @@ const CartPage = (props) => {
       );
     }
   };
-  if (shoppingCart.length === 0) {
+  if (shoppingCart?.length === 0) {
     return (
       <>
         <Header />
