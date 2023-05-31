@@ -38,7 +38,30 @@ const MyOrder = () => {
         return () => { getData = false }
     }, [location])
 
-    if(isLoading) return <Loader />
+    const processOrder = async (transaction_id) => {
+        try {
+            setIsLoading(true)
+            const body = {
+                transaction_id
+            }
+            const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/transactions/seller`
+            const result = await axios.patch(url, body, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            console.log(result);
+            toast.success('Processed')
+            window.location.reload()
+        } catch (error) {
+            console.log(error);
+            toast.error('Process failed')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    if (isLoading) return <Loader />
 
     return (
         <Fragment>
@@ -53,27 +76,30 @@ const MyOrder = () => {
                         <p className="font-arimo font-normal text-xs sm:text-sm md:text-base">STATUS ORDER</p>
                         <p className="font-arimo font-normal text-xs sm:text-sm md:text-base text-right">TOTAL</p>
                     </div>
-                    {data.length === 0 ? <div className="h-screen flex justify-center ">
+                    {data?.length === 0 ? <div className="h-screen flex justify-center ">
                         <p className="font-arimo text-3xl font-bold mt-28">No Order</p>
-                    </div> : 
-                    <div>
-                        {data?.map((d) => {
-                            console.log(d);
-                            return (
-                                <div className="grid grid-cols-7 items-center my-12">
-                                    <img src={imgsample} alt='product' className="object-cover" />
-                                    <p className="col-span-2 pl-3 text-sm md:text-base">{d.products[0].name}</p>
-                                    <p className="font-bold text-base md:text-lg flex items-center ">IDR {Number(d.products[0].subtotal).toLocaleString()}</p>
-                                    <p className="text-center sm:text-left">{d.products[0].quantity}</p>
-                                    <div className="flex justify-start items-center gap-1 sm:gap-3">
-                                        <img src={check} alt="check" />
-                                        <p className="text-sm sm:text-base">{d.status}</p>
+                    </div> :
+                        <div>
+                            {data?.map((d) => {
+                                console.log(d);
+                                return (
+                                    <div className="grid grid-cols-7 items-center my-12 relative">
+                                        <img src={imgsample} alt='product' className="object-cover" />
+                                        <p className="col-span-2 pl-3 text-sm md:text-base">{d.products[0].name}</p>
+                                        <p className="font-bold text-base md:text-lg flex items-center ">IDR {Number(d.products[0].subtotal).toLocaleString()}</p>
+                                        <p className="text-center sm:text-left">{d.products[0].quantity}</p>
+                                        <div className="flex justify-start items-center gap-1 sm:gap-3">
+                                            <img src={check} alt="check" />
+                                            <p className="text-sm sm:text-base">{d.status}</p>
+                                        </div>
+                                        <p className="text-right text-sm sm:text-base">IDR {Number(d.grandtotal).toLocaleString()}</p>
+                                        <div className={`${d.status_id === 1 ? 'block' : 'hidden'} opacity-0 hover:opacity-100 absolute w-full h-full flex justify-center items-center bg-primary-black/50`}>
+                                            <button type="button" className="px-3 py-1 bg-green-600 rounded-md text-white font-arimo font-medium" onClick={() => processOrder(d.transaction_id)}>Process</button>
+                                        </div>
                                     </div>
-                                    <p className="text-right text-sm sm:text-base">IDR {Number(d.grandtotal).toLocaleString()}</p>
-                                </div>
-                            )
-                        })}
-                    </div>}
+                                )
+                            })}
+                        </div>}
                 </section>
             </main>
             <Footer />
