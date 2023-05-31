@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { cartAction } from "../../redux/slices/cart";
 import { get } from "../../utils/sessionStorage";
 const Checkout = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const sessionToken = get("raz");
   const localToken = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Checkout = () => {
   console.log(dataShopping);
   const disabled = name === "" || address === "" || phone === "";
   const performTransactions = () => {
+    setIsLoading(true);
     const dataShopping = cart.shoppingCart.map((item) => {
       const { image, name, price, ...newItem } = item;
       return {
@@ -34,14 +36,7 @@ const Checkout = () => {
     });
     const body = {
       payment: 1,
-      products: [
-        {
-          product_id: "fbf2c36e-4f43-43d5-b987-07d18dc86b99",
-          size_id: "1",
-          color_id: "1",
-          qty: 2,
-        },
-      ],
+      products: dataShopping,
     };
     console.log(body);
 
@@ -124,13 +119,23 @@ const Checkout = () => {
             Pay with Paypal
           </option>
         </select>
-        <button
-          disabled={disabled}
-          onClick={performTransactions}
-          className="bg-primary-black text-white font-arimo font-bold text-sm text-center p-6 mt-8 w-full lg:w-auto"
-        >
-          Check Out
-        </button>
+        {isLoading ? (
+          <button
+            disabled={disabled}
+            onClick={performTransactions}
+            className="btn btn-primary bg-primary-black loading  font-arimo font-bold text-sm text-center p-6  w-full lg:w-auto rounded mt-7"
+          >
+            Check Out
+          </button>
+        ) : (
+          <button
+            disabled={disabled}
+            onClick={performTransactions}
+            className="bg-primary-black text-white font-arimo font-bold text-sm text-center p-6 mt-8 w-full lg:w-auto"
+          >
+            Check Out
+          </button>
+        )}
       </section>
       <Footer />
     </>
