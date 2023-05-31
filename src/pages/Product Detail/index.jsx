@@ -108,7 +108,7 @@ const ProductDetail = () => {
       name: data.name,
       price: data.price,
     };
-    dispatch(cartAction.addtoCart(cart));
+    dispatch(cartAction.addtoCart(cart))
     toast.success("Add new cart");
   };
 
