@@ -85,9 +85,11 @@ const Profile = () => {
           'Authorization': `Bearer ${token}`
         }
       })
-      console.log(result);
+      toast.success('Success update profile')
+      
     } catch (error) {
       console.log(error);
+      toast.error('Failed update profile')
     } finally {
       setIsLoading(false)
     }

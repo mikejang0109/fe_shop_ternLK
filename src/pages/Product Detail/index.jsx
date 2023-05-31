@@ -80,7 +80,7 @@ const ProductDetail = () => {
     e.preventDefault();
     toast.dismiss();
     toast.promise(
-      wishlist(id, token).then((res) => console.log(res.data.msg)),
+      wishlist(id, token).then((res) => console.log(res.data.msg)).catch(err => console.log(err)),
       {
         loading: () => {
           e.target.disabled = true;
