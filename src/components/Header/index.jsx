@@ -71,7 +71,7 @@ function Header(props) {
 	};
 
 	return (
-		<div className="header-wrapper relative navbar font-arimo lg:flex lg:flex-row lg:justify-between grid grid-cols-2 px-8 lg:px-20">
+		<div className="header-wrapper relative navbar font-arimo lg:flex lg:flex-row lg:justify-between grid grid-cols-2 px-8 lg:px-20 z-50">
 			<div className="site-title">
 				<Link to={"/"}>
 					<p className="font-bold text-primary-black text-center text-[2.82rem]">RAZ</p>
