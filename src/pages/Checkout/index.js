@@ -123,7 +123,7 @@ const Checkout = () => {
           <button
             disabled={disabled}
             onClick={performTransactions}
-            className="btn btn-primary bg-primary-black loading  font-arimo font-bold text-sm text-center p-6  w-full lg:w-auto rounded mt-7"
+            className="btn btn-primary loading h-[68px]  font-arimo font-bold text-sm text-center p-6  w-full lg:w-auto rounded mt-7"
           >
             Check Out
           </button>
