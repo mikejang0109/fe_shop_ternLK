@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { cartAction } from "../../redux/slices/cart";
 import { get, remove } from "../../utils/sessionStorage";
 const Checkout = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const token = get("raz");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Checkout = () => {
   console.log(dataShopping);
   const disabled = name === "" || address === "" || phone === "";
   const performTransactions = () => {
+    setIsLoading(true);
     const dataShopping = cart.shoppingCart.map((item) => {
       const { image, name, price, ...newItem } = item;
       return {
@@ -46,11 +48,13 @@ const Checkout = () => {
     makeTransactions(token, body)
       .then((response) => {
         console.log(response);
+        setIsLoading(false);
         toast.success("Your Payment Is Success");
         navigate("/mycart");
         dispatch(cartAction.resetCart());
       })
       .catch((err) => {
+        setIsLoading(false);
         console.log(err);
         toast.success("Your Payment Is Failed,Try again");
       });
@@ -108,13 +112,23 @@ const Checkout = () => {
             Pay with Paypal
           </option>
         </select>
-        <button
-          disabled={disabled}
-          onClick={performTransactions}
-          className="bg-primary-black text-white font-arimo font-bold text-sm text-center p-6 mt-8 w-full lg:w-auto"
-        >
-          Check Out
-        </button>
+        {isLoading ? (
+          <button
+            disabled={disabled}
+            onClick={performTransactions}
+            className="btn btn-primary bg-primary-black loading  font-arimo font-bold text-sm text-center p-6  w-full lg:w-auto rounded mt-7"
+          >
+            Check Out
+          </button>
+        ) : (
+          <button
+            disabled={disabled}
+            onClick={performTransactions}
+            className="bg-primary-black text-white font-arimo font-bold text-sm text-center p-6 mt-8 w-full lg:w-auto"
+          >
+            Check Out
+          </button>
+        )}
       </section>
       <Footer />
     </>
