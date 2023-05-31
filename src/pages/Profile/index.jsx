@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Dialog } from "@headlessui/react";
 import { toast } from "react-hot-toast";
 import { logout } from "../../utils/https/auth";
+import { cartAction } from "../../redux/slices/cart";
 import { authAction } from "../../redux/slices/auth";
 import { get, remove } from "../../utils/sessionStorage";
 import { useNavigate } from "react-router-dom";
@@ -104,6 +105,7 @@ const Profile = () => {
         console.log(res["data"]);
         if (localToken) {
           dispatch(authAction.delete(token));
+          dispatch(cartAction.resetCart());
         } else {
           remove("raz");
         }
