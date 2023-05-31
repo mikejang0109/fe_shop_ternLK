@@ -17,8 +17,6 @@ const CartPage = (props) => {
   const shoppingCart = cart?.shoppingCart;
   const disabled = disable === false;
 
-  console.log(shoppingCart);
-  
   const deleteALL = () => {
     dispatch(cartAction.resetCart());
   };
@@ -58,7 +56,7 @@ const CartPage = (props) => {
       );
     }
   };
-  if (shoppingCart.length === 0) {
+  if (shoppingCart?.length === 0) {
     return (
       <>
         <Header />
@@ -97,7 +95,7 @@ const CartPage = (props) => {
               TOTAL
             </p>
           </div>
-          {shoppingCart.map((data, i) => {
+          {shoppingCart?.map((data, i) => {
             return (
               <div className="flex items-center" key={i}>
                 <img
