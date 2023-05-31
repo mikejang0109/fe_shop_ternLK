@@ -91,8 +91,8 @@ const MyProduct = () => {
                         <p className="text-base md:text-lg text-right sm:text-left">Price</p>
                     </section>
                     <div className="w-full h-[1px] bg-secondary-gray"></div>
-                    {!product ? <div className="h-screen flex justify-center items-center">
-                        <p className="font-arimo text-3xl font-bold">No Product Added</p>
+                    {!product ? <div className="h-screen flex justify-center ">
+                        <p className="font-arimo text-3xl font-bold mt-28">No Product Added</p>
                     </div> :
                         deleteLoading ? <Loader /> :
                             <div>
