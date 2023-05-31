@@ -7,9 +7,10 @@ import { transactions as makeTransactions } from "../../utils/https/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { cartAction } from "../../redux/slices/cart";
-import { get, remove } from "../../utils/sessionStorage";
+import { get } from "../../utils/sessionStorage";
 const Checkout = () => {
-  const token = get("raz");
+  const sessionToken = get("raz");
+  const localToken = useSelector((state) => state.auth.token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -43,17 +44,32 @@ const Checkout = () => {
       ],
     };
     console.log(body);
-    makeTransactions(token, body)
-      .then((response) => {
-        console.log(response);
-        toast.success("Your Payment Is Success");
-        navigate("/mycart");
-        dispatch(cartAction.resetCart());
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.success("Your Payment Is Failed,Try again");
-      });
+
+    if (sessionToken) {
+      makeTransactions(sessionToken, body)
+        .then((response) => {
+          console.log(response);
+          toast.success("Your Payment Is Success");
+          navigate("/mycart");
+          dispatch(cartAction.resetCart());
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Your Payment Is Failed,Try again");
+        });
+    } else if (localToken) {
+      makeTransactions(localToken, body)
+        .then((response) => {
+          console.log(response);
+          toast.success("Your Payment Is Success");
+          navigate("/mycart");
+          dispatch(cartAction.resetCart());
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Your Payment Is Failed,Try again");
+        });
+    }
   };
 
   return (
