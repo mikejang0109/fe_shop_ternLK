@@ -16,11 +16,15 @@ import OrderTrack from "./pages/Order Track";
 import Blog from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
 import ResetPass from "./pages/Forgot Password/resetPass";
-//angga
+import Chat from "./pages/Chat";
+import MyOrder from "./pages/Profile/MyOrder";
+
 import AboutUs from "./pages/AboutUs";
 import PreLaunching from "./pages/ComingSoon";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
+import MyProduct from "./pages/Profile/MyProduct";
+import SellingProduct from "./pages/Profile/SellingProduct";
 
 import { IsLogin, PrivateRoute } from "./utils/wrapper/privateRoute";
 
@@ -94,6 +98,30 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/myproduct",
+    element: (
+      <PrivateRoute>
+        <MyProduct />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/sellproduct",
+    element: (
+      <PrivateRoute>
+        <SellingProduct />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/myorder",
+    element: (
+      <PrivateRoute>
+        <MyOrder />
+      </PrivateRoute>
+    ),
+  },
+  {
     path: "/contact",
     element: <ContactUs />,
   },
@@ -112,8 +140,15 @@ const router = createBrowserRouter([
     element: <PreLaunching />,
   },
   {
+    path: "/chat",
+    element: <Chat />,
+  },
+  {
     path: "/profile",
-    element: <Profile />,
+    element:
+      <PrivateRoute>
+        <Profile />,
+      </PrivateRoute>
   },
 ]);
 

@@ -30,7 +30,7 @@ const ProductDetail = () => {
   const id = location.pathname.split("/").reverse()[0];
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     const controller = new AbortController();
     const url = `${process.env.REACT_APP_SERVER_HOST}/products/${id}`;
@@ -49,7 +49,7 @@ const ProductDetail = () => {
             categoryName: d.category_name,
             brandName: d.brand_name,
             conditionName: d.condition_name,
-            color: d.color,
+            colors: d.colors,
             sizes: d.sizes,
             images: d.image_urls,
             storeName: d.store_name,
@@ -73,6 +73,7 @@ const ProductDetail = () => {
     if (count === 1) {
       return;
     }
+    setCount((prev) => prev - 1);
   };
 
   const addWishlist = (e) => {
@@ -100,8 +101,8 @@ const ProductDetail = () => {
   const addCart = () => {
     const cart = {
       product_id: id,
-      size_id: 1,
-      color_id: 1,
+      size_id: data.sizes[0].id ,
+      color_id: data.colors[0].id,
       qty: count,
       image: data.images[0],
       name: data.name,
