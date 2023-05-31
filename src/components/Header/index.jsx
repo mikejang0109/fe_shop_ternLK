@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { Dialog } from "@headlessui/react";
 
 import { authAction } from "../../redux/slices/auth";
+import { cartAction } from "../../redux/slices/cart";
 import { get, remove } from "../../utils/sessionStorage";
 import { logout } from "../../utils/https/auth";
 
@@ -50,6 +51,7 @@ function Header(props) {
 				console.log(res["data"]);
 				if (localToken) {
 					dispatch(authAction.delete(token));
+					dispatch(cartAction.resetCart());
 				} else {
 					remove("raz");
 				}
