@@ -4,19 +4,15 @@
 
 <p id="description">The front-end part of the "RAZ" website. For the back-end part <a href="https://github.com/digi-squad/raz-be">click here!</a></p>
 
-<h2>🚀 Demo</h2>
+<h2>💻 Built with</h2>
 
-[click here!](https://raz-fe.vercel.app/)
+Technologies used in the project:
 
-<h2>Project Screenshots:</h2>
+*   [React](https://react.dev/)
+*   [Redux](https://github.com/reduxjs/redux)
+*   [TailwindCSS](https://tailwindcss.com/)
+*   [DaisyUI](https://daisyui.com/)
 
-<img src="https://i.imgur.com/KWJWJpx.png" alt="project-screenshot">
-
-<img src="https://i.imgur.com/ZepdkCM.png" alt="project-screenshot">
-
-<img src="https://i.imgur.com/spnMVrx.png" alt="project-screenshot">
-
-<img src="https://i.imgur.com/u5OK1bZ.png" alt="project-screenshot">
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -50,16 +46,15 @@ REACT_APP_SERVER_HOST = [YOUR SERVER HOST]
 npm run start
 ```
 
+<h2>🚀 Demo</h2>
 
+[click here!](https://raz-fe.vercel.app/)
 
-<h2>💻 Built with</h2>
+<h2>Project Screenshots:</h2>
 
-Technologies used in the project:
+<img src="https://user-images.githubusercontent.com/109842306/245002840-fb21e587-c7d2-4ada-984c-9f0412884e86.jpg" alt="project-screenshot">
 
-*   [React](https://react.dev/)
-*   [Redux](https://github.com/reduxjs/redux)
-*   [TailwindCSS](https://tailwindcss.com/)
-*   [DaisyUI](https://daisyui.com/)
+<img src="https://user-images.githubusercontent.com/109842306/245002856-d424fa4c-a089-45cb-a69e-8091f531b9ff.jpg" alt="project-screenshot">
 
 <h2>👨‍💻Contributors</h2>
 
