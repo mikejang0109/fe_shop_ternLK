@@ -1,8 +1,8 @@
 <h1 id="title" align="center">RAZ-FE</h1>
 
-<p align="center"><img src="https://socialify.git.ci/digi-squad/raz-fe/image?description=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Charlie%20Brown&amp;theme=Dark" alt="project-image"></p>
-
-<p id="description">The front-end part of the "RAZ" website. For the back-end part <a href="https://github.com/digi-squad/raz-be">click here!</a></p>
+<p id="description">A web SPA (Single Page Application) dedicated for people who don't have much time
+exploring the mall alleys, finding cheap products yet have high quality. Developed using
+ReactJS & Redux and stylised using TailwindCSS & DaisyUI</p>
 
 <h2>💻 Built with</h2>
 
@@ -12,7 +12,6 @@ Technologies used in the project:
 *   [Redux](https://github.com/reduxjs/redux)
 *   [TailwindCSS](https://tailwindcss.com/)
 *   [DaisyUI](https://daisyui.com/)
-
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -52,18 +51,25 @@ npm run start
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://user-images.githubusercontent.com/109842306/245002840-fb21e587-c7d2-4ada-984c-9f0412884e86.jpg" alt="project-screenshot">
-
-<img src="https://user-images.githubusercontent.com/109842306/245002856-d424fa4c-a089-45cb-a69e-8091f531b9ff.jpg" alt="project-screenshot">
+<div style="display: flex; flex-wrap: wrap; gap: 0.5%;">
+  <img src="https://i.imgur.com/KWJWJpx.png" alt="project-screenshot" width="45%">
+  <img src="https://i.imgur.com/ZepdkCM.png" alt="project-screenshot" width="45%">
+  <img src="https://i.imgur.com/spnMVrx.png" alt="project-screenshot" width="45%">
+  <img src="https://i.imgur.com/u5OK1bZ.png" alt="project-screenshot" width="45%">
+</div>
 
 <h2>👨‍💻Contributors</h2>
 
-*   [M. Pria Admaja](https://github.com/priaadmaja) - Project Manager & Fullstack Developer
-*   [Raihan Irvana](https://github.com/raihanirvana) - Back-end Developer
-*   [Farhan Brillan W](https://github.com/nyannss) - Back-end Developer
-*   [Akmal Susetio](https://github.com/wyakaga) - Front-end Developer
-*   [Damar Anggoro](https://github.com/marrdamar)  - Front-end Developer
+- [M. Pria Admaja](https://github.com/priaadmaja) - Project Manager & Fullstack Developer
+- [Raihan Irvana](https://github.com/raihanirvana) - Back-end Developer
+- [Farhan Brillan W](https://github.com/nyannss) - Back-end Developer
+- [Akmal Susetio](https://github.com/wyakaga) - Front-end Developer
+- [Damar Anggoro](https://github.com/marrdamar) - Front-end Developer
 
 <h2>🛡️ License:</h2>
 
 This project is licensed under the ISC License
+
+<h2>Related Projects</h2>
+
+* [raz-be](https://github.com/digi-squad/raz-be) - Backend
