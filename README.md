@@ -8,10 +8,10 @@ ReactJS & Redux and stylised using TailwindCSS & DaisyUI</p>
 
 Technologies used in the project:
 
-- [React](https://react.dev/)
-- [Redux](https://github.com/reduxjs/redux)
-- [TailwindCSS](https://tailwindcss.com/)
-- [DaisyUI](https://daisyui.com/)
+*   [React](https://react.dev/)
+*   [Redux](https://github.com/reduxjs/redux)
+*   [TailwindCSS](https://tailwindcss.com/)
+*   [DaisyUI](https://daisyui.com/)
 
 <h2>🛠️ Installation Steps:</h2>
 
