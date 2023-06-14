@@ -1,83 +1,359 @@
-import React, { Component } from "react";
-import Cust from '../../assets/profilecust/cust.png';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import jwtDecode from "jwt-decode";
+import axios from 'axios';
+import { Dialog } from "@headlessui/react";
+import { toast } from "react-hot-toast";
+import { logout } from "../../utils/https/auth";
+import { cartAction } from "../../redux/slices/cart";
+import { authAction } from "../../redux/slices/auth";
+import { get, remove } from "../../utils/sessionStorage";
+import { useNavigate } from "react-router-dom";
+
+import defaultAvatar from '../../assets/avatars/default-avatar.jpg'
 import Edit2 from '../../assets/profilecust/edit-3.svg';
 import Logout from '../../assets/profilecust/log-out.svg';
+import Title from "../../components/Title";
+import Header from "../../components/Header";
 
-class ProfileCust extends Component {
-  render() {
-    return (
-      <>
-        <section className="bg-[#F9F9F9] handphone:w-[100vw]">
-          <div className="grid justify-items-center justify-center ">
-            <p className="text-title font-normal pt-[30px] pb-[20px]
-            handphone:max-tablet:text-mid handphone:max-tablet:pb-[10px]">Profile</p>
-            <p className="pb-[60px]
-            handphone:max-tablet:text-medium handphone:max-tablet:pb-[30px]">See your notifications for the latest updates</p>
-          </div>
-        </section>
-        <section className="flex px-[10vw] py-[100px] gap-10
-        handphone:max-tablet:pl-wFormProfile 
-        handphone:max-tablet:pr-wFormProfile pt-[5vw] pb-[10vw] flex flex-start gap-3">
-          <div className="w-max">
-            <img src={Cust} alt="" className="w-ProfileImage handphone:max-tablet:w-50"/>
-          </div>
-          <div className="flex flex-wrap w-[150px] gap-2 items-center
-          handphone:max-tablet:pt-[0px] gap-0 handphone:max-tablet:w-textimage">
-            <p className="font-bold text-title pr-[0]
-            handphone:max-tablet:font-titleWeight handphone:max-tablet:text-medium pr-[1vw]">Syifa</p>
-            <img src={Edit2} alt="" className="w-image2
-            handphone:max-tablet:w-image"/>
-            <p className="items-start handphone:max-tablet:text-small">as Customer</p>
-          </div>
-        </section>
-        <section className="grid mx-[150px] border-2 mb-[100px]
-        handphone:max-tablet:mx-[5vw] handphone:max-tablet:mb-[2vh]">
-          <div className="flex px-[50px] py-[50px] border-b-2
-          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-            <form className="grow">
-              <label>Gender</label>
-              <br></br>
-              <input type="text" placeholder="Female" className=""/>
-            </form>
-            <div className="grow-0 flex gap-2 font-bold">
-              <button className="">EDIT</button>
-              <img src={Edit2} alt="" className="w-[15px]"/>
-            </div>
-          </div>
-          <div className="flex px-[50px] py-[50px] border-b-2
-          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-          <form className="grow">
-              <label>Your Email</label>
-              <br></br>
-              <input type="text" placeholder="syifa@gamil.com" className=""/>
-            </form>
-            <div className="grow-0 flex gap-2 font-bold">
-              <button className="">EDIT</button>
-              <img src={Edit2} alt="" className="w-[15px]"/>
-            </div>
-            </div>
-          <div className="flex px-[50px] py-[50px]
-          handphone:max-tablet:px-wFormProfile handphone:max-tablet:py-hFormProfile">
-          <form className="grow">
-              <label>Store Description</label>
-              <br></br>
-              <input type="text" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit." className=""/>
-            </form>
-            <div className="grow-0 flex gap-2 font-bold">
-              <button className="">EDIT</button>
-              <img src={Edit2} alt="" className="w-[15px]"/>
-            </div>
-            </div>
-        </section>
-        <section className="px-[150px] pb-[100px] 
-        handphone:max-tablet:flex handphone:max-tablet:justify-center">
-          <button className="flex bg-[#D94141] px-[50px] py-[15px] rounded-md gap-2 text-white
-        handphone:max-tablet:px-[10px] handphone:max-tablet:py-[5px]"><img src={Logout} alt="" className="
-        handphone:max-tablet:w-image1.5"/> LOGOUT</button>
-        </section>
-      </>
-    )
+import Footer from '../../components/Footer';
+
+import Loader from "../../components/Loader";
+import Nav from "./Nav";
+
+
+const Profile = () => {
+
+  const [image, setImage] = useState()
+
+  const [editName, setEditName] = useState(true)
+  const [editGender, setEditGender] = useState(true)
+  const [editEmail, setEditEmail] = useState(true)
+  // const [editAdress, setEditAddress] = useState(false)
+  const [editStoreName, setEditStoreName] = useState(true)
+  const [editStoreDescription, setEditStoreDescription] = useState(true)
+  const [profile, setProfile] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const localToken = useSelector((state) => state.auth.token);
+  const sessionToken = get("raz");
+  const token = sessionToken || localToken
+  const { role } = jwtDecode(token)
+
+
+  useEffect(() => {
+    let getData = true
+    if (getData) {
+      setIsLoading(true)
+      const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/userPanel/profile`
+      axios.get(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(res => setProfile(res.data.data[0])).catch(err => console.log(err)).finally(() => setIsLoading(false))
+    }
+    return () => { getData = false }
+  }, [])
+
+  const editProfile = (key, value) => {
+    const newProfile = { ...profile, [key]: value }
+    setProfile(newProfile)
   }
+
+  const handleCloseDialog = () => {
+    setIsDialogOpen(false);
+  };
+
+  const saveProfile = async () => {
+    try {
+      setIsLoading(true)
+      const formData = new FormData()
+      if (image) {
+        formData.append('image', image)
+      }
+      formData.append('name', profile.name)
+      // formData.append('email', profile.email)
+      formData.append('gender', profile.gender_id)
+      formData.append('store_name', profile.store_name)
+      formData.append('store_desc', profile.store_desc)
+      const url = `${process.env.REACT_APP_SERVER_HOST}/apiv1/userPanel/profile`
+      const result = await axios.patch(url, formData, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      toast.success('Success update profile')
+    } catch (error) {
+      console.log(error);
+      toast.error('Failed update profile')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+
+    const token = localToken || sessionToken;
+
+    toast.promise(
+      logout(token).then((res) => {
+        console.log(res["data"]);
+        if (localToken) {
+          dispatch(authAction.delete(token));
+          dispatch(cartAction.resetCart());
+        } else {
+          remove("raz");
+        }
+      }),
+      {
+        loading: "Please wait...",
+        success: () => {
+          navigate("/");
+          setIsDialogOpen(false);
+          return <>Succesfully logged out</>;
+        },
+        error: () => {
+          setIsDialogOpen(false);
+          return <>Something went wrong</>
+        },
+      },
+      { success: { duration: Infinity } }
+    );
+  };
+
+
+  if (!profile) return <Loader />
+  if (isLoading) return <Loader />
+  return (
+    <>
+      <Header />
+      <Title
+        isBreadcrumbs={false}
+        breadcrumbs=""
+        breadcrumbs2=""
+        title="Profile"
+        description="See your notifications for the latest updates"
+      />
+      <main className={`${role === 2 ? 'block' : 'hidden'} py-[5%] px-[8%] w-full`}>
+        <Nav />
+        <section className={`flex mt-10 md:mt-24 items-start gap-10 flex-col justify-start w-full`}>
+          <div className="flex gap-10 items-center">
+            <label className="w-24 h-24 rounded-full overflow-hidden relative cursor-pointer">
+              <img src={image ? URL.createObjectURL(image) : profile?.img ? profile?.img : defaultAvatar} alt="avatar" className="object-cover" />
+              <input type="file" className="invisible" onChange={(e) => setImage(e.target.files[0])} />
+              <div className="bg-primary-black/50 opacity-0 hover:opacity-100 flex justify-center items-center  absolute w-full h-full top-0">
+                <p className="text-white">Change</p>
+              </div>
+            </label>
+            <div>
+              <div className="flex items-center gap-5">
+                {/* <p className="font-arimo font-bold text-2xl">{profile.name || 'Set your name'}</p> */}
+                <input type="text" value={profile?.name} placeholder="Set your name" className="font-arimo font-bold text-2xl w-[200px]" disabled={editName} onChange={(e) => editProfile('name', e.target.value)} />
+                <button type="button" onClick={() => editName ? setEditName(false) : setEditName(true)}><img src={Edit2} alt="edit" className="w-5 h-5" /></button>
+              </div>
+              <p className="font-arimo font-normal text-base">as Seller</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 w-full border-primary-gray border">
+            <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Gender</p>
+                <div className="flex items-center gap-10">
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => editProfile('gender_id', 1)}>
+                    <div className={`w-5 h-5 rounded-full border ${profile?.gender_id === 1 ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
+                      <div className={`w-3 h-3 rounded-full ${profile?.gender_id === 1 ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
+                    </div>
+                    <p className="font-arimo font-normal text-lg md:text-xl lg:text-2xl">Male</p>
+                  </button>
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => editProfile('gender_id', 2)}>
+                    <div className={`w-5 h-5 rounded-full border ${profile?.gender_id === 2 ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
+                      <div className={`w-3 h-3 rounded-full ${profile?.gender_id === 2 ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
+                    </div>
+                    <p className="font-arimo font-normal text-lg md:text-xl lg:text-2xl">Female</p>
+                  </button>
+                </div>
+              </div>
+              <div className="w-1/5 flex justify-end items-center">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editGender ? setEditGender(false) : setEditGender(true)}>
+                  <p className={`${editGender ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg hidden sm:block`}>SAVE</p>
+                  <p className={`${editGender ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg hidden sm:block`}>EDIT</p>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Your Email</p>
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={profile?.email} placeholder="Input your mail" disabled onChange={(e) => editProfile('email', e.target.value)} />
+              </div>
+              <div className="w-1/5 flex justify-end items-center invisible">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editEmail ? setEditEmail(false) : setEditEmail(true)}>
+                  <div className="hidden sm:block">
+                    <p className={`${editGender === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editGender === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Store Name</p>
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={profile?.store_name} placeholder="Input your store name" disabled={editStoreName} onChange={(e) => editProfile('store_name', e.target.value)} />
+              </div>
+              <div className="w-1/5 flex justify-end items-center">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editStoreName ? setEditStoreName(false) : setEditStoreName(true)}>
+                  <div className="hidden sm:block">
+                    <p className={`${editStoreName === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editStoreName === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div className=" px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Store Description</p>
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={profile?.store_desc} placeholder="Input your store description" disabled={editStoreDescription} onChange={(e) => editProfile('store_desc', e.target.value)} />
+              </div>
+              <div className="w-1/5 flex justify-end items-center">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editStoreDescription ? setEditStoreDescription(false) : setEditStoreDescription(true)}>
+                <div className="hidden sm:block">
+                    <p className={`${editStoreDescription === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editStoreDescription === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <button className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex border-none justify-center items-center bg-[#38d323] hover:bg-[#38d323]/80" onClick={saveProfile}>
+            <p className="font-arimo font-bold text-base text-white">SAVE</p>
+          </button>
+          <button className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex border-none justify-center items-center bg-[#D94141] hover:bg-[#D94141]/80" onClick={() => setIsDialogOpen(true)}>
+            <img src={Logout} alt="logout" className="w-6 h-6" />
+            <p className="font-arimo font-bold text-base text-white">LOGOUT</p>
+          </button>
+        </section>
+      </main>
+      <main className={`${role === 1 ? 'block' : 'hidden'} py-[5%] px-[8%] w-full`}>
+        <section className={`flex mt-10 md:mt-24 items-start gap-10 flex-col justify-start w-full`}>
+          <div className="flex gap-10 items-center">
+            <label className="w-24 h-24 rounded-full overflow-hidden relative">
+              <img src={image ? URL.createObjectURL(image) : profile?.img ? profile?.img : defaultAvatar} alt="avatar" className="object-cover" />
+              <input type="file" className="invisible" onChange={(e) => setImage(e.target.files[0])} />
+              <div className="bg-primary-black/50 opacity-0 hover:opacity-100 flex justify-center items-center  absolute w-full h-full top-0">
+                <p className="text-white">Change</p>
+              </div>
+            </label>
+            <div>
+              <div className="flex items-center gap-5">
+                <input type="text" value={profile?.name} placeholder="Set your name" className="font-arimo font-bold text-2xl w-[200px]" disabled={editName} onChange={(e) => editProfile('name', e.target.value)} />
+                <button type="button" onClick={() => editName ? setEditName(false) : setEditName(true)}><img src={Edit2} alt="edit" className="w-5 h-5" /></button>
+              </div>
+              <p className="font-arimo font-normal text-base">as Customer</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 w-full border-primary-gray border">
+            <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Gender</p>
+                <div className="flex items-center gap-10">
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => editProfile('gender_id', 1)}>
+                    <div className={`w-5 h-5 rounded-full border ${profile?.gender_id === 1 ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
+                      <div className={`w-3 h-3 rounded-full ${profile?.gender_id === 1 ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
+                    </div>
+                    <p className="font-arimo font-normal text-lg md:text-xl lg:text-2xl">Male</p>
+                  </button>
+                  <button type="button" className="flex items-center gap-3" disabled={editGender} onClick={() => editProfile('gender_id', 2)}>
+                    <div className={`w-5 h-5 rounded-full border ${profile?.gender_id === 2 ? 'border-primary-black' : 'border-secondary-gray'} flex justify-center items-center`}>
+                      <div className={`w-3 h-3 rounded-full ${profile?.gender_id === 2 ? 'bg-primary-black' : 'bg-secondary-gray'}`}></div>
+                    </div>
+                    <p className="font-arimo font-normal text-lg md:text-xl lg:text-2xl">Female</p>
+                  </button>
+                </div>
+              </div>
+              <div className="w-1/5 flex justify-end items-center">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editGender ? setEditGender(false) : setEditGender(true)}>
+                  <div className="hidden sm:block">
+                    <p className={`${editGender === true ? 'hidden' : 'block'} font-arimo font-bold text-base md:text-lg `}>SAVE</p>
+                    <p className={`${editGender === true ? 'block' : 'hidden'} font-arimo font-bold text-base md:text-lg `}>EDIT</p>
+                  </div>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+            <div className="border-primary-gray border-b px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Your Email</p>
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={profile?.email} placeholder="Input your mail" disabled={editEmail} onChange={(e) => editProfile('email', e.target.value)} />
+              </div>
+              <div className="w-1/5 flex justify-end items-center invisible">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editEmail ? setEditEmail(false) : setEditEmail(true)}>
+                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* <div className=" px-7 md:px-14 py-5 md:py-10 flex items-center">
+              <div className="flex flex-col gap-4 w-4/5">
+                <p className="font-arimo font-normal text-base text-primary-black">Address</p>
+                <input type="text" className="w-full font-arimo font-normal text-lg md:text-xl lg:text-2xl outline-none text-primary-black" value={profile?.store_desc} placeholder="Input your address" disabled={editAdress} onChange={(e) => editProfile('store_desc', e.target.value)} />
+              </div>
+              <div className="w-1/5 flex justify-end items-center">
+                <button className="flex gap-4 items-center " type="button" onClick={() => editAdress ? setEditAddress(false) : setEditAddress(true)}>
+                  <p className="font-arimo font-bold text-base md:text-lg hidden sm:block">EDIT</p>
+                  <img src={Edit2} alt="edit" className="w-5 h-5" />
+                </button>
+              </div>
+            </div> */}
+          </div>
+          <button className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex border-none justify-center items-center bg-[#38d323] hover:bg-[#38d323]/80" onClick={saveProfile}>
+            <p className="font-arimo font-bold text-base text-white">SAVE</p>
+          </button>
+          <button type="button" className="btn h-14 sm:h-[70px] w-1/2 sm:w-52 gap-4 flex border-none justify-center items-center bg-[#D94141] hover:bg-[#D94141]/80" onClick={() => setIsDialogOpen(true)}>
+            <img src={Logout} alt="logout" className="w-6 h-6" />
+            <p className=" font-arimo font-bold text-base text-white">LOGOUT</p>
+          </button>
+        </section>
+      </main>
+      <Footer />
+      <Dialog
+        open={isDialogOpen}
+        onClose={handleCloseDialog}
+        className="fixed z-50 bg-white-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 inset-0 overflow-y-auto font-arimo"
+      >
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="bg-white w-1/2 lg:p-16 p-6 rounded-lg shadow-lg text-center z-20">
+            <p className="text-2xl font-bold mb-2">Are you sure to logout?</p>
+            <div className="logout-button pt-10">
+              <button
+                onClick={handleLogout}
+                className="btn normal-case w-full border-transparent text-white bg-primary-black hover:text-primary-black hover:bg-white disabled:bg-[#DADADA] disabled:text-[#88888F]"
+              >
+                Yes
+              </button>
+            </div>
+            <div className="cancel-button pt-10">
+              <button
+                onClick={handleCloseDialog}
+                className="btn normal-case w-full border-transparent text-white bg-accent-red hover:text-accent-red hover:bg-white"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </Dialog>
+    </>
+  )
 }
 
-export default ProfileCust;
+
+export default Profile;
